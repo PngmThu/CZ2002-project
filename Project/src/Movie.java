@@ -1,4 +1,4 @@
-
+import java.util.ArrayList;
 
 public class Movie {
 
@@ -6,11 +6,21 @@ public class Movie {
 	private String status;
 	private String synopsis;
 	private String director;
-	private String[] cast;
-	private double rating;
-	private String pastReview;
-	private int pastRating;
-	private int attribute;
+	private double avgRating;
+	private String type;
+	private ArrayList<String> cast;
+	private ArrayList<MovieReview> movieReviews;
+	
+	public Movie(String title, String status, String synopsis, String director, double avgRating, String type, ArrayList<String> cast, ArrayList<MovieReview> movieReviews) {
+		this.title = title;
+		this.status = status;
+		this.synopsis = synopsis;
+		this.director = director;
+		this.avgRating = avgRating;
+		this.type = type;
+		this.cast = cast;
+		this.movieReviews = movieReviews;
+	}
 
 	public String getTitle() {
 		return this.title;
@@ -60,7 +70,7 @@ public class Movie {
 		this.director = director;
 	}
 
-	public String[] getCast() {
+	public ArrayList<String> getCast() {
 		return this.cast;
 	}
 
@@ -68,57 +78,19 @@ public class Movie {
 	 * 
 	 * @param cast
 	 */
-	public void setCast(String[] cast) {
+	public void setCast(ArrayList<String> cast) {
 		this.cast = cast;
 	}
 
-	public double getRating() {
-		return this.rating;
+	public double getAvgRating() {
+		return this.avgRating;
 	}
 
-	/**
-	 * 
-	 * @param rating
-	 */
-	public void setRating(double rating) {
-		this.rating = rating;
+	public ArrayList<MovieReview> getMovieReviews() {
+		return this.movieReviews;
 	}
 
-	public String getPastReview() {
-		return this.pastReview;
+	public String getType() {
+		return this.type;
 	}
-
-	/**
-	 * 
-	 * @param pastReview
-	 */
-	public void setPastReview(String pastReview) {
-		this.pastReview = pastReview;
-	}
-
-	public int getPastRating() {
-		return this.pastRating;
-	}
-
-	/**
-	 * 
-	 * @param pastRating
-	 */
-	public void setPastRating(int pastRating) {
-		this.pastRating = pastRating;
-	}
-
-	public void getAttribute() {
-		// TODO - implement Movie.getAttribute
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * 
-	 * @param attribute
-	 */
-	public void setAttribute(int attribute) {
-		this.attribute = attribute;
-	}
-
 }

@@ -3,9 +3,14 @@
 public class Vendor {
 
 	private String vendorName;
-	private Cineplex[] cineplexManage;
+	private Cineplex[] cineplexes;
+	
+	public Vendor() {
+		vendorName = "MOBLIMA";
+	    //////////////////////////////////////////
+	}
 
-	public Cineplex[] getCineplex() {
+	public Cineplex[] getCineplexes() {
 		// TODO - implement Vendor.getCineplex
 		throw new UnsupportedOperationException();
 	}
@@ -14,8 +19,8 @@ public class Vendor {
 	 * 
 	 * @param c
 	 */
-	public void setCineplexManage(Cineplex[] c) {
-		this.cineplexManage = c;
+	public void setCineplexes(Cineplex[] c) {
+		this.cineplexes = c;
 	}
 
 	public String getVendorName() {

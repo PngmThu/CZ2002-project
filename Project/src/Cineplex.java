@@ -3,7 +3,7 @@
 public class Cineplex {
 
 	private String location;
-	private Cinema[] cinemaManage;
+	private Cinema[] cinemas;
 
 	public String getLocation() {
 		return this.location;
@@ -17,16 +17,16 @@ public class Cineplex {
 		this.location = location;
 	}
 
-	public Cinema[] getCinemaManage() {
-		return this.cinemaManage;
+	public Cinema[] getCinemas() {
+		return this.cinemas;
 	}
 
 	/**
 	 * 
 	 * @param cinemaManage
 	 */
-	public void setCinemaManage(Cinema[] cinemaManage) {
-		this.cinemaManage = cinemaManage;
+	public void setCinemaManage(Cinema[] cinemas) {
+		this.cinemas = cinemas;
 	}
 
 }
