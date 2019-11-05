@@ -1,38 +1,31 @@
+import java.io.Serializable;
+import java.util.*;
 
-
-public class Vendor {
+public class Vendor implements Serializable{
 
 	private String vendorName;
-	private Cineplex[] cineplexes;
+	private ArrayList<Cineplex> cineplexes;
 	
 	public Vendor() {
 		vendorName = "MOBLIMA";
-	    //////////////////////////////////////////
+	    this.cineplexes = new ArrayList<>();
+	}
+	
+	public String getVendorName() {
+		return this.vendorName;
 	}
 
-	public Cineplex[] getCineplexes() {
-		// TODO - implement Vendor.getCineplex
-		throw new UnsupportedOperationException();
+	public Cineplex getCineplexAt(int index) {
+		return this.cineplexes.get(index);
 	}
 
 	/**
 	 * 
 	 * @param c
 	 */
-	public void setCineplexes(Cineplex[] c) {
-		this.cineplexes = c;
-	}
-
-	public String getVendorName() {
-		return this.vendorName;
-	}
-
-	/**
-	 * 
-	 * @param vendorName
-	 */
-	public void setVendorName(String vendorName) {
-		this.vendorName = vendorName;
+	public void addCineplex(String location) {
+		Cineplex cineplex = new Cineplex(location);
+		cineplexes.add(cineplex);
 	}
 
 }

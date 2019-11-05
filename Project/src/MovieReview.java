@@ -1,5 +1,6 @@
+import java.io.Serializable;
 
-public class MovieReview {
+public class MovieReview implements Serializable {
 	private String reviewer = "";
 	private String content = "";
 	private int rating = 0;

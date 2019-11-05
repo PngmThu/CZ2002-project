@@ -1,9 +1,15 @@
+import java.io.Serializable;
+import java.util.*;
 
-
-public class Cineplex {
+public class Cineplex implements Serializable{
 
 	private String location;
-	private Cinema[] cinemas;
+	private ArrayList<Cinema> cinemas;
+	
+	public Cineplex(String location) {
+		this.location = location;
+		cinemas = new ArrayList<>();
+	}
 
 	public String getLocation() {
 		return this.location;
@@ -17,16 +23,13 @@ public class Cineplex {
 		this.location = location;
 	}
 
-	public Cinema[] getCinemas() {
-		return this.cinemas;
+	public Cinema getCinemaAt(int index) {
+		return this.cinemas.get(index);
 	}
 
-	/**
-	 * 
-	 * @param cinemaManage
-	 */
-	public void setCinemaManage(Cinema[] cinemas) {
-		this.cinemas = cinemas;
+	public void addCinema(int id) {
+		Cinema cinema = new Cinema(id);
+		cinemas.add(cinema);
 	}
 
 }

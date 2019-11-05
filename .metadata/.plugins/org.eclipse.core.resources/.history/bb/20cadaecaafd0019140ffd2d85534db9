@@ -1,0 +1,45 @@
+import java.util.*;
+import java.text.*;
+
+public class ShowTime {
+
+	private String movieName;
+	private Date date;
+	private String time;
+	
+	public ShowTime(String movieName, int d, int m, int y) {
+		this.movieName = movieName;
+		this.date = new Date(y, m, d);
+	}
+
+	public String getMovieName() {
+		return this.movieName;
+	}
+
+	/**
+	 * 
+	 * @param movie
+	 */
+	public void setMovieName(String movieName) {
+		this.movieName = movieName;
+	}
+
+	public String getTime() {
+		return this.time;
+	}
+	
+	
+	public String getDateString() {
+        SimpleDateFormat ft = new SimpleDateFormat ("E dd-MM-yy");
+        return ft.format(this.date);
+	}
+
+	/**
+	 * 
+	 * @param time
+	 */
+	public void setTime(String time) {
+		this.time = time;
+	}
+
+}

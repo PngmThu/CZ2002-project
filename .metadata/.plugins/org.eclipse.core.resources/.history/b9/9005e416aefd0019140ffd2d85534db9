@@ -1,0 +1,51 @@
+import java.io.Serializable;
+import java.util.ArrayList;
+
+public class Cinema implements Serializable{
+	private int id;
+	private Seat[][] seats = new Seat[12][16];
+	private ArrayList<ShowTime> showTime;
+	
+	public Cinema(Seat[][] seats, ArrayList<ShowTime> showTime, int id) {
+		this.seats = seats;
+		this.showTime = showTime;
+		this.id = id;
+	}
+
+	public Seat[][] getSeats() {
+		return this.seats;
+	}
+
+	/**
+	 * 
+	 * @param seats
+	 */
+	public void setSeats(Seat[][] seats) {
+		this.seats = seats;
+	}
+
+	public ArrayList<ShowTime> getShowTime() {
+		return this.showTime;
+	}
+
+	/**
+	 * 
+	 * @param getShowTime
+	 */
+	public void setShowTime(ArrayList<ShowTime> showTime) {
+		this.showTime = showTime;
+	}
+
+	public int getId() {
+		return this.id;
+	}
+
+	/**
+	 * 
+	 * @param id
+	 */
+	public void setId(int id) {
+		this.id = id;
+	}
+
+}

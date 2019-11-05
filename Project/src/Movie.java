@@ -1,6 +1,8 @@
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
-public class Movie {
+public class Movie implements Serializable {
 
 	private String title;
 	private String status;
@@ -20,77 +22,64 @@ public class Movie {
 		this.type = type;
 		this.cast = cast;
 		this.movieReviews = movieReviews;
+		
 	}
 
 	public String getTitle() {
 		return this.title;
 	}
 
-	/**
-	 * 
-	 * @param title
-	 */
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
 	public String getStatus() {
 		return this.status;
 	}
 
-	/**
-	 * 
-	 * @param status
-	 */
-	public void setStatus(String status) {
-		this.status = status;
+	public void updateStatus(String stt) {
+		this.status = stt;
+		Movie updatedMovie = new Movie(title, status, synopsis, director, avgRating, type, cast, movieReviews);
+		List list = (ArrayList)SerializeDB.updateSerializedObject(".\\data\\movie.dat", updatedMovie);
 	}
 
 	public String getSynopsis() {
 		return this.synopsis;
 	}
 
-	/**
-	 * 
-	 * @param synopsis
-	 */
-	public void setSynopsis(String synopsis) {
-		this.synopsis = synopsis;
-	}
-
 	public String getDirector() {
 		return this.director;
-	}
-
-	/**
-	 * 
-	 * @param director
-	 */
-	public void setDirector(String director) {
-		this.director = director;
 	}
 
 	public ArrayList<String> getCast() {
 		return this.cast;
 	}
 
-	/**
-	 * 
-	 * @param cast
-	 */
-	public void setCast(ArrayList<String> cast) {
-		this.cast = cast;
-	}
-
 	public double getAvgRating() {
 		return this.avgRating;
+	}
+	
+	public void updateAvgRating(double avgR) {
+		this.avgRating = avgR;
+		Movie updatedMovie = new Movie(title, status, synopsis, director, avgRating, type, cast, movieReviews);
+		List list = (ArrayList)SerializeDB.updateSerializedObject(".\\data\\movie.dat", updatedMovie);
 	}
 
 	public ArrayList<MovieReview> getMovieReviews() {
 		return this.movieReviews;
 	}
+	
+	public void updateMovieReviews(ArrayList<MovieReview> l) {
+		this.movieReviews = l;
+		Movie updatedMovie = new Movie(title, status, synopsis, director, avgRating, type, cast, movieReviews);
+		List list = (ArrayList)SerializeDB.updateSerializedObject(".\\data\\movie.dat", updatedMovie);
+	}
 
 	public String getType() {
 		return this.type;
+	}
+	
+	public boolean equals(Object o) {
+		if (o instanceof Movie) {
+			Movie movie = (Movie)o;
+			return (getTitle().equals(movie.getTitle()));
+		}
+		return false;
 	}
 }

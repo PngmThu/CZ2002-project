@@ -1,0 +1,49 @@
+import java.util.*;
+import java.text.*;
+import java.io.Serializable;
+import java.sql.Time;
+
+public class ShowTime implements Serializable{
+
+	private String movieName;
+	private Date date;
+	private Time time;
+	
+	public ShowTime(String movieName, int d, int m, int y, int hour, int min) {
+		this.movieName = movieName;
+		this.date = new Date(y, m, d);
+		this.time = new Time(hour, min, 0);
+	}
+
+	public String getMovieName() {
+		return this.movieName;
+	}
+
+	/**
+	 * 
+	 * @param movie
+	 */
+	public void setMovieName(String movieName) {
+		this.movieName = movieName;
+	}
+	
+	public Date getDate() {
+		return this.date;
+	}
+
+	public Time getTime() {
+		return this.time;
+	}
+	
+	
+	public String getDateString() {
+        SimpleDateFormat ft = new SimpleDateFormat ("E dd-MM-yy");
+        return ft.format(this.date);
+	}
+	
+	public String getTimeString() {
+		SimpleDateFormat ft = new SimpleDateFormat ("H:mm");
+        return ft.format(this.time);
+	}
+
+}

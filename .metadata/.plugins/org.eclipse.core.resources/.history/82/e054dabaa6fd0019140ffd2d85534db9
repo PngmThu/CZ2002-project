@@ -1,0 +1,32 @@
+
+
+public class ShowTime {
+
+	private String movieName;
+	private String time;
+
+	public String getMovieName() {
+		return this.movieName;
+	}
+
+	/**
+	 * 
+	 * @param movie
+	 */
+	public void setMovieName(String movieName) {
+		this.movieName = movieName;
+	}
+
+	public String getTime() {
+		return this.time;
+	}
+
+	/**
+	 * 
+	 * @param time
+	 */
+	public void setTime(String time) {
+		this.time = time;
+	}
+
+}

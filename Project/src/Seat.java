@@ -1,10 +1,15 @@
+import java.io.Serializable;
 
-
-public class Seat {
-
-	private String type;
+public class Seat implements Serializable{
 	private int row;
-	private int number;
+	private int col;
+	private String type;
+	
+	public Seat(int row, int col, String type) {
+		this.row = row;
+		this.col = col;
+		this.type = type;
+	}
 
 	public String getType() {
 		return this.type;
@@ -30,16 +35,16 @@ public class Seat {
 		this.row = row;
 	}
 
-	public int getNumber() {
-		return this.number;
+	public int getCol() {
+		return this.col;
 	}
 
 	/**
 	 * 
 	 * @param number
 	 */
-	public void setNumber(int number) {
-		this.number = number;
+	public void setCol(int col) {
+		this.col = col;
 	}
 
 }
