@@ -1,6 +1,6 @@
 
 
-public class Cinema {
+public class Cinema1 {
 
 	private Seat[] seats;
 	private ShowTime[] getShowTime;
