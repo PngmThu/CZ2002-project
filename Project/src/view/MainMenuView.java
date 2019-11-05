@@ -17,6 +17,7 @@ public class MainMenuView {
 		
 		Scanner sc = new Scanner(System.in);
 		System.out.print("Please enter your choice: ");  //USER'S CHOICE
+		System.out.println("\n");
 		choice = sc.nextInt();
 
 		
