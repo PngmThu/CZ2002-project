@@ -1,0 +1,47 @@
+
+public class TicketType {
+	
+	private String movieType;
+	private String cinemaType;
+	private int movieGoerGroup; //0: children, 1: student, 2: adult, 3: senior
+	private String[] dayOfWeek;   //Mon, Tue, Wed, Thu, Fri, Sat, Sun
+	private Boolean[] isPublicHoliday;
+	private Boolean[] isBefore6pm;
+	private double price;
+
+	public String getMovieType() {
+		return this.movieType;
+	}
+
+	public String getCinemaType() {
+		return this.cinemaType;
+	}
+
+	public int getMovieGoerGroup() {
+		return this.movieGoerGroup;
+	}
+
+	public String[] getDayOfWeek() {
+		return this.dayOfWeek;
+	}
+
+	public Boolean[] isPublicHoliday() {
+		return this.isPublicHoliday;
+	}
+	
+	public Boolean[] isBefore6pm() {
+		return this.isBefore6pm;
+	}
+
+	public double getPrice() {
+		return this.price;
+	}
+	
+	public Boolean inDayOfWeek(String day) {
+		for (int i = 0 ; i < dayOfWeek.length ; i++) {
+			if (day.equals(dayOfWeek[i]))) {
+				
+			}
+		}
+	}
+}

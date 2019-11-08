@@ -1,0 +1,76 @@
+
+public class TicketType {
+	
+	private String movieType;
+	private String cinemaType;
+	private int[] movieGoerGroup;      //1: student, 2: adult, 3: senior
+	private String[] dayOfWeek;        //Mon, Tue, Wed, Thu, Fri, Sat, Sun
+	private String[] isPublicHoliday;  //true, false
+	private String[] isBefore6pm;      //true, false
+	private double price;
+
+	public String getMovieType() {
+		return this.movieType;
+	}
+
+	public String getCinemaType() {
+		return this.cinemaType;
+	}
+
+	public int[] getMovieGoerGroup() {
+		return this.movieGoerGroup;
+	}
+
+	public String[] getDayOfWeek() {
+		return this.dayOfWeek;
+	}
+
+	public String[] isPublicHoliday() {
+		return this.isPublicHoliday;
+	}
+	
+	public String[] isBefore6pm() {
+		return this.isBefore6pm;
+	}
+
+	public double getPrice() {
+		return this.price;
+	}
+	
+	public Boolean inMovieGoerGroup(int group) {
+		for (int i = 0 ; i < movieGoerGroup.length ; i++) {
+			if (group == movieGoerGroup[i]) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public Boolean inDayOfWeek(String day) {
+		for (int i = 0 ; i < dayOfWeek.length ; i++) {
+			if (day.equals(dayOfWeek[i])) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public Boolean inIsPublicHoliday(String value) {
+		for (int i = 0 ; i < isPublicHoliday.length ; i++) {
+			if (value.equals(isPublicHoliday[i])) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public Boolean inIsBefore6pm(String value) {
+		for (int i = 0 ; i < isBefore6pm.length ; i++) {
+			if (value.equals(isBefore6pm[i])) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+}

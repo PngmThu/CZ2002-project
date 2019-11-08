@@ -8,7 +8,7 @@ public class Seat implements Serializable{
 	public Seat(int row, int col, String type) {
 		this.row = row;
 		this.col = col;
-		this.type = type;
+		this.type = type;  //Standard or Couple
 	}
 
 	public String getType() {

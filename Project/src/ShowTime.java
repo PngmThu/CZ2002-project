@@ -15,7 +15,7 @@ public class ShowTime implements Serializable{
 	public ShowTime(Cinema cinema, String movieName, int d, int m, int y, int hour, int min) {
 		this.cinema = cinema;
 		this.movieName = movieName;
-		this.date = new Date(y - 1, m - 1, d);  //input = (year-1,month-1,date)
+		this.date = new Date(y-1900, m-1, d);  //input = (year-1900,month-1,date)
 		this.time = new Time(hour, min, 0);
 		
 		int rowSize = cinema.getColSize();
@@ -28,6 +28,10 @@ public class ShowTime implements Serializable{
 		}
 		
 		this.emptySeatsCnt = rowSize * colSize;
+	}
+	
+	public Cinema getCinema() {
+		return this.cinema;
 	}
 
 	public String getMovieName() {
@@ -52,7 +56,7 @@ public class ShowTime implements Serializable{
 	
 	
 	public String getDateString() {
-        SimpleDateFormat ft = new SimpleDateFormat ("E dd-MM-yy");
+        SimpleDateFormat ft = new SimpleDateFormat ("E dd-MM-yyyy");
         return ft.format(this.date);
 	}
 	public String getDayOfWeek() {
@@ -65,15 +69,30 @@ public class ShowTime implements Serializable{
         return ft.format(this.time);
 	}
 	
+	public int[][] getSeatStatus() {
+		return this.seatStatus;
+	}
+	
 	public int getSeatStatusAt(int row, int col) {
 		return this.seatStatus[row][col];
 	}
 	
-	public void setSeatStatusAt(int row, int col, int value) {
-		seatStatus[row][col] = value;
+	public void bookSeatAt(int row, int col) {
+		seatStatus[row][col] = 1;   //Book seat
+		emptySeatsCnt--;
 	}
 	
 	public int getEmptySeatsCnt() {
 		return this.emptySeatsCnt;
 	}
+	
+	public boolean equals(Object o) {
+		if (o instanceof ShowTime) {
+			ShowTime st = (ShowTime)o;
+			return cinema.equals(st.getCinema()) && getMovieName().equals(st.getMovieName()) 
+					&& date.equals(st.getDate()) && time.equals(st.getTime());
+		}
+		return false;
+	}
+	
 }

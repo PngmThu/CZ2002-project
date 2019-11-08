@@ -114,9 +114,15 @@ public class SerializeDB
 		List newList = null;
 		int i, j, k;
 		
+	
+		/**********************Seat***********************************
+		j = 1;
+		char x = (char)('A' + j);
+		System.out.printf("%c%d ",x,3);
+		*************************************************************/
 		
 		/************************Time****************************************
-		Date date = new Date(2018, 10, 10); //input = (year-1,month-1,date)
+		Date date = new Date(2019 - 1900, 11 - 1, 10); //input = (year-1900,month-1,date)
 //		Calendar c = Calendar.getInstance();
 //		c.setTime(date);
 //		int day = c.get(Calendar.DAY_OF_WEEK);
@@ -124,11 +130,11 @@ public class SerializeDB
 
 		SimpleDateFormat ft = new SimpleDateFormat ("EE");
 		System.out.println("Day: " + ft.format(date));
-		SimpleDateFormat ft2 = new SimpleDateFormat ("E dd-MM-yy");
+		SimpleDateFormat ft2 = new SimpleDateFormat ("E dd-MM-yyyy");
 		System.out.println(ft2.format(date));
 		**********************************************************************/
 		
-		/***************************Test Movie********************************/
+		/***************************Test Movie********************************
 		Movie.initializeData();
 		ArrayList<Movie> movies = Movie.getAllMoviesData();
 		for (i = 0 ; i < movies.size() ; i++) {
@@ -142,7 +148,7 @@ public class SerializeDB
 //		m0.addMovieReview(new MovieReview("Kathy","Go for it", 4));
 //		m0.showMovieInfo();
 
-		/**********************************************************************/
+		**********************************************************************/
 		
 		/***************************Test Vendor********************************
 		Vendor.initializeData();
@@ -175,6 +181,28 @@ public class SerializeDB
 //		cineplex.updateLocation("0");
 //		cineplex.showCineplexInfo();
 
+		**********************************************************************/
+		
+		/***************************Test Cinema********************************
+		Vendor.initializeData();
+		Cineplex.initializeData();
+		Cinema.initializeData();
+		ArrayList<Cinema> cinemas = Cinema.getAllCinemasData();
+		for (i = 0 ; i < cinemas.size() ; i++) {
+			Cinema cinema = cinemas.get(i);
+			cinema.showCinemaInfo();
+		}
+		
+		**********************************************************************/
+		
+		/***************************Test MovieGoer********************************
+		MovieGoer.initializeData();
+		ArrayList<MovieGoer> movieGoers = MovieGoer.getAllMovieGoersData();
+		for (i = 0 ; i < movieGoers.size() ; i++) {
+			MovieGoer movieGoer = movieGoers.get(i);
+			movieGoer.showMovieGoerInfo();
+		}
+		
 		**********************************************************************/
 		
 		/************************Insert data of Movie*******************************

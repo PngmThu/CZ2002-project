@@ -1,6 +1,7 @@
 
 
 public class Booking {
+	private String transactionId;
 	private MovieGoer movieGoer;
 	private double price;
 	private ShowTime showTime;

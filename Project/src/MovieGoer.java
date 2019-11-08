@@ -1,9 +1,13 @@
-public class MovieGoer {
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+public class MovieGoer implements Serializable{
 
 	private String name;
 	private String mobile;
 	private String email;
-	private int movieGoerGroup;
+	private int movieGoerGroup;  //1: student, 2: adult, 3: senior
 	
 	public MovieGoer(String name, String mobile, String email, int movieGoerGroup) {
 		this.name = name;
@@ -24,28 +28,47 @@ public class MovieGoer {
 		return this.email;
 	}
 
-	/**
-	 * 
-	 * @param name
-	 */
-	public void setName(String name) {
-		this.name = name;
+	public int getMovieGoerGroup() {
+		return this.movieGoerGroup;
 	}
-
-	/**
-	 * 
-	 * @param mobile
-	 */
-	public void setMobile(String mobile) {
-		this.mobile = mobile;
+	
+	public static void initializeData() {  //Call by classname: MovieGoer.initializeData()	
+		MovieGoer movieGoer;
+		List data = new ArrayList<>();
+		String filename = ".\\data\\movieGoer.dat";
+		
+		movieGoer = new MovieGoer("Minh Thu", "86187124", "phamthu0602@gmai.com", 1);  //student
+		data.add(movieGoer);
+		movieGoer = new MovieGoer("Yuanchao", "93802613", "yuanchao.loh@gmail.com", 3);  //senior
+		data.add(movieGoer);
+		
+		SerializeDB.writeSerializedObject(filename, data);  //Write data
 	}
-
-	/**
-	 * 
-	 * @param email
-	 */
-	public void setEmail(String email) {
-		this.email = email;
+	
+	public static ArrayList<MovieGoer> getAllMovieGoersData() {   //Call by classname: MovieGoer.getAllMovieGoersData()
+		List list = null;
+		String filename = ".\\data\\movieGoer.dat";
+		list = (ArrayList)SerializeDB.readSerializedObject(filename);  //Read data
+		
+		return (ArrayList<MovieGoer>) list;
+	}
+	
+	public void showMovieGoerInfo() { 
+		int i;
+		System.out.println("*********************************************");
+		System.out.println("name: " + this.name );
+		System.out.println("mobile: " + this.mobile);
+		System.out.println("email: " + this.email);
+		System.out.println("movieGoerGroup: " + this.movieGoerGroup);
+	}
+	
+	public boolean equals(Object o) {
+		if (o instanceof MovieGoer) {
+			MovieGoer movieGoer = (MovieGoer)o;
+			return getName() == movieGoer.getName() && getMobile() == movieGoer.getMobile()
+					&& getName() == movieGoer.getName() && movieGoerGroup == movieGoer.getMovieGoerGroup();
+		}
+		return false;
 	}
 
 }
