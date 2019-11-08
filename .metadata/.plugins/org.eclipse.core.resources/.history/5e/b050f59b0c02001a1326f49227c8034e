@@ -129,7 +129,7 @@ public class SerializeDB
 		**********************************************************************/
 		
 		/***************************Test Movie********************************/
-		Movie.initializeData();
+		//Movie.initializeData();
 		ArrayList<Movie> movies = Movie.getAllMoviesData();
 		for (i = 0 ; i < movies.size() ; i++) {
 			Movie m = movies.get(i);

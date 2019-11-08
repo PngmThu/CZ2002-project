@@ -72,7 +72,7 @@ public class Movie implements Serializable {
 		cast = "Ryan Potter, Scott Adsit, Jamie Chung";
 		synopsis = "The special bond that develops between plus-sized inflatable robot Baymax, and prodigy Hiro Hamada, who team up with a group of friends to form a band of high-tech heroes.";
 		
-		movie = new Movie("Big Hero 6","Showing",synopsis,"Don Hall, Chris Williams","3D",cast);
+		movie = new Movie("Big Hero 6","Showing","A nice movie for family","Don Hall, Chris Williams","3D",cast);
 		data.add(movie);
 		
 		//Movie: Avengers: Endgame
