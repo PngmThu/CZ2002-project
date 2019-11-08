@@ -3,6 +3,14 @@ public class MovieGoer {
 	private String name;
 	private String mobile;
 	private String email;
+	private int movieGoerGroup;
+	
+	public MovieGoer(String name, String mobile, String email, int movieGoerGroup) {
+		this.name = name;
+		this.mobile = mobile;
+		this.email = email;
+		this.movieGoerGroup = movieGoerGroup;
+	}
 
 	public String getName() {
 		return this.name;

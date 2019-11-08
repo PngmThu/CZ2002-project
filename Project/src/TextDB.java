@@ -81,9 +81,9 @@ public class TextDB {
 				
 				
 				// create Movie object from file data
-				Movie movie = new Movie(title, status, synopsis, director, avgRating, type, cast, movieReviews);
+				//Movie movie = new Movie(title, status, synopsis, director, avgRating, type, cast, movieReviews);
 				// add to Professors list
-				alr.add(movie) ;
+				//alr.add(movie) ;
 			}
 			return alr ;
 	}
@@ -105,7 +105,7 @@ public static void saveMovies(String filename, List al) throws IOException {
 				st.append(SEPARATOR);
 				st.append(movie.getAvgRating());
 				st.append(SEPARATOR);
-				st.append(movie.getType());
+				//st.append(movie.getType());
 				st.append("|@");
 				ArrayList<String> cast = movie.getCast();
 				for (int t = 0 ; t < cast.size() ; t++)  {

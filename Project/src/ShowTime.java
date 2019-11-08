@@ -15,7 +15,7 @@ public class ShowTime implements Serializable{
 	public ShowTime(Cinema cinema, String movieName, int d, int m, int y, int hour, int min) {
 		this.cinema = cinema;
 		this.movieName = movieName;
-		this.date = new Date(y, m, d);
+		this.date = new Date(y - 1, m - 1, d);  //input = (year-1,month-1,date)
 		this.time = new Time(hour, min, 0);
 		
 		int rowSize = cinema.getColSize();
@@ -54,6 +54,10 @@ public class ShowTime implements Serializable{
 	public String getDateString() {
         SimpleDateFormat ft = new SimpleDateFormat ("E dd-MM-yy");
         return ft.format(this.date);
+	}
+	public String getDayOfWeek() {
+		SimpleDateFormat ft = new SimpleDateFormat ("EE");
+		return ft.format(this.date);
 	}
 	
 	public String getTimeString() {

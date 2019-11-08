@@ -1,71 +1,37 @@
 
 
 public class Booking {
-
 	private MovieGoer movieGoer;
-	private String transactionId;
-	private Seat[] seats;
 	private double price;
 	private ShowTime showTime;
+	private int seatRow;
+	private int seatCol;
+
+	public Booking(MovieGoer movieGoer, double price, ShowTime showTime, int seatRow, int seatCol) {
+		this.movieGoer = movieGoer;
+		this.price = price;
+		this.showTime = showTime;
+		this.seatRow = seatRow;
+		this.seatCol = seatCol;
+	}
 
 	public MovieGoer getMovieGoer() {
 		return this.movieGoer;
-	}
-
-	/**
-	 * 
-	 * @param movieGoer
-	 */
-	public void setMovieGoer(MovieGoer movieGoer) {
-		this.movieGoer = movieGoer;
-	}
-
-	public String getTransactionId() {
-		return this.transactionId;
-	}
-
-	/**
-	 * 
-	 * @param transactionId
-	 */
-	public void setTransactionId(String transactionId) {
-		this.transactionId = transactionId;
-	}
-
-	public Seat[] getSeats() {
-		return this.seats;
-	}
-
-	/**
-	 * 
-	 * @param seats
-	 */
-	public void setSeats(Seat[] seats) {
-		this.seats = seats;
 	}
 
 	public double getPrice() {
 		return this.price;
 	}
 
-	/**
-	 * 
-	 * @param price
-	 */
-	public void setPrice(double price) {
-		this.price = price;
-	}
-
 	public ShowTime getShowTime() {
 		return this.showTime;
 	}
 
-	/**
-	 * 
-	 * @param showTime
-	 */
-	public void setShowTime(ShowTime showTime) {
-		this.showTime = showTime;
+	public int getSeatRow() {
+		return this.seatRow;
 	}
 
+	public int getSeatCol() {
+		return this.seatCol;
+	}
 }

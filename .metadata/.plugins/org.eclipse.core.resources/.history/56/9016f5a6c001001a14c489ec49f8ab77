@@ -1,0 +1,33 @@
+import java.io.Serializable;
+import java.util.*;
+
+public class Vendor implements Serializable{
+
+	private String vendorName;
+	private int numOfCineplexes;
+	private ArrayList<Integer> cineplexIds;
+	
+	public Vendor() {
+		vendorName = "MOBLIMA";
+		numOfCineplexes = 0;
+	    this.cineplexIds = new ArrayList<>();
+	}
+	
+	public String getVendorName() {
+		return this.vendorName;
+	}
+	
+	public ArrayList<Integer> getCineplexIds() {
+		return this.cineplexIds;
+	}
+
+	public int getCineplexIdAt(int index) {
+		return this.cineplexIds.get(index);
+	}
+
+	public void addCineplex(String location) {
+		Cineplex cineplex = new Cineplex(numOfCineplexes, location);
+		numOfCineplexes++;
+		cineplexIds.add(cineplex.getId());
+	}
+}

@@ -2,28 +2,30 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Cinema implements Serializable{
+	private int cineplexId;
 	private int id;
+	private String cinemaType;
 	private int rowSize = 12;
 	private int colSize = 16;
-	private Seat[][] seats;
 	private ArrayList<ShowTime> showTimes;
 	
-	public Cinema(int id) {
+	public Cinema(int cineplexId, int id, String cinemaType) {
+		this.cineplexId = cineplexId;
 		this.id = id;
-		this.seats = new Seat[rowSize][colSize];
+		this.cinemaType = cinemaType;
 		this.showTimes = new ArrayList<>();
 	}
-	
+
+	public int getCineplexId() {
+		return this.cineplexId;
+	}
+
 	public int getId() {
 		return this.id;
 	}
-
-	/**
-	 * 
-	 * @param id
-	 */
-	public void setId(int id) {
-		this.id = id;
+	
+	public String getCinemaType() {
+		return this.cinemaType;
 	}
 	
 	public int getRowSize() {
@@ -34,22 +36,10 @@ public class Cinema implements Serializable{
 		return this.colSize;
 	}
 
-	public Seat[][] getSeats() {
-		return this.seats;
-	}
-
-	public void setSeatAt(int row, int col, String type) {
-		seats[row][col] = new Seat(row, col, type);
-	}
-
 	public ArrayList<ShowTime> getShowTimes() {
 		return this.showTimes;
 	}
 
-	/**
-	 * 
-	 * @param getShowTime
-	 */
 	public void setShowTimes(ArrayList<ShowTime> showTimes) {
 		this.showTimes = showTimes;
 	}
