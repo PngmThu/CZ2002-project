@@ -2,6 +2,7 @@ package Controllers;
 import Entities.Movie;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class MovieDetailsCtrl{
 
@@ -12,10 +13,12 @@ public class MovieDetailsCtrl{
         ArrayList<Movie> movies = Movie.getAllMoviesData();
         for(Movie movie : movies){
             if(movieTitle.equals(movie.getTitle())){
-                  movie.showMovieInfo();
+                movie.showMovieInfo();
             }
         }
         System.out.println("*********************************************");
         // menu = new BookingView(movie);
     }
+
+
 }
