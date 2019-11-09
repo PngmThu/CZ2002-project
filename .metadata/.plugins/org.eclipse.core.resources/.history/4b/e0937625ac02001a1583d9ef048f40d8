@@ -1,0 +1,85 @@
+import java.io.Serializable;
+import java.util.*;
+
+public class Cineplex implements Serializable{
+	private int id;
+	private String location;
+	private int numOfCinemas;  //Cinemas: id [0, n - 1]
+	
+	public Cineplex(int id, String location) {
+		this.id = id;
+		this.location = location;
+		this.numOfCinemas = 0;
+	}
+
+	public int getId() {
+		return this.id;
+	}
+
+	public String getLocation() {
+		return this.location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	public Cinema addCinema(String cinemaType) {
+		Cinema cinema = new Cinema(this.id, numOfCinemas, cinemaType);
+		numOfCinemas++;
+		Cineplex updatedCineplex = this;
+		SerializeDB.updateSerializedObject(".\\data\\cineplex.dat", updatedCineplex);
+		SerializeDB.insertSerializedObject(".\\data\\cinema.dat", cinema);
+		
+		return cinema;
+	}
+	
+	public static void initializeData() {  //Call by classname: Cineplex.initializeData()
+		List list = null;
+		int i;		
+		Cineplex cineplex;
+		List data = new ArrayList<>();
+		String filename = ".\\data\\cineplex.dat";
+		
+		Vendor vendor = Vendor.getVendorData();
+		cineplex = vendor.addCineplex("50 Jurong Gateway Road - Level 5, Jem - Singapore 608549");
+		data.add(cineplex);
+		cineplex = vendor.addCineplex("80 Marine Parade Road - Level 7, Parkway Parade - Singapore 449269");
+		data.add(cineplex);
+		cineplex = vendor.addCineplex("8 Grange Road - Levels 4, 5 & 6, Cathay Cineleisure Orchard - Singapore 239695");
+		data.add(cineplex);
+		
+		SerializeDB.writeSerializedObject(filename, data);  //Write data
+	}
+	
+	public static ArrayList<Cineplex> getAllCineplexesData() {   //Call by classname: Cineplex.getAllCineplexesData()
+		List list = null;
+		String filename = ".\\data\\cineplex.dat";
+		list = (ArrayList)SerializeDB.readSerializedObject(filename);  //Read data
+		
+		return (ArrayList<Cineplex>) list;
+	}
+	
+	public void showCineplexInfo() { 
+		int i;
+		System.out.println("*********************************************");
+		System.out.println("id: " + this.id );
+		System.out.println("location: " + this.location);
+		System.out.println("numOfCinemas: " + this.numOfCinemas);
+	}
+	
+	public void updateLocation(String location) {
+		this.location = location;
+		Cineplex updatedCineplex = this;
+		List list = (ArrayList)SerializeDB.updateSerializedObject(".\\data\\movie.dat", updatedCineplex);
+	}
+	
+	public boolean equals(Object o) {
+		if (o instanceof Cineplex) {
+			Cineplex cineplex = (Cineplex)o;
+			return getId() == cineplex.getId();
+		}
+		return false;
+	}
+
+}

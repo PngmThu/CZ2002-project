@@ -3,24 +3,11 @@ import java.io.Serializable;
 public class Seat implements Serializable{
 	private int row;
 	private int col;
-	private String type;
 	
-	public Seat(int row, int col, String type) {
+	
+	public Seat(int row, int col) {
 		this.row = row;
 		this.col = col;
-		this.type = type;  //Standard or Couple
-	}
-
-	public String getType() {
-		return this.type;
-	}
-
-	/**
-	 * 
-	 * @param type
-	 */
-	public void setType(String type) {
-		this.type = type;
 	}
 
 	public int getRow() {

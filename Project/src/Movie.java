@@ -9,11 +9,11 @@ public class Movie implements Serializable {
 	private String synopsis;
 	private String director;
 	private double avgRating;
-	private String movieType;  //Standard, 3D, Blockbuster
+	private MovieType movieType;  //MovieType._3D , BLOCKBUSTER , REG
 	private String cast;
 	private ArrayList<MovieReview> movieReviews;
 	
-	public Movie(String title, String status, String synopsis, String director, String movieType, String cast) {
+	public Movie(String title, String status, String synopsis, String director, MovieType movieType, String cast) {
 		this.title = title;
 		this.status = status;
 		this.synopsis = synopsis;
@@ -44,7 +44,7 @@ public class Movie implements Serializable {
 		return this.avgRating;
 	}
 	
-	public String getMovieType() {
+	public MovieType getMovieType() {
 		return this.movieType;
 	}
 	
@@ -72,21 +72,21 @@ public class Movie implements Serializable {
 		cast = "Ryan Potter, Scott Adsit, Jamie Chung";
 		synopsis = "The special bond that develops between plus-sized inflatable robot Baymax, and prodigy Hiro Hamada, who team up with a group of friends to form a band of high-tech heroes.";
 		
-		movie = new Movie("Big Hero 6","Showing",synopsis,"Don Hall, Chris Williams","3D",cast);
+		movie = new Movie("Big Hero 6","Showing",synopsis,"Don Hall, Chris Williams",MovieType._3D,cast);
 		data.add(movie);
 		
 		//Movie: Avengers: Endgame
 		cast = "Robert Downey Jr., Chris Evans, Chris Hemsworth, Mark Ruffalo";
 		synopsis = "The grave course of events set in motion by Thanos that wiped out half the universe and fractured the Avengers ranks compels the remaining Avengers to take one final stand in Marvel Studios’ grand conclusion to twenty-two films, “Avengers: Endgame.”";
 		
-		movie = new Movie("Avengers: Endgame","Showing",synopsis,"Anthony Russo, Joe Russo","Blockbuster",cast);
+		movie = new Movie("Avengers: Endgame","Showing",synopsis,"Anthony Russo, Joe Russo",MovieType.BLOCKBUSTER,cast);
 		data.add(movie);
 		
 		//Movie: Frozen 2
 		cast = "Kristen Bell, Josh Gad, Sterling K. Brown";
 		synopsis = "Anna, Elsa, Kristoff, Olaf and Sven leave Arendelle to travel to an ancient, autumn-bound forest of an enchanted land. They set out to find the origin of Elsa's powers in order to save their kingdom.";
 		
-		movie = new Movie("Frozen 2","Upcoming",synopsis,"Chris Buck, Jennifer Lee","Standard",cast);
+		movie = new Movie("Frozen 2","Upcoming",synopsis,"Chris Buck, Jennifer Lee",MovieType.REG,cast);
 		data.add(movie);
 		
 		SerializeDB.writeSerializedObject(filename, data);  //Write data

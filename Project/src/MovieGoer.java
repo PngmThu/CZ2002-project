@@ -7,9 +7,9 @@ public class MovieGoer implements Serializable{
 	private String name;
 	private String mobile;
 	private String email;
-	private int movieGoerGroup;  //1: student, 2: adult, 3: senior
+	private MovieGoerGroup movieGoerGroup;  //1: student, 2: adult, 3: senior
 	
-	public MovieGoer(String name, String mobile, String email, int movieGoerGroup) {
+	public MovieGoer(String name, String mobile, String email, MovieGoerGroup movieGoerGroup) {
 		this.name = name;
 		this.mobile = mobile;
 		this.email = email;
@@ -28,7 +28,7 @@ public class MovieGoer implements Serializable{
 		return this.email;
 	}
 
-	public int getMovieGoerGroup() {
+	public MovieGoerGroup getMovieGoerGroup() {
 		return this.movieGoerGroup;
 	}
 	
@@ -37,9 +37,9 @@ public class MovieGoer implements Serializable{
 		List data = new ArrayList<>();
 		String filename = ".\\data\\movieGoer.dat";
 		
-		movieGoer = new MovieGoer("Minh Thu", "86187124", "phamthu0602@gmai.com", 1);  //student
+		movieGoer = new MovieGoer("Minh Thu", "86187124", "phamthu0602@gmai.com", MovieGoerGroup.STUDENT);  //student
 		data.add(movieGoer);
-		movieGoer = new MovieGoer("Yuanchao", "93802613", "yuanchao.loh@gmail.com", 3);  //senior
+		movieGoer = new MovieGoer("Yuanchao", "93802613", "yuanchao.loh@gmail.com", MovieGoerGroup.SENIOR);  //senior
 		data.add(movieGoer);
 		
 		SerializeDB.writeSerializedObject(filename, data);  //Write data

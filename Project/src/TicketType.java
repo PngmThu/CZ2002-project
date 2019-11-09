@@ -2,23 +2,23 @@ import java.util.*;
 
 public class TicketType {
 	
-	private String movieType;
-	private String cinemaType;
-	private int[] movieGoerGroupL;      //1: student, 2: adult, 3: senior
+	private MovieType movieType;
+	private CinemaClass cinemaClass;
+	private MovieGoerGroup[] movieGoerGroupL;      
 	private String[] dayOfWeekL;        //Mon, Tue, Wed, Thu, Fri, Sat, Sun (write in order)
 	private String[] isPublicHolidayL;  //true, false  (write in order)
 	private String[] isBefore6pmL;      //true, false  (write in order)
 	private double price;
 
-	public String getMovieType() {
+	public MovieType getMovieType() {
 		return this.movieType;
 	}
 
-	public String getCinemaType() {
-		return this.cinemaType;
+	public CinemaClass getCinemaClass() {
+		return this.cinemaClass;
 	}
 
-	public int[] getMovieGoerGroupL() {
+	public MovieGoerGroup[] getMovieGoerGroupL() {
 		return this.movieGoerGroupL;
 	}
 
@@ -38,7 +38,7 @@ public class TicketType {
 		return this.price;
 	}
 	
-	public boolean inMovieGoerGroupL(int group) {
+	public boolean inMovieGoerGroupL(MovieGoerGroup group) {
 		for (int i = 0 ; i < movieGoerGroupL.length ; i++) {
 			if (group == movieGoerGroupL[i]) {
 				return true;
@@ -83,13 +83,13 @@ public class TicketType {
 		return (ArrayList<TicketType>) list;
 	}
 	
-	public static double computePrice(String movieType, String cinemaType, int movieGoerGroup, 
+	public static double computePrice(String movieType, String cinemaType, MovieGoerGroup movieGoerGroup, 
 			                             String dayOfWeek, String isPublicHoliday, String isBefore6pm) {
 		ArrayList<TicketType> ticketTypes = TicketType.getAllTicketTypesData();
 		
 		for (int i = 0 ; i < ticketTypes.size() ; i++) {
 			TicketType tt = ticketTypes.get(i);
-			if (movieType.equals(tt.getMovieType()) && cinemaType.equals(tt.getCinemaType()) &&
+			if (movieType.equals(tt.getMovieType()) && cinemaType.equals(tt.getCinemaClass()) &&
 					tt.inMovieGoerGroupL(movieGoerGroup) && tt.inDayOfWeekL(dayOfWeek) &&
 					tt.inIsPublicHolidayL(isPublicHoliday) && tt.inIsBefore6pmL(isBefore6pm)) {
 				return tt.getPrice();
@@ -101,7 +101,7 @@ public class TicketType {
 	public boolean equals(Object o) {
 		if (o instanceof TicketType) {
 			TicketType tt = (TicketType)o;
-			return getMovieType().equals(tt.getMovieType()) && getCinemaType().equals(tt.getCinemaType()) &&
+			return getMovieType().equals(tt.getMovieType()) && getCinemaClass().equals(tt.getCinemaClass()) &&
 					Arrays.equals(movieGoerGroupL, tt.getMovieGoerGroupL()) && Arrays.equals(dayOfWeekL, tt.getDayOfWeekL()) &&
 					Arrays.equals(isPublicHolidayL, tt.getIsPublicHolidayL()) && Arrays.equals(isBefore6pmL, tt.getIsBefore6pmL());
 		}

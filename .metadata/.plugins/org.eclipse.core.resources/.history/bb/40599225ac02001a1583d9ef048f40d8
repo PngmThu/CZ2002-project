@@ -1,0 +1,178 @@
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Cinema implements Serializable{
+	private int cineplexId;
+	private int id;
+	private String cinemaType;  //Standard, Atmos, Platinum
+	private int rowSize = 10;
+	private int colSize = 16;
+	private Seat[][] seats;
+	private ArrayList<ShowTime> showTimes;
+	
+	public Cinema(int cineplexId, int id, String cinemaType) {
+		int i,j;
+		
+		this.cineplexId = cineplexId;
+		this.id = id;
+		this.cinemaType = cinemaType;
+		this.showTimes = new ArrayList<>();
+		
+		Seat[][] seats = new Seat[rowSize][colSize];
+		for (i = 0 ; i < rowSize - 2 ; i++) {         //Standard seats
+			for (j = 0 ; j < colSize ; j++) {
+				seats[i][j] = new Seat(i, j, "Standard");
+			}
+		}
+		for (i = rowSize - 2 ; i < rowSize ; i++) {   //Couple seats: the last 2 rows
+			for (j = 0 ; j < colSize ; j++) {
+				seats[i][j] = new Seat(i, j, "Couple");
+			}
+		}
+		this.seats = seats;
+	}
+
+	public int getCineplexId() {
+		return this.cineplexId;
+	}
+
+	public int getId() {
+		return this.id;
+	}
+	
+	public String getCinemaType() {
+		return this.cinemaType;
+	}
+	
+	public int getRowSize() {
+		return this.rowSize;
+	}
+	
+	public Seat[][] getSeats() {
+		return this.seats;
+	}
+	
+	public int getColSize() {
+		return this.colSize;
+	}
+
+
+	public ArrayList<ShowTime> getShowTimes() {
+		return this.showTimes;
+	}
+	
+	public ShowTime addShowTime(String movieName, int d, int m, int y, int hour, int min) {
+		//Pass cinema to ShowTime
+		ShowTime showTime = new ShowTime(this, movieName, d, m, y, hour, min); 
+		this.showTimes.add(showTime);
+		
+		Cinema updatedCinema = this;
+		SerializeDB.updateSerializedObject(".\\data\\cinema.dat", updatedCinema);
+		
+		return showTime;
+	}
+	
+	public static void initializeData() {  //Call by classname: Cinema.initializeData()
+		List list = null;
+		int i;
+		List data = new ArrayList<>();
+		String filename = ".\\data\\cinema.dat";
+		
+		Cinema cinema;
+		
+		ArrayList<Cineplex> cineplexes = Cineplex.getAllCineplexesData();
+		
+		for (i = 0 ; i < cineplexes.size() ; i++) {  //3 cineplexes
+			//For a cineplex: add 3 cinemas
+			Cineplex cineplex = cineplexes.get(i);
+			//cinema 0
+			cinema = cineplex.addCinema("Standard");
+			data.add(cinema);
+			//cinema 1
+			cinema = cineplex.addCinema("Atmos");
+			data.add(cinema);
+			//cinema 2
+			cinema = cineplex.addCinema("Platinum");
+			data.add(cinema);
+		}
+		SerializeDB.writeSerializedObject(filename, data);  //Write data
+		
+		ArrayList<Cinema> cinemas = Cinema.getAllCinemasData();   
+		
+		//Add ShowTimes for cinemas
+		for (i = 0 ; i < cinemas.size() ; i += 3) {  //For each cineplex
+			//Cinema 0
+			cinema = cinemas.get(i);
+			cinema.addShowTime("Big Hero 6", 10, 11, 2019, 10, 30);
+			//Cinema 1
+			cinema = cinemas.get(i+1);
+			cinema.addShowTime("Avengers: Endgame", 11, 11, 2019, 21, 0);
+			//Cinema 2
+			cinema = cinemas.get(i+2);
+			cinema.addShowTime("Big Hero 6", 12, 11, 2019, 14, 45);
+		}
+		
+		//Book a seat in cinema 0 of cineplex 0
+		cinema = cinemas.get(0);
+		ShowTime st = new ShowTime(cinema,"Big Hero 6", 10, 11, 2019, 10, 30);
+		cinema.bookSeatInShowTime(st, 0, 1);
+	}
+	
+	public static ArrayList<Cinema> getAllCinemasData() {   //Call by classname: Cinema.getAllCinemasData()
+		List list = null;
+		String filename = ".\\data\\cinema.dat";
+		list = (ArrayList)SerializeDB.readSerializedObject(filename);  //Read data
+		
+		return (ArrayList<Cinema>) list;
+	}
+	
+	public void showCinemaInfo() {  
+		int i, j, k;
+		System.out.println("*********************************************");
+		System.out.println("cineplexId: " + this.cineplexId );
+		System.out.println("id (cinema): " + this.id);
+		System.out.println("cinemaType: " + this.cinemaType);
+		System.out.println("rowSize: " + this.rowSize);
+		System.out.println("colSize: " + this.colSize);
+		
+		System.out.println("showTimes: ");
+		for (i = 0 ; i < showTimes.size() ; i++) {
+			ShowTime st = showTimes.get(i);
+			System.out.println("- movieName: " + st.getMovieName());
+			System.out.println("  date: " + st.getDateString() + "; time: " + st.getTimeString());
+			
+			System.out.print("  seatStatus (reserved): ");
+			int[][] seatStatus = st.getSeatStatus();
+			for (j = 0 ; j < seatStatus.length ; j++) {  //row
+				for (k = 0 ; k < seatStatus[j].length ; k++) {  //column
+					if (seatStatus[j][k] == 1) {
+						char x = (char)('A' + j);
+						System.out.printf("%c%d ",x,k);
+					}
+				}
+			}
+			System.out.println("");
+			System.out.println("  emptySeatsCnt: " + st.getEmptySeatsCnt());
+		}
+	}
+	
+	public void bookSeatInShowTime(ShowTime st, int row, int col) {
+		for (int i = 0 ; i < showTimes.size() ; i++) {
+			if (st.equals(showTimes.get(i))) {
+				showTimes.get(i).bookSeatAt(row, col);  //Book seat
+			}
+		}
+		Cinema updatedCinema = this;
+		SerializeDB.updateSerializedObject(".\\data\\cinema.dat", updatedCinema);
+	}
+	
+	public boolean equals(Object o) {
+		if (o instanceof Cinema) {
+			Cinema cinema = (Cinema)o;
+			return (getCineplexId() == cinema.getCineplexId()) && (getId() == cinema.getId());
+		}
+		return false;
+	}
+
+}

@@ -5,29 +5,28 @@ import java.util.List;
 public class Cinema implements Serializable{
 	private int cineplexId;
 	private int id;
-	private String cinemaType;  //Standard, Atmos, Platinum
-	private int rowSize = 10;
-	private int colSize = 16;
+	private String cinemaCode;
+	private CinemaClass cinemaClass;  //CinemaClass.REG, ATMOS, PLATINUM
+	private int rowSize;
+	private int colSize;
 	private Seat[][] seats;
 	private ArrayList<ShowTime> showTimes;
 	
-	public Cinema(int cineplexId, int id, String cinemaType) {
+	public Cinema(int cineplexId, int id, String cinemaCode, int rowSize, int colSize, CinemaClass cinemaClass) {
 		int i,j;
 		
 		this.cineplexId = cineplexId;
 		this.id = id;
-		this.cinemaType = cinemaType;
+		this.cinemaCode = cinemaCode;
+		this.cinemaClass = cinemaClass;
 		this.showTimes = new ArrayList<>();
+		this.rowSize = rowSize;
+		this.colSize = colSize;
 		
-		Seat[][] seats = new Seat[rowSize][colSize];
-		for (i = 0 ; i < rowSize - 2 ; i++) {         //Standard seats
-			for (j = 0 ; j < colSize ; j++) {
-				seats[i][j] = new Seat(i, j, "Standard");
-			}
-		}
-		for (i = rowSize - 2 ; i < rowSize ; i++) {   //Couple seats: the last 2 rows
-			for (j = 0 ; j < colSize ; j++) {
-				seats[i][j] = new Seat(i, j, "Couple");
+		Seat[][] seats = new Seat[this.rowSize][this.colSize];
+		for (i = 0 ; i < this.rowSize ; i++) {        
+			for (j = 0 ; j < this.colSize ; j++) {
+				seats[i][j] = new Seat(i, j);
 			}
 		}
 		this.seats = seats;
@@ -41,8 +40,12 @@ public class Cinema implements Serializable{
 		return this.id;
 	}
 	
-	public String getCinemaType() {
-		return this.cinemaType;
+	public String getCinemaCode() {
+		return this.cinemaCode;
+	}
+	
+	public CinemaClass getCinemaClass() {
+		return this.cinemaClass;
 	}
 	
 	public int getRowSize() {
@@ -62,9 +65,9 @@ public class Cinema implements Serializable{
 		return this.showTimes;
 	}
 	
-	public ShowTime addShowTime(String movieName, int d, int m, int y, int hour, int min) {
+	public ShowTime addShowTime(Movie movie, int d, int m, int y, int hour, int min) {
 		//Pass cinema to ShowTime
-		ShowTime showTime = new ShowTime(this, movieName, d, m, y, hour, min); 
+		ShowTime showTime = new ShowTime(this, movie, d, m, y, hour, min); 
 		this.showTimes.add(showTime);
 		
 		Cinema updatedCinema = this;
@@ -83,39 +86,66 @@ public class Cinema implements Serializable{
 		
 		ArrayList<Cineplex> cineplexes = Cineplex.getAllCineplexesData();
 		
-		for (i = 0 ; i < cineplexes.size() ; i++) {  //3 cineplexes
-			//For a cineplex: add 3 cinemas
-			Cineplex cineplex = cineplexes.get(i);
-			//cinema 0
-			cinema = cineplex.addCinema("Standard");
-			data.add(cinema);
-			//cinema 1
-			cinema = cineplex.addCinema("Atmos");
-			data.add(cinema);
-			//cinema 2
-			cinema = cineplex.addCinema("Platinum");
-			data.add(cinema);
-		}
+		
+		//For cineplex 0: 
+		Cineplex cineplex = cineplexes.get(0);
+		//cinema 0: REG
+		cinema = cineplex.addCinema("JMA", 10, 16, CinemaClass.REG);
+		data.add(cinema);
+		//cinema 1: ATMOS
+		cinema = cineplex.addCinema("JMB", 10, 12, CinemaClass.ATMOS);
+		data.add(cinema);
+		//cinema 2: Platinum
+		cinema = cineplex.addCinema("JMC", 4, 4, CinemaClass.PLATINUM);
+		data.add(cinema);
+		
+		//For cineplex 1: 
+		cineplex = cineplexes.get(1);
+		//cinema 0
+		cinema = cineplex.addCinema("PPA", 10, 16, CinemaClass.REG);
+		data.add(cinema);
+		//cinema 1
+		cinema = cineplex.addCinema("PPB", 10, 14, CinemaClass.ATMOS);
+		data.add(cinema);
+		//cinema 2
+		cinema = cineplex.addCinema("PPC", 6, 6, CinemaClass.PLATINUM);
+		data.add(cinema);
+
+		//For cineplex 2: Orchard
+		cineplex = cineplexes.get(2);
+		//cinema 0
+		cinema = cineplex.addCinema("OCA", 12, 16, CinemaClass.REG);
+		data.add(cinema);
+		//cinema 1
+		cinema = cineplex.addCinema("OCB", 10, 14, CinemaClass.ATMOS);
+		data.add(cinema);
+		//cinema 2
+		cinema = cineplex.addCinema("OCC", 6, 6, CinemaClass.PLATINUM);
+		data.add(cinema);
+		
+		
 		SerializeDB.writeSerializedObject(filename, data);  //Write data
 		
 		ArrayList<Cinema> cinemas = Cinema.getAllCinemasData();   
+		
+		ArrayList<Movie> movies = Movie.getAllMoviesData();
 		
 		//Add ShowTimes for cinemas
 		for (i = 0 ; i < cinemas.size() ; i += 3) {  //For each cineplex
 			//Cinema 0
 			cinema = cinemas.get(i);
-			cinema.addShowTime("Big Hero 6", 10, 11, 2019, 10, 30);
+			cinema.addShowTime(movies.get(0), 10, 11, 2019, 10, 30);
 			//Cinema 1
 			cinema = cinemas.get(i+1);
-			cinema.addShowTime("Avengers: Endgame", 11, 11, 2019, 21, 0);
+			cinema.addShowTime(movies.get(1), 11, 11, 2019, 21, 0);
 			//Cinema 2
 			cinema = cinemas.get(i+2);
-			cinema.addShowTime("Big Hero 6", 12, 11, 2019, 14, 45);
+			cinema.addShowTime(movies.get(0), 12, 11, 2019, 14, 45);
 		}
 		
 		//Book a seat in cinema 0 of cineplex 0
 		cinema = cinemas.get(0);
-		ShowTime st = new ShowTime(cinema,"Big Hero 6", 10, 11, 2019, 10, 30);
+		ShowTime st = new ShowTime(cinema, movies.get(0), 10, 11, 2019, 10, 30);
 		cinema.bookSeatInShowTime(st, 0, 1);
 	}
 	
@@ -132,28 +162,27 @@ public class Cinema implements Serializable{
 		System.out.println("*********************************************");
 		System.out.println("cineplexId: " + this.cineplexId );
 		System.out.println("id (cinema): " + this.id);
-		System.out.println("cinemaType: " + this.cinemaType);
+		System.out.println("cinemaType: " + this.cinemaClass);
 		System.out.println("rowSize: " + this.rowSize);
 		System.out.println("colSize: " + this.colSize);
 		
 		System.out.println("showTimes: ");
 		for (i = 0 ; i < showTimes.size() ; i++) {
 			ShowTime st = showTimes.get(i);
-			System.out.println("- movieName: " + st.getMovieName());
+			System.out.println("- movie Title: " + st.getMovie().getTitle());
 			System.out.println("  date: " + st.getDateString() + "; time: " + st.getTimeString());
 			
 			System.out.print("  seatStatus (reserved): ");
-			int[][] seatStatus = st.getSeatStatus();
+			boolean[][] seatStatus = st.getSeatStatus();
 			for (j = 0 ; j < seatStatus.length ; j++) {  //row
 				for (k = 0 ; k < seatStatus[j].length ; k++) {  //column
-					if (seatStatus[j][k] == 1) {
+					if (seatStatus[j][k]) {
 						char x = (char)('A' + j);
 						System.out.printf("%c%d ",x,k);
 					}
 				}
 			}
 			System.out.println("");
-			System.out.println("  emptySeatsCnt: " + st.getEmptySeatsCnt());
 		}
 	}
 	

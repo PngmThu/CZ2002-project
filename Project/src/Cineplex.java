@@ -24,8 +24,8 @@ public class Cineplex implements Serializable{
 		this.location = location;
 	}
 
-	public Cinema addCinema(String cinemaType) {
-		Cinema cinema = new Cinema(this.id, numOfCinemas, cinemaType);
+	public Cinema addCinema(String cinemaCode, int rowSize, int colSize, CinemaClass cinemaClass) {
+		Cinema cinema = new Cinema(this.id, numOfCinemas, cinemaCode, rowSize, colSize, cinemaClass);
 		numOfCinemas++;
 		Cineplex updatedCineplex = this;
 		SerializeDB.updateSerializedObject(".\\data\\cineplex.dat", updatedCineplex);

@@ -1,0 +1,19 @@
+public enum CinemaClass {
+	REG("Digital Hall"),
+	_3D("3D Digital Hall"),
+    PLATINUM("Platinum Movie Suites"),
+    GOLD("Gold Class"),
+    IMAX("IMAX");
+   
+	private final String description;
+	
+	CinemaClass(String desc){
+		description = desc; 
+	}
+	
+	public String getDescription() {
+		return description;
+	}
+}
+
+

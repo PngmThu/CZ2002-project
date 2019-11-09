@@ -5,15 +5,17 @@ public class Booking {
 	private MovieGoer movieGoer;
 	private double price;
 	private ShowTime showTime;
-	private int seatRow;
-	private int seatCol;
+	private Seat seat;
 
-	public Booking(MovieGoer movieGoer, double price, ShowTime showTime, int seatRow, int seatCol) {
+	public Booking(MovieGoer movieGoer, double price, ShowTime showTime, Seat seat) {
 		this.movieGoer = movieGoer;
 		this.price = price;
 		this.showTime = showTime;
-		this.seatRow = seatRow;
-		this.seatCol = seatCol;
+		this.seat = seat;
+	}
+	
+	public String getTransactionId() {
+		return this.transactionId;
 	}
 
 	public MovieGoer getMovieGoer() {
@@ -28,11 +30,8 @@ public class Booking {
 		return this.showTime;
 	}
 
-	public int getSeatRow() {
-		return this.seatRow;
+	public Seat getSeat() {
+		return this.seat;
 	}
 
-	public int getSeatCol() {
-		return this.seatCol;
-	}
 }
