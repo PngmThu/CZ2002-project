@@ -41,7 +41,7 @@ public class Staff implements Serializable{
 	public static void initializeData() {  //Call by classname: Staff.initializeData()
 		List list = null;
 		int i;		
-
+		Cineplex cineplex;
 		List data = new ArrayList<>();
 		String filename = ".\\data\\staff.dat";
 		

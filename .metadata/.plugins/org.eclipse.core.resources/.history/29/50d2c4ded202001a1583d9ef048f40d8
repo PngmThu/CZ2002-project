@@ -149,7 +149,7 @@ public class SerializeDB
 //		m0.addMovieReview(new MovieReview("Kathy","Go for it", 4));
 //		m0.showMovieInfo();
 
-		**********************************************************************/
+		/**********************************************************************/
 		
 		/***************************Test Vendor********************************
 		Vendor.initializeData();
@@ -206,7 +206,7 @@ public class SerializeDB
 		
 		**********************************************************************/
 		
-		/***************************Test Staff********************************
+		/***************************Test Staff********************************/
 		Staff.initializeData();
 		
 		//Add a staff
@@ -219,18 +219,7 @@ public class SerializeDB
 			s.showStaffInfo();
 		}
 		
-		*********************************************************************/
-		
-		/***************************Test TicketType********************************
-		TicketType.initializeData();
-		
-		ArrayList<TicketType> ticketTypes = TicketType.getAllStaffsData();
-		for (i = 0 ; i < staffs.size() ; i++) {
-			Staff s = staffs.get(i);
-			s.showStaffInfo();
-		}
-		
-		*********************************************************************/
+		/*********************************************************************/
 		
 		/************************Insert data of Movie*******************************
 		List data = new ArrayList<>();
