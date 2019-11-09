@@ -230,13 +230,13 @@ public class TicketType implements Serializable {
 	
 	//MovieGoer movieGoer, ShowTime showTime
 	//String movieType, String cinemaType, MovieGoerGroup movieGoerGroup, String dayOfWeek, String isPublicHoliday
-	public static double computePrice(String movieType, String cinemaType, MovieGoerGroup movieGoerGroup, 
+	public static double computePrice(MovieType movieType, CinemaClass cinemaClass, MovieGoerGroup movieGoerGroup, 
 			                             String dayOfWeek, String isPublicHoliday) {
 		ArrayList<TicketType> ticketTypes = TicketType.getAllTicketTypesData();
 		
 		for (int i = 0 ; i < ticketTypes.size() ; i++) {
 			TicketType tt = ticketTypes.get(i);
-			if (movieType.equals(tt.getMovieType()) && cinemaType.equals(tt.getCinemaClass()) &&
+			if (movieType.equals(tt.getMovieType()) && cinemaClass.equals(tt.getCinemaClass()) &&
 					tt.inMovieGoerGroupL(movieGoerGroup) && tt.inDayOfWeekL(dayOfWeek) && tt.inIsPublicHolidayL(isPublicHoliday)) {
 				return tt.getPrice();
 			}

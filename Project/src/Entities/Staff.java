@@ -45,7 +45,9 @@ public class Staff implements Serializable{
 		List data = new ArrayList<>();
 		String filename = ".\\data\\staff.dat";
 		
-		Staff staff = new Staff("MinhThu", "Thu0602");
+		Staff staff;
+		staff = new Staff("MinhThu", "Thu0602");
+		staff = new Staff("Yuanchao", "YuanchaoLoh");
 		data.add(staff);
 		
 		SerializeDB.writeSerializedObject(filename, data);  //Write data

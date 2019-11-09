@@ -33,6 +33,11 @@ public class Cinema implements Serializable{
 		}
 		this.seats = seats;
 	}
+	
+	public Cinema(int cineplexId, int id) {
+		this.cineplexId = cineplexId;
+		this.id = id;
+	}
 
 	public int getCineplexId() {
 		return this.cineplexId;
@@ -172,7 +177,7 @@ public class Cinema implements Serializable{
 		for (i = 0 ; i < showTimes.size() ; i++) {
 			ShowTime st = showTimes.get(i);
 			System.out.println("- movie Title: " + st.getMovie().getTitle());
-			System.out.println("  date: " + st.getDateString() + "; time: " + st.getTimeString());
+			System.out.println("  date: " + st.getFullDateString() + "; time: " + st.getTimeString());
 			
 			System.out.print("  seatStatus (reserved): ");
 			boolean[][] seatStatus = st.getSeatStatus();
@@ -196,6 +201,19 @@ public class Cinema implements Serializable{
 		}
 		Cinema updatedCinema = this;
 		SerializeDB.updateSerializedObject(".\\data\\cinema.dat", updatedCinema);
+	}
+	
+	public static Cinema getCinemaAt(int cineplexId, int id) {   //Call by classname: Cinema.getCinemaAt()
+		List list = null;
+		String filename = ".\\data\\cinema.dat";
+		list = (ArrayList)SerializeDB.readSerializedObject(filename);  //Read data
+		
+		Cinema c = new Cinema(cineplexId, id);
+		for (int i = 0 ; i < list.size() ; i++) {
+			if (c.equals(list.get(i)))
+				return (Cinema)list.get(i);
+		}
+		return null;
 	}
 	
 	public boolean equals(Object o) {

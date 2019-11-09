@@ -23,7 +23,18 @@ public class Booking implements Serializable {
 		this.showTime = showTime;
 		this.seat = seat;
 		
-		//this.price = TicketType.computePrice(movieType, cinemaType, movieGoerGroup, dayOfWeek, isPublicHoliday, isBefore6pm)
+		MovieType movieType = showTime.getMovie().getMovieType();
+		CinemaClass cinemaClass = showTime.getCinema().getCinemaClass();
+		MovieGoerGroup movieGoerGroup = movieGoer.getMovieGoerGroup();
+		String dayOfWeek = showTime.getDayOfWeek();
+		String isPublicHoliday;
+		if (PublicHoliday.isPublicHoliday(showTime.getDate())) 
+			isPublicHoliday = "true";
+		else
+			isPublicHoliday = "false";
+		
+		this.price = TicketType.computePrice(movieType, cinemaClass, movieGoerGroup, dayOfWeek, isPublicHoliday);  //-1 if not found in TicketType
+		
 	}
 	
 	public String getTransactionId() {
@@ -46,6 +57,33 @@ public class Booking implements Serializable {
 		return this.seat;
 	}
 	
+	public static ArrayList<Booking> addBooking(Booking booking) {   //Call by classname: Booking.addBooking()
+		List list = null;
+		String filename = ".\\data\\booking.dat";
+		list = (ArrayList)SerializeDB.insertSerializedObject(filename, booking);  //Read data
+		
+		return (ArrayList<Booking>) list;
+	}
+	
+	public static void initializeData() {  //Call by classname: Booking.initializeData()
+		List list = null;
+		int i;		
+		List data = new ArrayList<>();
+		String filename = ".\\data\\booking.dat";
+		
+		ArrayList<MovieGoer> movieGoers = MovieGoer.getAllMovieGoersData();
+		ArrayList<Cinema> cinemas = Cinema.getAllCinemasData();
+		
+		MovieGoer movieGoer = movieGoers.get(0);
+		Cinema cinema = Cinema.getCinemaAt(0, 0);
+		ShowTime showTime = cinema.getShowTimes().get(0);
+		Seat seat = new Seat(1,1);
+		Booking booking = new Booking(movieGoer, showTime, seat);
+		data.add(booking);
+		
+		SerializeDB.writeSerializedObject(filename, data);  //Write data
+	}
+	
 	public static ArrayList<Booking> getAllBookingsData() {   //Call by classname: Booking.getAllBookingsData()
 		List list = null;
 		String filename = ".\\data\\booking.dat";
@@ -57,9 +95,12 @@ public class Booking implements Serializable {
 	public void showBookingInfo() { 
 		int i;
 		System.out.println("*********************************************");
-		System.out.println("id: " + this.id );
-		System.out.println("location: " + this.location);
-		System.out.println("numOfCinemas: " + this.numOfCinemas);
+		System.out.println("transactionId: " + this.transactionId);
+		System.out.println("movieGoerGroup: " + this.movieGoer.getMovieGoerGroup());
+		System.out.println("price: " + this.price);
+		System.out.println("-- showTime -- ");
+		this.showTime.showShowTimeInfo();
+		System.out.println("seat: " + this.seat.getSeatString());
 	}
 
 }

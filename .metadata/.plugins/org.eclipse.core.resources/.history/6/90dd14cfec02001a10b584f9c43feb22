@@ -1,0 +1,27 @@
+package Entities;
+
+import java.util.*;
+
+SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+//holidayList.add(sdf.parse("20191225"));
+//holidayList.add(sdf.parse("20200101"));
+//holidayList.add(sdf.parse("20200125"));
+//holidayList.add(sdf.parse("20200126"));
+//holidayList.add(sdf.parse("20200410"));
+//holidayList.add(sdf.parse("20200501"));
+//holidayList.add(sdf.parse("20200507"));
+//holidayList.add(sdf.parse("20200524"));
+//holidayList.add(sdf.parse("20200731"));
+//holidayList.add(sdf.parse("20200809"));
+//holidayList.add(sdf.parse("20201114"));
+//holidayList.add(sdf.parse("20201225"));
+
+public class PublicHoliday {
+	private ArrayList<Date> dates = new ArrayList<>();
+	Date date;
+	int[] days = new int[]   {25, 2};
+	int[] months = new int[] {12, }
+	
+	 
+	//dates.add(new)
+}

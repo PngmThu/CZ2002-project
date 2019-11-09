@@ -1,27 +1,24 @@
 package Entities;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
-SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-//holidayList.add(sdf.parse("20191225"));
-//holidayList.add(sdf.parse("20200101"));
-//holidayList.add(sdf.parse("20200125"));
-//holidayList.add(sdf.parse("20200126"));
-//holidayList.add(sdf.parse("20200410"));
-//holidayList.add(sdf.parse("20200501"));
-//holidayList.add(sdf.parse("20200507"));
-//holidayList.add(sdf.parse("20200524"));
-//holidayList.add(sdf.parse("20200731"));
-//holidayList.add(sdf.parse("20200809"));
-//holidayList.add(sdf.parse("20201114"));
-//holidayList.add(sdf.parse("20201225"));
 
 public class PublicHoliday {
 	private ArrayList<Date> dates = new ArrayList<>();
-	Date date;
-	int[] days = new int[]   {25, 2};
-	int[] months = new int[] {12, }
+	private Date date;
+	private static String[] publicHolidays = new String[] {"25-12-2019","01-01-2020","25-01-2020","26-01-2020","26-01-2020","10-04-2020",
+												"01-05-2020","07-05-2020","24-05-2020","31-07-2020","09-08-2020","14-11-2020","25-12-2020"};
 	
 	 
-	//dates.add(new)
+	public static boolean isPublicHoliday(Date date) {
+		int i;
+		SimpleDateFormat ft = new SimpleDateFormat ("dd-MM-yyyy");
+        String dateString = ft.format(date);
+        for (i = 0 ; i < publicHolidays.length ; i++) {
+        	if (dateString.equals(publicHolidays[i]))
+        		return true;
+        }
+        return false;
+	}
 }
