@@ -124,7 +124,7 @@ public class Movie implements Serializable {
 		return (ArrayList<Movie>) list;
 	}
 	
-	public void showMovieInfo() {  
+	public void showMovieInfo() {
 		int i;
 		System.out.println("*********************************************");
 		System.out.println("Title: " + this.title );

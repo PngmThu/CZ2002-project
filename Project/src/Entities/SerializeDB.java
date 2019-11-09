@@ -149,7 +149,7 @@ public class SerializeDB
 //		m0.addMovieReview(new MovieReview("Kathy","Go for it", 4));
 //		m0.showMovieInfo();
 
-		/**********************************************************************/
+		**********************************************************************/
 		
 		/***************************Test Vendor********************************
 		Vendor.initializeData();
