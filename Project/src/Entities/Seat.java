@@ -16,10 +16,6 @@ public class Seat implements Serializable{
 		return this.row;
 	}
 
-	/**
-	 * 
-	 * @param row
-	 */
 	public void setRow(int row) {
 		this.row = row;
 	}
@@ -28,12 +24,15 @@ public class Seat implements Serializable{
 		return this.col;
 	}
 
-	/**
-	 * 
-	 * @param number
-	 */
 	public void setCol(int col) {
 		this.col = col;
+	}
+	
+	public String getSeatString() {
+		String str;
+		char c = (char)('A' + this.row);
+		str = c + Integer.toString(this.col);
+		return str;
 	}
 
 }

@@ -47,10 +47,16 @@ public class ShowTime implements Serializable{
 	}
 	
 	
-	public String getDateString() {
+	public String getFullDateString() {
         SimpleDateFormat ft = new SimpleDateFormat ("E dd-MM-yyyy");
         return ft.format(this.date);
 	}
+	
+	public String getDayMonthString() {
+        SimpleDateFormat ft = new SimpleDateFormat ("dd-MM");
+        return ft.format(this.date);
+	}
+	
 	public String getDayOfWeek() {
 		SimpleDateFormat ft = new SimpleDateFormat ("EE");
 		return ft.format(this.date);
@@ -71,6 +77,19 @@ public class ShowTime implements Serializable{
 	
 	public void bookSeatAt(int row, int col) {
 		seatStatus[row][col] = true;   //Book seat
+	}
+	
+	public void showShowTimeInfo() {  
+		int i, j, k;
+		System.out.println("*********************************************");
+		System.out.println("cineplexId: " + this.cinema.getCineplexId());
+		System.out.println("cinema id: " + this.cinema.getId());
+		System.out.println("cinemaClass: " + this.cinema.getCinemaClass());
+		System.out.println("movie's title: " + this.movie.getTitle() );
+		System.out.println("movieType: " + this.movie.getMovieType());
+		System.out.println("date: " + this.getFullDateString());
+		System.out.println("time: " + this.getTimeString());
+		System.out.println("isPublicHoliday: " + PublicHoliday.isPublicHoliday(this.date));
 	}
 	
 	

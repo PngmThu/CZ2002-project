@@ -123,16 +123,30 @@ public class SerializeDB
 		*************************************************************/
 		
 		/************************Time****************************************
-		Date date = new Date(2019 - 1900, 11 - 1, 10); //input = (year-1900,month-1,date)
+//		Date date = new Date(2019 - 1900, 11 - 1, 10); //input = (year-1900,month-1,date)
 //		Calendar c = Calendar.getInstance();
 //		c.setTime(date);
 //		int day = c.get(Calendar.DAY_OF_WEEK);
 //		System.out.println("Day: " + day);
-
+		
+//		Date date = new Date();   // this object contains the current date value
+		Date date = new Date(2019 - 1900, 2 - 1, 2); //input = (year-1900,month-1,date)
+		
 		SimpleDateFormat ft = new SimpleDateFormat ("EE");
 		System.out.println("Day: " + ft.format(date));
-		SimpleDateFormat ft2 = new SimpleDateFormat ("E dd-MM-yyyy");
+		SimpleDateFormat ft2 = new SimpleDateFormat ("dd-MM");
 		System.out.println(ft2.format(date));
+		**********************************************************************/
+		
+		/********************Initialize all databases****************************
+		Movie.initializeData();
+		Vendor.initializeData(); 
+		Cineplex.initializeData();
+		Cinema.initializeData();
+		MovieGoer.initializeData();
+		Staff.initializeData();
+		TicketType.initializeData();
+		System.out.println("Done");
 		**********************************************************************/
 		
 		/***************************Test Movie********************************
@@ -166,7 +180,6 @@ public class SerializeDB
 		**********************************************************************/
 		
 		/***************************Test Cineplex********************************
-		
 		Vendor.initializeData();
 		Cineplex.initializeData();
 		ArrayList<Cineplex> cineplexes = Cineplex.getAllCineplexesData();
@@ -210,8 +223,8 @@ public class SerializeDB
 		Staff.initializeData();
 		
 		//Add a staff
-		Staff staff = new Staff("Yuanchao", "YuanchaoLoh");
-		Staff.addStaffAccount(staff);
+//		Staff staff = new Staff("Yuanchao", "YuanchaoLoh");
+//		Staff.addStaffAccount(staff);
 		
 		ArrayList<Staff> staffs = Staff.getAllStaffsData();
 		for (i = 0 ; i < staffs.size() ; i++) {
@@ -222,12 +235,23 @@ public class SerializeDB
 		*********************************************************************/
 		
 		/***************************Test TicketType********************************
-		TicketType.initializeData();
+		Entities.TicketType.initializeData();
 		
-		ArrayList<TicketType> ticketTypes = TicketType.getAllStaffsData();
-		for (i = 0 ; i < staffs.size() ; i++) {
-			Staff s = staffs.get(i);
-			s.showStaffInfo();
+		ArrayList<TicketType> ticketTypes = TicketType.getAllTicketTypesData();
+		for (i = 0 ; i < ticketTypes.size() ; i++) {
+			TicketType ticketType = ticketTypes.get(i);
+			ticketType.showTicketTypeInfo();
+		}
+		
+		*********************************************************************/
+		
+		/***************************Test Booking********************************
+		Booking.initializeData();
+		
+		ArrayList<Booking> bookings = Booking.getAllBookingsData();
+		for (i = 0 ; i < bookings.size() ; i++) {
+			Booking b = bookings.get(i);
+			b.showBookingInfo();
 		}
 		
 		*********************************************************************/
