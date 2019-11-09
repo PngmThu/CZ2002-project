@@ -195,7 +195,7 @@ public class SerializeDB
 		
 		**********************************************************************/
 		
-		/***************************Test MovieGoer********************************
+		/***************************Test MovieGoer********************************/
 		MovieGoer.initializeData();
 		ArrayList<MovieGoer> movieGoers = MovieGoer.getAllMovieGoersData();
 		for (i = 0 ; i < movieGoers.size() ; i++) {
@@ -203,7 +203,7 @@ public class SerializeDB
 			movieGoer.showMovieGoerInfo();
 		}
 		
-		**********************************************************************/
+		/**********************************************************************/
 		
 		/***************************Test Staff********************************
 		Staff.initializeData();

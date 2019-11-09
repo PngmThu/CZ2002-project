@@ -164,9 +164,9 @@ public class SerializeDB
 
 		**********************************************************************/
 		
-		/***************************Test Cineplex********************************
+		/***************************Test Cineplex********************************/
 		
-		Vendor.initializeData();
+		//Vendor.initializeData();
 		Cineplex.initializeData();
 		ArrayList<Cineplex> cineplexes = Cineplex.getAllCineplexesData();
 		for (i = 0 ; i < cineplexes.size() ; i++) {
@@ -181,7 +181,7 @@ public class SerializeDB
 //		cineplex.updateLocation("0");
 //		cineplex.showCineplexInfo();
 
-		**********************************************************************/
+		/**********************************************************************/
 		
 		/***************************Test Cinema********************************
 		Vendor.initializeData();

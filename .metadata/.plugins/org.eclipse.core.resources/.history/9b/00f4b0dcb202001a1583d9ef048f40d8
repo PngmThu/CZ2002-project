@@ -150,7 +150,7 @@ public class SerializeDB
 
 		/**********************************************************************/
 		
-		/***************************Test Vendor********************************
+		/***************************Test Vendor********************************/
 		Vendor.initializeData();
 		Vendor vendor = Vendor.getVendorData();
 		vendor.showVendorInfo();
@@ -162,11 +162,11 @@ public class SerializeDB
 //		m0.addMovieReview(new MovieReview("Kathy","Go for it", 4));
 //		m0.showMovieInfo();
 
-		**********************************************************************/
+		/**********************************************************************/
 		
 		/***************************Test Cineplex********************************
 		
-		Vendor.initializeData();
+		//Vendor.initializeData();
 		Cineplex.initializeData();
 		ArrayList<Cineplex> cineplexes = Cineplex.getAllCineplexesData();
 		for (i = 0 ; i < cineplexes.size() ; i++) {
