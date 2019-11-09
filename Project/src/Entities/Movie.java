@@ -148,6 +148,36 @@ public class Movie implements Serializable {
 		List list = (ArrayList)SerializeDB.updateSerializedObject(".\\data\\movie.dat", updatedMovie);
 	}
 
+	public void updateMovieType(MovieType mt) {
+		this.movieType = mt;
+		Movie updatedMovie = this;
+		List list = (ArrayList)SerializeDB.updateSerializedObject(".\\data\\movie.dat", updatedMovie);
+	}
+
+	public void updateMovieCensorship(MovieCensorship mss) {
+		this.censorship = mss;
+		Movie updatedMovie = this;
+		List list = (ArrayList)SerializeDB.updateSerializedObject(".\\data\\movie.dat", updatedMovie);
+	}
+
+	public void updateSynopsis(String sns) {
+		this.synopsis = sns;
+		Movie updatedMovie = this;
+		List list = (ArrayList)SerializeDB.updateSerializedObject(".\\data\\movie.dat", updatedMovie);
+	}
+
+	public void updateDirectors(String drt) {
+		this.director = drt;
+		Movie updatedMovie = this;
+		List list = (ArrayList)SerializeDB.updateSerializedObject(".\\data\\movie.dat", updatedMovie);
+	}
+
+	public void updateCasts(String cst) {
+		this.cast = cst;
+		Movie updatedMovie = this;
+		List list = (ArrayList)SerializeDB.updateSerializedObject(".\\data\\movie.dat", updatedMovie);
+	}
+
 	public static void addMovie(String title, String status, String synopsis, String director, MovieType movieType, String cast, MovieCensorship censorship){
 		Movie movie = new Movie(title, status, synopsis, director, movieType, cast,censorship);
 		SerializeDB.insertSerializedObject(".\\data\\movie.dat", movie);

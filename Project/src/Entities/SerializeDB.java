@@ -150,8 +150,8 @@ public class SerializeDB
 		System.out.println("Done");
 		/*********************************************************************/
 		
-		/***************************Test Movie********************************
-		Movie.initializeData();
+		/***************************Test Movie********************************/
+		//Movie.initializeData();
 		ArrayList<Movie> movies = Movie.getAllMoviesData();
 		for (i = 0 ; i < movies.size() ; i++) {
 			Movie m = movies.get(i);
@@ -164,7 +164,7 @@ public class SerializeDB
 //		m0.addMovieReview(new MovieReview("Kathy","Go for it", 4));
 //		m0.showMovieInfo();
 
-		**********************************************************************/
+		/**********************************************************************/
 		
 		/***************************Test Vendor********************************
 		Vendor.initializeData();
