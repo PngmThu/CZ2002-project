@@ -20,24 +20,25 @@ public class MoblimaApp {
 				choice = sc.nextInt();
 				switch (choice) {
 					case 1:
-						//bring user to SearchMovieView
-						menuViews = new SearchMovieView();
+						//bring user to MovieGoer page
+						menuViews = new MovieGoerView();
 						break;
 					case 2:
-						//bring user to MovieListingView
-						menuViews = new MovieListingView();
+						//bring user to Login then to staff page
+						menuViews = new LoginView();
 						break;
 					case 3:
 						loop = false;
 						break;
 					default:
-						System.out.println("Please enter a choice between 1 to 5.");
+						System.out.println("Please enter a choice between 1 to 3.");
 				}
 			} catch (InputMismatchException e) {
-				System.out.println("Invalid choice! Please select a number between 1 to 5:");
+				System.out.println("Invalid choice! Please select a number between 1 to 3:");
 				sc.next();
 			}
-			menuViews.enterView();
+			if (loop && menuViews!=null)
+				menuViews.enterView();
 		}
 	}
 

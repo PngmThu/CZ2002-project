@@ -141,7 +141,12 @@ public class Movie implements Serializable {
 		Movie updatedMovie = this;
 		List list = (ArrayList)SerializeDB.updateSerializedObject(".\\data\\movie.dat", updatedMovie);
 	}
-	
+
+	public static void addMovie(String title, String status, String synopsis, String director, MovieType movieType, String cast){
+		Movie movie = new Movie(title, status, synopsis, director, movieType, cast);
+		SerializeDB.insertSerializedObject(".\\data\\movie.dat", movie);
+	}
+
 	public MovieReview addMovieReview(String reviewer, String content, int rating) {
 		double sum = 0;
 		MovieReview movieReview;
@@ -159,6 +164,10 @@ public class Movie implements Serializable {
 		List list = (ArrayList)SerializeDB.updateSerializedObject(".\\data\\movie.dat", updatedMovie);
 		
 		return movieReview;
+	}
+
+	public void deleteMovie() {
+		SerializeDB.deleteSerializedObject(".\\data\\movie.dat", this);
 	}
 	
 	public boolean equals(Object o) {
