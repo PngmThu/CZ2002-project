@@ -85,8 +85,6 @@ public class TicketType {
 	}
 	
 	public static void initializeData() {  //Call by classname: TicketType.initializeData()	
-		List list;
-		int i;
 		List data = new ArrayList<>();
 		String filename = ".\\data\\ticketType.dat";
 		
@@ -119,8 +117,7 @@ public class TicketType {
 		ticketType = new TicketType(movieType,cinemaClass,movieGoerGroupL,dayOfWeekL,isPublicHolidayL,price);
 		data.add(ticketType);
 		
-		//Type 
-		/*
+		//Type 3
 		movieType = MovieType._3D;
 		cinemaClass = CinemaClass.REG;
 		movieGoerGroupL = new MovieGoerGroup[] {MovieGoerGroup.STUDENT};
@@ -129,9 +126,8 @@ public class TicketType {
 		price = 9;
 		ticketType = new TicketType(movieType,cinemaClass,movieGoerGroupL,dayOfWeekL,isPublicHolidayL,price);
 		data.add(ticketType);
-		*/
 		
-		//Type 3
+		//Type 4
 		movieType = MovieType.REG;
 		cinemaClass = CinemaClass.REG;
 		movieGoerGroupL = new MovieGoerGroup[] {MovieGoerGroup.ADULT};
@@ -141,8 +137,7 @@ public class TicketType {
 		ticketType = new TicketType(movieType,cinemaClass,movieGoerGroupL,dayOfWeekL,isPublicHolidayL,price);
 		data.add(ticketType);
 		
-		//Type 
-		/*
+		//Type 5
 		movieType = MovieType._3D;
 		cinemaClass = CinemaClass.REG;
 		movieGoerGroupL = new MovieGoerGroup[] {MovieGoerGroup.ADULT, MovieGoerGroup.SENIOR};
@@ -151,9 +146,8 @@ public class TicketType {
 		price = 11;
 		ticketType = new TicketType(movieType,cinemaClass,movieGoerGroupL,dayOfWeekL,isPublicHolidayL,price);
 		data.add(ticketType);
-		*/
 		
-		//Type 4: Sat, Sun 
+		//Type 6: Sat, Sun 
 		movieType = MovieType.REG;
 		cinemaClass = CinemaClass.REG;
 		movieGoerGroupL = new MovieGoerGroup[] {MovieGoerGroup.STUDENT, MovieGoerGroup.ADULT, MovieGoerGroup.SENIOR};
@@ -163,7 +157,7 @@ public class TicketType {
 		ticketType = new TicketType(movieType,cinemaClass,movieGoerGroupL,dayOfWeekL,isPublicHolidayL,price);
 		data.add(ticketType);
 		
-		//Type 5: public holiday 
+		//Type 7: public holiday 
 		movieType = MovieType.REG;
 		cinemaClass = CinemaClass.REG;
 		movieGoerGroupL = new MovieGoerGroup[] {MovieGoerGroup.STUDENT, MovieGoerGroup.ADULT, MovieGoerGroup.SENIOR};
@@ -173,8 +167,7 @@ public class TicketType {
 		ticketType = new TicketType(movieType,cinemaClass,movieGoerGroupL,dayOfWeekL,isPublicHolidayL,price);
 		data.add(ticketType);
 		
-		//Type 
-		/*
+		//Type 8
 		movieType = MovieType._3D;
 		cinemaClass = CinemaClass.REG;
 		movieGoerGroupL = new MovieGoerGroup[] {MovieGoerGroup.STUDENT, MovieGoerGroup.ADULT, MovieGoerGroup.SENIOR};
@@ -183,10 +176,8 @@ public class TicketType {
 		price = 15;
 		ticketType = new TicketType(movieType,cinemaClass,movieGoerGroupL,dayOfWeekL,isPublicHolidayL,price);
 		data.add(ticketType);
-		*/
 		
-		//Type 
-		/*
+		//Type 9
 		movieType = MovieType._3D;
 		cinemaClass = CinemaClass.REG;
 		movieGoerGroupL = new MovieGoerGroup[] {MovieGoerGroup.STUDENT, MovieGoerGroup.ADULT, MovieGoerGroup.SENIOR};
@@ -195,43 +186,7 @@ public class TicketType {
 		price = 15;
 		ticketType = new TicketType(movieType,cinemaClass,movieGoerGroupL,dayOfWeekL,isPublicHolidayL,price);
 		data.add(ticketType);
-		*/
 		
-		//Type 6: Atmos cinemaType
-		movieType = MovieType.REG;
-		cinemaClass = CinemaClass.ATMOS;
-		movieGoerGroupL = new MovieGoerGroup[] {MovieGoerGroup.STUDENT, MovieGoerGroup.ADULT, MovieGoerGroup.SENIOR};
-		dayOfWeekL = new String[] {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
-		isPublicHolidayL = new String[] {"true", "false"}; 
-		price = 16;
-		ticketType = new TicketType(movieType,cinemaClass,movieGoerGroupL,dayOfWeekL,isPublicHolidayL,price);
-		data.add(ticketType);
-		
-		//Type 7: Platinum cinemaType
-		movieType = MovieType.REG;
-		cinemaClass = CinemaClass.PLATINUM;
-		movieGoerGroupL = new MovieGoerGroup[] {MovieGoerGroup.STUDENT, MovieGoerGroup.ADULT, MovieGoerGroup.SENIOR};
-		dayOfWeekL = new String[] {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
-		isPublicHolidayL = new String[] {"true", "false"}; 
-		price = 28;
-		ticketType = new TicketType(movieType,cinemaClass,movieGoerGroupL,dayOfWeekL,isPublicHolidayL,price);
-		data.add(ticketType);
-		
-		//3D movie: price + 2
-		for(i = 0 ; i < 7 ; i++) {
-			ticketType = (TicketType) data.get(i);
-			ticketType.setMovieType(MovieType._3D);
-			ticketType.setPrice(ticketType.getPrice() + 2);
-			data.add(ticketType);
-		}
-		
-		//Blockbuster movie: price + 1
-		for(i = 0 ; i < 7 ; i++) {
-			ticketType = (TicketType) data.get(i);
-			ticketType.setMovieType(MovieType.BLOCKBUSTER);
-			ticketType.setPrice(ticketType.getPrice() + 1);
-			data.add(ticketType);
-		}
 		
 		SerializeDB.writeSerializedObject(filename, data);  //Write data
 	}
@@ -243,36 +198,6 @@ public class TicketType {
 		list = (ArrayList)SerializeDB.readSerializedObject(filename);  //Read data
 		
 		return (ArrayList<TicketType>) list;
-	}
-	
-	public void showTicketTypeInfo() {  
-		int i;
-		System.out.println("*********************************************");
-		System.out.println("movieType: " + this.movieType );
-		System.out.println("cinemaClass: " + this.cinemaClass);
-		
-		System.out.print("movieGoerGroupL:  ");
-		MovieGoerGroup[] movieGoerGroupL = this.movieGoerGroupL;
-		for (i = 0 ; i < movieGoerGroupL.length ; i++) {
-			System.out.print(movieGoerGroupL[i] + "  ");
-		}
-		System.out.println("");
-		
-		System.out.print("dayOfWeekL:  ");
-		String[] dayOfWeekL = this.dayOfWeekL;
-		for (i = 0 ; i < dayOfWeekL.length ; i++) {
-			System.out.print(dayOfWeekL[i] + "  ");
-		}
-		System.out.println("");
-		
-		System.out.print("isPublicHolidayL:  ");
-		String[] isPublicHolidayL = this.isPublicHolidayL;
-		for (i = 0 ; i < isPublicHolidayL.length ; i++) {
-			System.out.print(isPublicHolidayL[i] + "  ");
-		}
-		System.out.println("");
-		
-		System.out.println("price: " + this.price);
 	}
 	
 	public static double computePrice(String movieType, String cinemaType, MovieGoerGroup movieGoerGroup, 

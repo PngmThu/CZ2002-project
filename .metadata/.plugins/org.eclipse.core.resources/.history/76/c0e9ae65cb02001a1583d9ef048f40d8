@@ -221,17 +221,6 @@ public class SerializeDB
 		
 		*********************************************************************/
 		
-		/***************************Test TicketType********************************
-		TicketType.initializeData();
-		
-		ArrayList<TicketType> ticketTypes = TicketType.getAllStaffsData();
-		for (i = 0 ; i < staffs.size() ; i++) {
-			Staff s = staffs.get(i);
-			s.showStaffInfo();
-		}
-		
-		*********************************************************************/
-		
 		/************************Insert data of Movie*******************************
 		List data = new ArrayList<>();
 		String filename = ".\\data\\movie.dat";
