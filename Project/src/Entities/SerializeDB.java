@@ -114,8 +114,8 @@ public class SerializeDB
 		List list = null;
 		List newList = null;
 		int i, j, k;
-		
-	
+
+
 		/**********************Seat***********************************
 		j = 1;
 		char x = (char)('A' + j);

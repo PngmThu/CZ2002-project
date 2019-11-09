@@ -14,6 +14,7 @@ public class MoblimaApp {
 			System.out.println("1) MovieGoer");
 			System.out.println("2) Staff");
 			System.out.println("3) Exit");
+			System.out.print("Enter your choice: ");
 
 			//PRINT MENU FOR HOMEPAGE USED BY BOTH MOVIE-GOERS & STAFF
 			try {
