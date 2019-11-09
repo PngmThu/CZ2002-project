@@ -134,7 +134,7 @@ public class SerializeDB
 		System.out.println(ft2.format(date));
 		**********************************************************************/
 		
-		/***************************Test Movie********************************
+		/***************************Test Movie********************************/
 		Movie.initializeData();
 		ArrayList<Movie> movies = Movie.getAllMoviesData();
 		for (i = 0 ; i < movies.size() ; i++) {
@@ -166,7 +166,7 @@ public class SerializeDB
 		
 		/***************************Test Cineplex********************************
 		
-		Vendor.initializeData();
+		//Vendor.initializeData();
 		Cineplex.initializeData();
 		ArrayList<Cineplex> cineplexes = Cineplex.getAllCineplexesData();
 		for (i = 0 ; i < cineplexes.size() ; i++) {
