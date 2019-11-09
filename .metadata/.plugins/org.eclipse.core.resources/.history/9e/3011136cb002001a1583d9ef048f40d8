@@ -57,14 +57,6 @@ public class Staff implements Serializable{
 		return (ArrayList<Staff>) list;
 	}
 	
-	public static ArrayList<Staff> addStaffAccount(Staff staff) {   //Call by classname: Staff.addStaffAccount()
-		List list = null;
-		String filename = ".\\data\\staff.dat";
-		list = (ArrayList)SerializeDB.insertSerializedObject(filename, staff);  //Read data
-		
-		return (ArrayList<Staff>) list;
-	}
-	
 	public void showStaffInfo() { 
 		int i;
 		System.out.println("*********************************************");
