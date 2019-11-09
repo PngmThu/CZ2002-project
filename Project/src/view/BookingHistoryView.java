@@ -1,6 +1,6 @@
 package view;
 
-public class BookingHistoryVIew extends MoblimaViews{ //Allow Moviegoers to view booking history
+public class BookingHistoryView extends MoblimaViews{ //Allow Moviegoers to view booking history
     public void enterView() {
         //Call BookingHistoryController
     }

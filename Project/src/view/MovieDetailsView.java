@@ -1,13 +1,12 @@
 package view;
 
 import Controllers.MovieDetailsCtrl;
-import Controllers.MovieReviewCtrl;
 import Entities.Movie;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class MovieDetailView extends MoblimaViews{
+public class MovieDetailsView extends MoblimaViews{
     private String movieTitle;
 
 //    public static void main(String[] args){
@@ -16,7 +15,7 @@ public class MovieDetailView extends MoblimaViews{
 //        menuViews.enterView();
 //    }
 
-    public MovieDetailView(String movieTitle){
+    public MovieDetailsView(String movieTitle){
         this.movieTitle = movieTitle;
     }
 
@@ -45,7 +44,7 @@ public class MovieDetailView extends MoblimaViews{
                 sc.next();
                 System.out.println("Invalid choice!");
             }
-                choice = sc.nextInt();
+            choice = sc.nextInt();
             // ADD CODE TO MOVE USER TO SEARCH/LIST MOVIES PAGE
         } else {
             System.out.println("1) Return to Search/List Movies page. ");

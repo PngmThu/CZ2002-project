@@ -146,8 +146,9 @@ public class SerializeDB
 		MovieGoer.initializeData();
 		Staff.initializeData();
 		TicketType.initializeData();
+	    Booking.initializeData();
 		System.out.println("Done");
-		**********************************************************************/
+		/*********************************************************************/
 		
 		/***************************Test Movie********************************
 		Movie.initializeData();
@@ -254,7 +255,7 @@ public class SerializeDB
 			b.showBookingInfo();
 		}
 		
-		*********************************************************************/
+		********************************************************************/
 		
 		/************************Insert data of Movie*******************************
 		List data = new ArrayList<>();

@@ -1,9 +1,9 @@
 package Controllers;
 
+import view.ManageShowTimesView;
+import view.ManageSystemSettingsView;
 import view.MoblimaViews;
 import view.manageMovieListingView;
-import view.manageMovieShowTimesView;
-import view.manageSystemSettingsView;
 
 public class StaffMenuCtrl {
     public static void changeView(int choice) {
@@ -12,10 +12,10 @@ public class StaffMenuCtrl {
             menuViews = new manageMovieListingView();
         }
         else if(choice == 2){
-            menuViews = new manageMovieShowTimesView();
+            menuViews = new ManageShowTimesView();
         }
         else{
-            menuViews = new manageSystemSettingsView();
+            menuViews = new ManageSystemSettingsView();
         }
 
         menuViews.enterView();

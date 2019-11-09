@@ -1,13 +1,13 @@
 package view;
 
 public class MovieListingView extends MoblimaViews {
-	public void enterView (){
-		System.out.println("MovieListView Menu Display");
+    public void enterView (){
+        System.out.println("MovieListView Menu Display");
 
-		//MovieListingController
-		}
+        //MovieListingController
+    }
 }
-//All controllers should have switchview? Switch view will display a menu to see if user would want to change to different views.	
+//All controllers should have switchview? Switch view will display a menu to see if user would want to change to different views.
 //Movie listing controller should have switch view? (Parameters to pass in: user's choice.
 //
 
