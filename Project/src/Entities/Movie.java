@@ -87,7 +87,7 @@ public class Movie implements Serializable {
 		cast = "Robert Downey Jr., Chris Evans, Chris Hemsworth, Mark Ruffalo";
 		synopsis = "The grave course of events set in motion by Thanos that wiped out half the universe and fractured the Avengers ranks compels the remaining Avengers to take one final stand in Marvel Studios’ grand conclusion to twenty-two films, “Avengers: Endgame.”";
 		
-		movie = new Movie("Avengers: Endgame",MovieStatus.NOW,synopsis,"Anthony Russo, Joe Russo",MovieType.BLOCKBUSTER,cast,MovieCensorship.PG13);
+		movie = new Movie("Avengers: Endgame",MovieStatus.PREVIEW,synopsis,"Anthony Russo, Joe Russo",MovieType.BLOCKBUSTER,cast,MovieCensorship.PG13);
 		data.add(movie);
 		
 		//Movie: Frozen 2

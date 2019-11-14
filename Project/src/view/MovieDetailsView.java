@@ -1,17 +1,17 @@
 package view;
 
-import Controllers.LoginCtrl;
-import Controllers.MovieDetailsCtrl;
-import Entities.Movie;
-
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import Controllers.MovieDetailsCtrl;
+import Entities.Movie;
 
 public class MovieDetailsView extends MoblimaViews{
     private String movieTitle;
 
     public static void main(String[] args){
+    	
         MoblimaViews menuViews;
         menuViews = new MovieDetailsView();
         menuViews.enterView();
