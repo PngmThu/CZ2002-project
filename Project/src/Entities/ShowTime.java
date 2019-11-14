@@ -37,7 +37,8 @@ public class ShowTime implements Serializable{
 		return this.movie;
 	}
 
-	
+	public void setMovie(Movie movie){ this.movie = movie;}
+
 	public Date getDate() {
 		return this.date;
 	}

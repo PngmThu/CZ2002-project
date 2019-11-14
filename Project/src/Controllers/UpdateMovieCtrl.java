@@ -1,14 +1,12 @@
 package Controllers;
 
-import Entities.Movie;
-import Entities.MovieCensorship;
-import Entities.MovieType;
+import Entities.*;
 
 import java.util.ArrayList;
 
 import static Entities.Movie.getAllMoviesData;
 
-public class UpdateMovieCtrl { //Updates Movie - To change movie details or to delete movie.
+public class UpdateMovieCtrl { //Updates Movie - To CHANGE movie details or to DELETE movie.
     public static Movie retrieveMovieDetails(String movieTitle){
         ArrayList<Movie> movies = getAllMoviesData();
         for (Movie movie: movies) {
@@ -23,6 +21,7 @@ public class UpdateMovieCtrl { //Updates Movie - To change movie details or to d
         for (Movie movie : movies){
             if (movie.getTitle().equals(movieTitle)){
                 movie.updateStatus(status);
+                updateMovieInShowTime(movie);
                 System.out.println("Movie status updated successfully.");
                 return;
             }
@@ -44,6 +43,7 @@ public class UpdateMovieCtrl { //Updates Movie - To change movie details or to d
         for (Movie movie : movies){
             if (movie.getTitle().equals(movieTitle)){
                 movie.updateMovieType(movieType);
+                updateMovieInShowTime(movie);
                 System.out.println("Movie Type updated successfully.");
                 return;
             }
@@ -71,6 +71,7 @@ public class UpdateMovieCtrl { //Updates Movie - To change movie details or to d
         for (Movie movie : movies){
             if (movie.getTitle().equals(movieTitle)){
                 movie.updateMovieCensorship(censorship);
+                updateMovieInShowTime(movie);
                 System.out.println("Movie Censorship updated successfully.");
                 return;
             }
@@ -83,6 +84,7 @@ public class UpdateMovieCtrl { //Updates Movie - To change movie details or to d
         for (Movie movie : movies){
             if (movie.getTitle().equals(movieTitle)){
                 movie.updateSynopsis(synopsis);
+                updateMovieInShowTime(movie);
                 System.out.println("Movie Synopsis updated successfully.");
                 return;
             }
@@ -95,6 +97,7 @@ public class UpdateMovieCtrl { //Updates Movie - To change movie details or to d
         for (Movie movie : movies){
             if (movie.getTitle().equals(movieTitle)){
                 movie.updateDirectors(directors);
+                updateMovieInShowTime(movie);
                 System.out.println("Movie Directors updated successfully.");
                 return;
             }
@@ -107,6 +110,7 @@ public class UpdateMovieCtrl { //Updates Movie - To change movie details or to d
         for (Movie movie : movies){
             if (movie.getTitle().equals(movieTitle)){
                 movie.updateCasts(casts);
+                updateMovieInShowTime(movie);
                 System.out.println("Movie Casts updated successfully.");
                 return;
             }
@@ -118,10 +122,22 @@ public class UpdateMovieCtrl { //Updates Movie - To change movie details or to d
         if (movie.getStatus().equals(status))
             System.out.println("This movie is non-existent.");
         else{
-        movie.updateStatus(status);
-        System.out.println("Movie successfully deleted.");
-        return;
+            movie.updateStatus(status);
+            updateMovieInShowTime(movie);
+            System.out.println("Movie successfully deleted.");
+            return;
         }
     }
 
+    private static void updateMovieInShowTime(Movie movie){
+        ArrayList<Cinema> cinemas = Cinema.getAllCinemasData();
+        for (Cinema cinema : cinemas){
+            ArrayList<ShowTime> showtimes = cinema.getShowTimes();
+            for (ShowTime showtime : showtimes){
+                if (movie.getTitle().equals(showtime.getMovie().getTitle())){
+                    showtime.setMovie(movie);
+                }
+            }
+        }
+    }
 }

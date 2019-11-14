@@ -34,7 +34,6 @@ public void enterView() {
             System.out.println("3) Remove");
             System.out.println("4) Go back");
             System.out.print("Enter your choice: ");
-            //PRINT MENU FOR HOMEPAGE USED BY BOTH MOVIE-GOERS
             try {
                 choice = sc.nextInt();
                 switch (choice) {
@@ -206,7 +205,6 @@ public void enterView() {
             sc.next();
         }
     }
-
     private void displayMovie(Movie movie){
         System.out.println("*************************************");
         System.out.println("Movie title: " + movie.getTitle());
