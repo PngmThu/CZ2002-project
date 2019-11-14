@@ -12,7 +12,8 @@ public abstract class MoblimaViews{
     public int readInt(Boolean Loop) {
         do {
         	try {
-                int input = sc.nextInt();    
+                int input = sc.nextInt();
+                sc.nextLine();
                 return input;
             } catch (InputMismatchException e) {
             	sc.nextLine(); // Cleaning Scanner

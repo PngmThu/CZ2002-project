@@ -1,6 +1,9 @@
 package View;
 
 import Entities.Movie;
+import Entities.MovieCensorship;
+import Entities.MovieStatus;
+import Entities.MovieType;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -15,7 +18,7 @@ public class UpdateMovieView extends ManageMovieListingView {
         int choice;
         Movie movieFound = null;
         boolean loop = true;
-
+        System.out.println("---- Search For Movie ----");
         System.out.print("Enter Movie Title: ");
         movieTitle = sc.nextLine();
         movieFound = retrieveMovieDetails(movieTitle);
@@ -29,39 +32,51 @@ public class UpdateMovieView extends ManageMovieListingView {
             System.out.println("*************************************");
             System.out.println("Admin - Update Movie");
             System.out.println("*************************************");
-            System.out.println("- Select a detail to update -");
+            System.out.println("---- Select a movie detail to update ----");
             System.out.println("1) Status");
             System.out.println("2) Movie Type");
             System.out.println("3) Censorship");
             System.out.println("4) Synopsis");
             System.out.println("5) Director(s)");
             System.out.println("6) Cast(s)");
-            System.out.println("7) Go back");
+            System.out.println("7) Go back\n");
 
             System.out.print("Enter your choice: ");
             choice = readInt(false);
+            if (choice==-1) continue;
             switch (choice) {
                 case 1:
                     displayMovieStatus();
                     System.out.print("Enter new status:");
-                    choice = sc.nextInt();
+                    choice = readInt(false);
+                    if (choice == -1) continue;
+                    else if (choice <= 0 || choice > MovieStatus.values().length) {
+                        System.out.println("Please enter a number between 1 to " + MovieStatus.values().length + ".");
+                        continue;
+                    }
+
                     updateStatus(movieTitle,choice);
                     break;
                 case 2:
                     displayMovieTypes();
                     System.out.print("Enter Movie Type: ");
-                    choice = sc.nextInt();
+                    choice = readInt(false);
+                    if (choice == -1) continue;
+                    else if (choice <= 0 || choice > MovieType.values().length) {
+                        System.out.println("Please enter a number between 1 to " + MovieType.values().length + ".");
+                        continue;
+                    }
                     updateMovieType(movieTitle, choice);
-                    if (sc.hasNextLine())
-                        sc.nextLine();
                     break;
                 case 3:
                     displayCensorShipTypes();
                     System.out.print("Enter Censorship: ");
-                    choice = sc.nextInt();
-                    updateCensorship(movieTitle,choice);
-                    if (sc.hasNextLine())
-                        sc.nextLine();
+                    choice = readInt(false);
+                    if (choice == -1) continue;
+                    else if (choice <= 0 || choice > MovieType.values().length) {
+                        System.out.println("Please enter a number between 1 to " + MovieCensorship.values().length + ".");
+                        continue;
+                    }
                     break;
                 case 4:
                     System.out.print("Enter Synopsis: ");
@@ -84,7 +99,6 @@ public class UpdateMovieView extends ManageMovieListingView {
                 default:
                     System.out.println("Please enter a choice between 1 to 7.");
             }
-
         }
     }
 }

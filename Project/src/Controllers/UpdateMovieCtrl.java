@@ -19,7 +19,7 @@ public class UpdateMovieCtrl { //Updates Movie - To CHANGE movie details or to D
     public static void updateStatus(String movieTitle, String status){
         ArrayList<Movie> movies = getAllMoviesData();
         for (Movie movie : movies){
-            if (movie.getTitle().equals(movieTitle)){
+            if (movie.getTitle().equalsIgnoreCase(movieTitle)){
                 //movie.updateStatus(status);
                 updateMovieInShowTime(movie);
                 System.out.println("Movie status updated to " + status + " successfully.");
@@ -41,7 +41,7 @@ public class UpdateMovieCtrl { //Updates Movie - To CHANGE movie details or to D
         }else{}
         ArrayList<Movie> movies = getAllMoviesData();
         for (Movie movie : movies){
-            if (movie.getTitle().equals(movieTitle)){
+            if (movie.getTitle().equalsIgnoreCase(movieTitle)){
                 movie.updateMovieType(movieType);
                 updateMovieInShowTime(movie);
                 System.out.println("Movie Type updated successfully.");
@@ -69,7 +69,7 @@ public class UpdateMovieCtrl { //Updates Movie - To CHANGE movie details or to D
         }
         ArrayList<Movie> movies = getAllMoviesData();
         for (Movie movie : movies){
-            if (movie.getTitle().equals(movieTitle)){
+            if (movie.getTitle().equalsIgnoreCase(movieTitle)){
                 movie.updateMovieCensorship(censorship);
                 updateMovieInShowTime(movie);
                 System.out.println("Movie Censorship updated successfully.");
@@ -82,7 +82,7 @@ public class UpdateMovieCtrl { //Updates Movie - To CHANGE movie details or to D
     public static void updateSynopsis(String movieTitle, String synopsis){
         ArrayList<Movie> movies = getAllMoviesData();
         for (Movie movie : movies){
-            if (movie.getTitle().equals(movieTitle)){
+            if (movie.getTitle().equalsIgnoreCase(movieTitle)){
                 movie.updateSynopsis(synopsis);
                 updateMovieInShowTime(movie);
                 System.out.println("Movie Synopsis updated successfully.");
@@ -95,7 +95,7 @@ public class UpdateMovieCtrl { //Updates Movie - To CHANGE movie details or to D
     public static void updateDirectors(String movieTitle, String directors){
         ArrayList<Movie> movies = getAllMoviesData();
         for (Movie movie : movies){
-            if (movie.getTitle().equals(movieTitle)){
+            if (movie.getTitle().equalsIgnoreCase(movieTitle)){
                 movie.updateDirectors(directors);
                 updateMovieInShowTime(movie);
                 System.out.println("Movie Directors updated successfully.");
@@ -108,7 +108,7 @@ public class UpdateMovieCtrl { //Updates Movie - To CHANGE movie details or to D
     public static void updateCasts(String movieTitle, String casts){
         ArrayList<Movie> movies = getAllMoviesData();
         for (Movie movie : movies){
-            if (movie.getTitle().equals(movieTitle)){
+            if (movie.getTitle().equalsIgnoreCase(movieTitle)){
                 movie.updateCasts(casts);
                 updateMovieInShowTime(movie);
                 System.out.println("Movie Casts updated successfully.");
@@ -131,7 +131,7 @@ public class UpdateMovieCtrl { //Updates Movie - To CHANGE movie details or to D
         }
         ArrayList<Movie> movies = getAllMoviesData();
         for (Movie movie : movies){
-            if (movie.getTitle().equals(movieTitle)){
+            if (movie.getTitle().equalsIgnoreCase(movieTitle)){
                 movie.updateStatus(movieStatus);
                 updateMovieInShowTime(movie);
                 System.out.println("Movie Status updated successfully.");
@@ -146,7 +146,7 @@ public class UpdateMovieCtrl { //Updates Movie - To CHANGE movie details or to D
         for (Cinema cinema : cinemas){
             ArrayList<ShowTime> showtimes = cinema.getShowTimes();
             for (ShowTime showtime : showtimes){
-                if (movie.getTitle().equals(showtime.getMovie().getTitle())){
+                if (movie.getTitle().equalsIgnoreCase(showtime.getMovie().getTitle())){
                     showtime.setMovie(movie);
                 }
             }
