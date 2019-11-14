@@ -17,7 +17,6 @@ public class CreateMovieView extends ManageMovieListingView{
         int choice, movieTypeChoice=0, censorshipChoice=0, movieStatusChoice=0;
         Movie movie = null;
         boolean loop = true;
-        Scanner sc = new Scanner(System.in);
         //Prompt user to enter new movie details.
         while (loop) {
             try {

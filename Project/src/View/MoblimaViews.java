@@ -5,12 +5,11 @@ import java.util.Scanner;
 
 public abstract class MoblimaViews{
 	Scanner sc = new Scanner(System.in);
+    MoblimaViews menuView = null;
     public void enterView() {
     }
     
     public int readInt(Boolean Loop) {
-    	
-        
         do {
         	try {
                 int input = sc.nextInt();    
