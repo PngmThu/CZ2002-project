@@ -137,7 +137,7 @@ public class SerializeDB
 		System.out.println(ft2.format(date));
 		**********************************************************************/
 		
-		/********************Initialize all databases****************************/
+		/********************Initialize all databases****************************
 		Movie.initializeData();
 		Vendor.initializeData(); 
 		Cineplex.initializeData();

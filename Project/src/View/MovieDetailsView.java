@@ -1,5 +1,8 @@
 package view;
 
+import Controllers.MovieDetailsCtrl;
+import Entities.Movie;
+
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;

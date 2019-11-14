@@ -1,11 +1,7 @@
-package view;
+package View;
 
-import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
-import Entities.Booking;
-import Entities.MovieGoer;
 
 public class MoblimaApp {
     public static void main(String[] args) {

@@ -1,6 +1,5 @@
-package view;
+package View;
 
-import Controllers.LoginCtrl;
 import Controllers.StaffMenuCtrl;
 
 import java.util.InputMismatchException;

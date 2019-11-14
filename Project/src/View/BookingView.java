@@ -1,9 +1,8 @@
-package view;
+package View;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import Entities.Booking;
 import Entities.Cinema;
 import Entities.CinemaClass;
 import Entities.Movie;
@@ -134,9 +133,9 @@ public class BookingView extends MoblimaViews{
     	showTime.bookSeatAt(seat);
     	String insertBooking = ".\\data\\booking.dat";
 		String updateMovieGoer = ".\\data\\movieGoer.dat";
-    	Booking booking = new Booking(movieGoer, price, showTime, seat);
-		SerializeDB.insertSerializedObject(insertBooking, booking);
-		movieGoer.addBooking(booking);
+    	//Booking booking = new Booking(movieGoer, price, showTime, seat);
+		//SerializeDB.insertSerializedObject(insertBooking, booking);
+		//movieGoer.addBooking(booking);
 	
 		SerializeDB.updateSerializedObject(updateMovieGoer, movieGoer);
     	

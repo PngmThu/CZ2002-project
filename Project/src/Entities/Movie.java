@@ -178,9 +178,10 @@ public class Movie implements Serializable {
 		List list = (ArrayList)SerializeDB.updateSerializedObject(".\\data\\movie.dat", updatedMovie);
 	}
 
-	public static void addMovie(String title, MovieStatus status, String synopsis, String director, MovieType movieType, String cast, MovieCensorship censorship){
+	public static Movie addMovie(String title, MovieStatus status, String synopsis, String director, MovieType movieType, String cast, MovieCensorship censorship){
 		Movie movie = new Movie(title, status, synopsis, director, movieType, cast,censorship);
 		SerializeDB.insertSerializedObject(".\\data\\movie.dat", movie);
+		return movie;
 	}
 
 	public MovieReview addMovieReview(String reviewer, String content, int rating) {

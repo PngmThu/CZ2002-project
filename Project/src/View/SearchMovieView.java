@@ -1,4 +1,4 @@
-package view;
+package View;
 
 public class SearchMovieView extends MoblimaViews {
     //MovieGoer can search by a certain word and display Movies containing that word

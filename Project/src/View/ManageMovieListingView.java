@@ -1,22 +1,20 @@
-package view;
+package View;
 
 import Controllers.CreateMovieCtrl;
-import Controllers.UpdateMovieCtrl;
 import Entities.Movie;
 import Entities.MovieStatus;
+import Entities.MovieType;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import static Controllers.CreateMovieCtrl.displayCensorShipTypes;
-import static Controllers.CreateMovieCtrl.displayMovieTypes;
-
+import static Controllers.CreateMovieCtrl.*;
 import static Controllers.UpdateMovieCtrl.*;
 
-public class manageMovieListingView extends MoblimaViews {
+public class ManageMovieListingView extends MoblimaViews {
 
     public static void main(String[] args) {
-        MoblimaViews menuViews = new manageMovieListingView();
+        MoblimaViews menuViews = new ManageMovieListingView();
         menuViews.enterView();
     }
 
@@ -25,6 +23,7 @@ int choice;
     boolean loop = true;
         //Page used by Admin to make changes to Movie Listing
         Scanner sc = new Scanner(System.in);
+        MoblimaViews menuView = null;
         while (loop) {
             System.out.println("*************************************");
             System.out.println("Admin - Manage Movie Listing");
@@ -39,15 +38,18 @@ int choice;
                 switch (choice) {
                     case 1:
                         //Create Movie
-                        //createMovie();
+                        menuView = new CreateMovieView();
+                        menuView.enterView();
                         break;
                     case 2:
                         //Update Movie
-                        //updateMovie();
+                        menuView = new UpdateMovieView();
+                        menuView.enterView();
                         break;
                     case 3:
                         //Delete Movie;
-                        deleteMovie();
+                        menuView = new DeleteMovieView();
+                        menuView.enterView();
                         break;
                     case 4:
                         loop = false;
@@ -56,50 +58,15 @@ int choice;
                         System.out.println("Please enter a choice between 1 to 4.");
                 }
             } catch (InputMismatchException e) {
-                System.out.println("Invalid choice! Please select a number between 1 to 4.");
+                System.out.println("Invalid entry. Please select a number between 1 to 4.");
                 sc.next();
             }
         }
     }
 
-    private void createMovie() {
-        String title, synopsis, director, cast; MovieStatus status;// Variables to be passed into Movie.addMovie();
-        int choice, movieTypeChoice, censorshipChoice;
-        Scanner sc = new Scanner(System.in);
-        //Prompt user to enter new movie details.
-        System.out.println("*************************************");
-        System.out.println("Admin - Create a Movie");
-        System.out.println("*************************************");
-        System.out.println("Please enter the following Movie details below.");
-        System.out.print("Enter Title: ");//Input to change Movie Title
-        title = sc.nextLine();//Scan for input
-        System.out.print("Enter Status: ");
-
-        status = sc.nextLine();
-        displayMovieTypes();//Method in controller to retrieve MovieTypes entity
-        System.out.print("Enter Movie Type: ");
-        movieTypeChoice = sc.nextInt();
-        System.out.print("Enter Synopsis: ");
-        if (sc.hasNextLine())
-            sc.nextLine();
-        synopsis = sc.nextLine();
-        System.out.print("Enter Director(s): ");
-        director = sc.nextLine();
-        System.out.print("Enter Cast(s): ");
-        cast = sc.nextLine();
-        displayCensorShipTypes();//Method in controller to retrieve MovieCensorshipTypes entity
-        System.out.print("Enter Censorship: ");
-        censorshipChoice = sc.nextInt();
-        if (sc.hasNextLine())
-            sc.nextLine();
-        //Pass collected user inputs to CreateMovieCtrl
-        CreateMovieCtrl.addMovie(title, status, synopsis, director, movieTypeChoice, cast, censorshipChoice);
-    }
-
     private void updateMovie() {
         // Variables to be passed into UpdateMovieCtrl;
-        String movieTitle=null, status=null, synopsis=null, directors=null, casts=null;
-
+        String movieTitle=null, synopsis=null, directors=null, casts=null;
         int choice;
         Movie movieFound = null;
         boolean loop = true;
@@ -125,7 +92,7 @@ int choice;
             System.out.println("4) Synopsis");
             System.out.println("5) Director(s)");
             System.out.println("6) Cast(s)");
-            System.out.println("7) Done");
+            System.out.println("7) Go back");
 
             System.out.print("Enter your choice: ");
             try {
@@ -134,9 +101,10 @@ int choice;
                     sc.nextLine();
                 switch (choice) {
                     case 1:
+                        displayMovieStatus();
                         System.out.print("Enter new status:");
-                        status = sc.nextLine();
-                        updateStatus(movieTitle,status);
+                        choice = sc.nextInt();
+                        updateStatus(movieTitle,choice);
                         break;
                     case 2:
                         displayMovieTypes();
@@ -173,19 +141,19 @@ int choice;
                         loop = false;
                         break;
                     default:
-                        System.out.println("Please enter a choice between 1 to 6.");
+                        System.out.println("Please enter a choice between 1 to 7.");
                 }
             } catch (InputMismatchException e) {
-                System.out.println("Invalid choice! Please select a number between 1 to 6.");
+                System.out.println("Invalid entry. Please select a number between 1 to 7.");
                 sc.next();
             }
         }
     }
     private void deleteMovie() {
+        boolean loop = true;
         int choice;
         String movieTitle;
         Movie movieFound = null;
-
         Scanner sc = new Scanner(System.in);
         System.out.println("*************************************");
         System.out.println("Admin - Delete a Movie");
@@ -197,25 +165,29 @@ int choice;
             System.out.println("The movie does not exist, please try again.");
             return;
         }
-        displayMovie(movieFound);
-        System.out.println("1) Confirm Delete? ");
-        System.out.println("2) Back ");
-        System.out.print("Enter your choice: ");
-        choice = sc.nextInt();
-        if (sc.hasNextLine())
-            sc.nextLine();
-        try {
-            if (choice == 1){
-                updateStatus((movieFound.getTitle()),"End Of Showing");
-            } else if (choice == 2){
-                return;
+        while (loop){
+            try {
+                displayMovie(movieFound);
+                System.out.println("1) Confirm Delete? ");
+                System.out.println("2) Back ");
+                System.out.print("Enter your choice: ");
+                choice = sc.nextInt();
+                if (sc.hasNextLine())
+                    sc.nextLine();
+                if (choice == 1){
+                    updateStatus((movieFound.getTitle()), 4);
+                    loop=false;
+                } else if (choice == 2){
+                    System.out.println("\nCancelling delete...");
+                    return;
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid entry. Please select a number 1 or 2.");
+                sc.next();
             }
-        } catch (InputMismatchException e) {
-            System.out.println("Invalid choice! Please select a number 1 or 2.");
-            sc.next();
         }
     }
-    private void displayMovie(Movie movie){
+    void displayMovie(Movie movie){
         System.out.println("*************************************");
         System.out.println("Movie title: " + movie.getTitle());
         System.out.println("Status: " + movie.getStatus());

@@ -1,6 +1,5 @@
-package view;
+package View;
 
-import Controllers.CreateMovieCtrl;
 import Controllers.CreateShowtimeCtrl;
 import Entities.Cinema;
 import Entities.Cineplex;
@@ -214,7 +213,11 @@ public class ManageShowTimesView extends MoblimaViews {
             }
         }
     }
+/*
 
+ @param
+ @return
+ */
     private Movie chooseMovie(){
         boolean loop = true;
         int choice; int index=0;//Format Print Indexes

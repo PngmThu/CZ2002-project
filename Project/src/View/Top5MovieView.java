@@ -1,10 +1,9 @@
-package view;
+package View;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import Controllers.StaffMenuCtrl;
 import Controllers.Top5MovieCtrl;
 import Entities.Movie;
 
@@ -23,11 +22,11 @@ public class Top5MovieView extends MoblimaViews {
 
         Scanner sc = new Scanner(System.in);
         while (loop) {
-            //Print Menu to list top 5 movies by ticket sales OR by overall reviewers’ ratings
+            //Print Menu to list top 5 movies by ticket sales OR by overall reviewersï¿½ ratings
         	System.out.println("*********************************************");
         	System.out.println("List the top 5 movies BY: ");
             System.out.println("1) Ticket sales");
-            System.out.println("2) Overall reviewers’ ratings");
+            System.out.println("2) Overall reviewersï¿½ ratings");
             System.out.println("Enter 3 to EXIT");
             System.out.println("");
             System.out.print("Enter your choice: ");
