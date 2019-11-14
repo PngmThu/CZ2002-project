@@ -13,28 +13,24 @@ public class Booking implements Serializable {
 	private ShowTime showTime;
 	private Seat seat;
 
-	public Booking(MovieGoer movieGoer, ShowTime showTime, Seat seat) {
+	public Booking(MovieGoer movieGoer, double price, ShowTime showTime, Seat seat) {
 		Date date = new Date();   // this object contains the current date value
 		SimpleDateFormat ft = new SimpleDateFormat ("yyyyMMddHHmm");
 		String cinemaCode = showTime.getCinema().getCinemaCode();
-		this.transactionId = cinemaCode + ft.format(date);
+		String insertBooking = ".\\data\\booking.dat";
+		String updateMovieGoer = ".\\data\\movieGoer.dat";
 		
+//		showTime.bookSeatAt(seat);
+		
+		this.transactionId = cinemaCode + ft.format(date);
+		this.price = price;
 		this.movieGoer = movieGoer;
 		this.showTime = showTime;
 		this.seat = seat;
-		
-		MovieType movieType = showTime.getMovie().getMovieType();
-		CinemaClass cinemaClass = showTime.getCinema().getCinemaClass();
-		MovieGoerGroup movieGoerGroup = movieGoer.getMovieGoerGroup();
-		String dayOfWeek = showTime.getDayOfWeek();
-		String isPublicHoliday;
-		if (PublicHoliday.isPublicHoliday(showTime.getDate())) 
-			isPublicHoliday = "true";
-		else
-			isPublicHoliday = "false";
-		
-		this.price = TicketType.computePrice(movieType, cinemaClass, movieGoerGroup, dayOfWeek, isPublicHoliday);  //-1 if not found in TicketType
-		
+//		System.out.println(this.getPrice());
+//		SerializeDB.insertSerializedObject(insertBooking, this);
+//		movieGoer.getBookings().add(this);
+//		SerializeDB.updateSerializedObject(updateMovieGoer, movieGoer);
 	}
 	
 	public String getTransactionId() {
@@ -57,14 +53,6 @@ public class Booking implements Serializable {
 		return this.seat;
 	}
 	
-	public static ArrayList<Booking> addBooking(Booking booking) {   //Call by classname: Booking.addBooking()
-		List list = null;
-		String filename = ".\\data\\booking.dat";
-		list = (ArrayList)SerializeDB.insertSerializedObject(filename, booking);  //Read data
-		
-		return (ArrayList<Booking>) list;
-	}
-	
 	public static void initializeData() {  //Call by classname: Booking.initializeData()
 		List list = null;
 		int i;		
@@ -78,7 +66,7 @@ public class Booking implements Serializable {
 		Cinema cinema = Cinema.getCinemaAt(0, 0);
 		ShowTime showTime = cinema.getShowTimes().get(0);
 		Seat seat = new Seat(1,1);
-		Booking booking = new Booking(movieGoer, showTime, seat);
+		Booking booking = new Booking(movieGoer, 30, showTime, seat);
 		data.add(booking);
 		
 		SerializeDB.writeSerializedObject(filename, data);  //Write data

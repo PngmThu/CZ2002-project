@@ -115,7 +115,15 @@ public class SerializeDB
 		List newList = null;
 		int i, j, k;
 
-
+		Movie.initializeData();
+		Vendor.initializeData(); 
+		Cineplex.initializeData();
+		Cinema.initializeData();
+		MovieGoer.initializeData();
+		Staff.initializeData();
+		TicketType.initializeData();
+	    Booking.initializeData();
+		System.out.println("Done");
 		/**********************Seat***********************************
 		j = 1;
 		char x = (char)('A' + j);
@@ -210,15 +218,15 @@ public class SerializeDB
 		
 		**********************************************************************/
 		
-		/***************************Test MovieGoer********************************
-		MovieGoer.initializeData();
+		/***************************Test MovieGoer********************************/
+		//MovieGoer.initializeData();
 		ArrayList<MovieGoer> movieGoers = MovieGoer.getAllMovieGoersData();
 		for (i = 0 ; i < movieGoers.size() ; i++) {
 			MovieGoer movieGoer = movieGoers.get(i);
 			movieGoer.showMovieGoerInfo();
 		}
 		
-		**********************************************************************/
+		/**********************************************************************/
 		
 		/***************************Test Staff********************************
 		Staff.initializeData();

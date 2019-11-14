@@ -31,7 +31,7 @@ public class Seat implements Serializable{
 	public String getSeatString() {
 		String str;
 		char c = (char)('A' + this.row);
-		str = c + Integer.toString(this.col);
+		str = c + Integer.toString(this.col+1);
 		return str;
 	}
 

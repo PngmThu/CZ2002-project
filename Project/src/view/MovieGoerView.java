@@ -1,4 +1,5 @@
 package view;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -7,10 +8,16 @@ public class MovieGoerView extends MoblimaViews {
         int choice;
         boolean loop = true;
         MoblimaViews menuViews = null;
-
+        
+        System.out.println("");
         Scanner sc = new Scanner(System.in);
         while (loop) {
             //PRINT MENU FOR HOMEPAGE USED BY BOTH MOVIE-GOERS
+        	System.out.println("1) Find a Movie");
+            System.out.println("2) Booking History");
+            System.out.println("3) Book Now");
+            System.out.println("4) Exit");
+            System.out.print("Enter your choice: ");
             try {
                 choice = sc.nextInt();
                 switch (choice) {

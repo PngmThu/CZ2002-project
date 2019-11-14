@@ -76,12 +76,15 @@ public class ShowTime implements Serializable{
 		return this.seatStatus[row][col];
 	}
 	
-	public void bookSeatAt(int row, int col) {
+	public void bookSeatAt(Seat seat) {
+		int row = seat.getRow();
+		int col = seat.getCol();
 		seatStatus[row][col] = true;   //Book seat
+		Cinema updatedCinema = this.getCinema();
+		SerializeDB.updateSerializedObject(".\\data\\cinema.dat", updatedCinema);	
 	}
 	
 	public void showShowTimeInfo() {  
-		int i, j, k;
 		System.out.println("*********************************************");
 		System.out.println("cineplexId: " + this.cinema.getCineplexId());
 		System.out.println("cinema id: " + this.cinema.getId());

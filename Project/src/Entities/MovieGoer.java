@@ -10,28 +10,46 @@ public class MovieGoer implements Serializable{
 	private String mobile;
 	private String email;
 	private MovieGoerGroup movieGoerGroup;  //1: student, 2: adult, 3: senior
+	private ArrayList<Booking> bookings;
 	
 	public MovieGoer(String name, String mobile, String email, MovieGoerGroup movieGoerGroup) {
 		this.name = name;
 		this.mobile = mobile;
 		this.email = email;
 		this.movieGoerGroup = movieGoerGroup;
+		this.bookings = new ArrayList<Booking>();
 	}
 
 	public String getName() {
 		return this.name;
 	}
-
+	
 	public String getMobile() {
 		return this.mobile;
 	}
-
+	
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
 	public String getEmail() {
 		return this.email;
 	}
 
 	public MovieGoerGroup getMovieGoerGroup() {
 		return this.movieGoerGroup;
+	}
+	
+	public ArrayList<Booking> getBookings() {
+		return this.bookings;
+	}
+	
+	public static MovieGoer addMovieGoer(MovieGoer movieGoer) {   //Call by classname: MovieGoer.addMovieGoer()
+		String filename = ".\\data\\movieGoer.dat";
+		SerializeDB.insertSerializedObject(filename, movieGoer);  //Read data
+		return movieGoer;
+	}
+	public void addBooking(Booking booking) {
+		this.bookings.add(booking);
 	}
 	
 	public static void initializeData() {  //Call by classname: MovieGoer.initializeData()	
@@ -56,7 +74,6 @@ public class MovieGoer implements Serializable{
 	}
 	
 	public void showMovieGoerInfo() { 
-		int i;
 		System.out.println("*********************************************");
 		System.out.println("name: " + this.name );
 		System.out.println("mobile: " + this.mobile);
@@ -67,8 +84,7 @@ public class MovieGoer implements Serializable{
 	public boolean equals(Object o) {
 		if (o instanceof MovieGoer) {
 			MovieGoer movieGoer = (MovieGoer)o;
-			return getName() == movieGoer.getName() && getMobile() == movieGoer.getMobile()
-					&& getName() == movieGoer.getName() && movieGoerGroup == movieGoer.getMovieGoerGroup();
+			return name.equals(movieGoer.getName()) && email.equals(movieGoer.getEmail());
 		}
 		return false;
 	}
