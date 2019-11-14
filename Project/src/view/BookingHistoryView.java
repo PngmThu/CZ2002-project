@@ -1,53 +1,43 @@
 package view;
 
-import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import Entities.Booking;
+import Controllers.BookingHistoryCtrl;
+import Controllers.StaffMenuCtrl;
 import Entities.MovieGoer;
 
 public class BookingHistoryView extends MoblimaViews{ //Allow Moviegoers to view booking history
+	//DO NOT have to implement login, as we can simply use their email address and mobile number to go the entity to
+    //grab their booking history. Pass this to BookingHistoryCtrl to get all their past bookings
+    
+	public static void main(String[] args) {
+        MoblimaViews menuViews = new BookingHistoryView();
+        menuViews.enterView();
+    }
 	
-    public void enterView() {
-        //Call BookingHistoryController
-    	Scanner sc = new Scanner(System.in);
-    	int index;
-    	String name, email;
-    	MovieGoer movieGoer = null;
-    	
-    	ArrayList<MovieGoer> moviegoerList = MovieGoer.getAllMovieGoersData();
-    	
-    	System.out.println("======================== Booking History ========================");
-    	System.out.println("\t\tUser Verification");
-    	System.out.print("\tName: ");
-    	name = sc.nextLine();
-    	System.out.print("\n\tEmail: ");
-    	email = sc.nextLine();
-    	
-    	for(MovieGoer mg: moviegoerList) {
-    		if(mg.getEmail().equals(email)) {
-    			movieGoer = mg;
-    			break;
-    		}
-    	}
-    	if(movieGoer == null) {
-    		System.out.println("You did not make any bookings.");
-    		return;
-    	}else {
-    		index = 1;
-    		for(Booking booking: movieGoer.getBookings()) {
-    			System.out.println("(" + index++ + ") Transaction ID:\t" + booking.getTransactionId());
-    			System.out.println("Cinema:\t" + booking.getShowTime().getCinema().getCinemaCode() + " (" 
-				+ booking.getShowTime().getCinema().getCinemaClass() + ")");
-				System.out.println("Movie:\t" + booking.getShowTime().getMovie().getTitle()+ " " 
-				+ booking.getShowTime().getMovie().getCensorship());
-				System.out.println("Date:\t" + booking.getShowTime().getDayOfWeek() + ", Time: " 
-				+ booking.getShowTime().getTimeString());
-				System.out.println("Seat:\t" + booking.getSeat().getSeatString());
-				System.out.println("Price:\t$" + booking.getPrice());
-    		}
-    		
-    	}
-    	
+	public void enterView(){
+        MoblimaViews menuViews = null;
+        int choice;
+        boolean loop = true;
+
+        Scanner sc = new Scanner(System.in);
+        
+        try {
+	        System.out.print("Enter your email: ");
+	        String email = sc.nextLine();
+	        
+	        if (BookingHistoryCtrl.movieGoerExist(email) != null) {  //movieGoer is in the data
+	        	MovieGoer movieGoer = BookingHistoryCtrl.movieGoerExist(email);
+	        	//Show booking history
+	        	BookingHistoryCtrl.showBookingHistory(movieGoer);
+	        } else {
+	        	System.out.println("You have made no transactions!");
+	        }
+        } catch (InputMismatchException e) {
+            System.out.println("Input Error!");
+            sc.next();
+        }
+        
     }
 }

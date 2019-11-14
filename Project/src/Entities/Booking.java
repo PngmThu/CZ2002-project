@@ -11,9 +11,9 @@ public class Booking implements Serializable {
 	private MovieGoer movieGoer;
 	private double price;
 	private ShowTime showTime;
-	private Seat seat;
+	private ArrayList<Seat> seats;
 
-	public Booking(MovieGoer movieGoer, double price, ShowTime showTime, Seat seat) {
+	public Booking(MovieGoer movieGoer, double price, ShowTime showTime, ArrayList<Seat> seats) {
 		Date date = new Date();   // this object contains the current date value
 		SimpleDateFormat ft = new SimpleDateFormat ("yyyyMMddHHmm");
 		String cinemaCode = showTime.getCinema().getCinemaCode();
@@ -26,7 +26,7 @@ public class Booking implements Serializable {
 		this.price = price;
 		this.movieGoer = movieGoer;
 		this.showTime = showTime;
-		this.seat = seat;
+		this.seats = seats;
 //		System.out.println(this.getPrice());
 //		SerializeDB.insertSerializedObject(insertBooking, this);
 //		movieGoer.getBookings().add(this);
@@ -49,8 +49,8 @@ public class Booking implements Serializable {
 		return this.showTime;
 	}
 
-	public Seat getSeat() {
-		return this.seat;
+	public ArrayList<Seat> getSeat() {
+		return this.seats;
 	}
 	
 	public static void initializeData() {  //Call by classname: Booking.initializeData()
@@ -65,8 +65,10 @@ public class Booking implements Serializable {
 		MovieGoer movieGoer = movieGoers.get(0);
 		Cinema cinema = Cinema.getCinemaAt(0, 0);
 		ShowTime showTime = cinema.getShowTimes().get(0);
-		Seat seat = new Seat(1,1);
-		Booking booking = new Booking(movieGoer, 30, showTime, seat);
+		ArrayList<Seat> seats = new ArrayList<>();
+		seats.add(new Seat(8,5));
+		seats.add(new Seat(8,6));
+		Booking booking = new Booking(movieGoer, 30, showTime, seats);
 		data.add(booking);
 		
 		SerializeDB.writeSerializedObject(filename, data);  //Write data
@@ -88,7 +90,38 @@ public class Booking implements Serializable {
 		System.out.println("price: " + this.price);
 		System.out.println("-- showTime -- ");
 		this.showTime.showShowTimeInfo();
-		System.out.println("seat: " + this.seat.getSeatString());
+		System.out.print("seats: ");
+		for (i = 0 ; i < seats.size() ; i++) {
+			Seat seat = seats.get(i);
+			System.out.print(seat.getSeatString() + " ");
+		}
+		System.out.println("");
+	}
+	
+	public static int getSales(Movie m) {   //Call by classname: Booking.getAllBookingsData()
+		int i;
+		int count = 0;
+		List list = null;
+		String filename = ".\\data\\booking.dat";
+		list = (ArrayList)SerializeDB.readSerializedObject(filename);  //Read data
+		
+		for (i = 0 ; i < list.size() ; i++) {
+			Booking booking = (Booking)list.get(i);
+			Movie movie = booking.getShowTime().getMovie();
+			if (m.equals(movie)) {
+				count++;
+			}
+		}
+		
+		return count;
+	}
+	
+	public boolean equals(Object o) {
+		if (o instanceof Booking) {
+			Booking booking = (Booking)o;
+			return getTransactionId() == booking.getTransactionId();
+		}
+		return false;
 	}
 
 }

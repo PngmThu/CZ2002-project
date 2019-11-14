@@ -8,16 +8,21 @@ public class MovieDetailsCtrl{
 
 
 
-    public static void displayMovieDetail(String movieTitle) {
-
+    public static void displayMovieDetails(String movieTitle) {
         ArrayList<Movie> movies = Movie.getAllMoviesData();
+        
         for(Movie movie : movies){
-            if(movieTitle.equals(movie.getTitle())){
-                movie.showMovieInfo();
+            if(movieTitle.equalsIgnoreCase(movie.getTitle())){
+            	System.out.println("*********************************************");
+        		System.out.println("Movie: " + movie.getTitle() + movie.getCensorship() + " (" + movie.getMovieType().getDescription() + ")");
+        		System.out.println("Status: " + movie.getStatus());
+        		System.out.println("Director: " + movie.getDirector());
+        		System.out.println("Cast: " + movie.getCast());
+        		System.out.println("Synopsis: " + movie.getSynopsis());
+        		System.out.println("Overall Rating: " + String.format("%.2f", movie.getAvgRating()));
+        		break;
             }
         }
-        System.out.println("*********************************************");
-        // menu = new BookingView(movie);
     }
 
 

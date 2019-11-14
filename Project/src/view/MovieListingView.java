@@ -1,10 +1,54 @@
 package view;
 
-public class MovieListingView extends MoblimaViews {
-    public void enterView (){
-        System.out.println("MovieListView Menu Display");
+import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
-        //MovieListingController
+import Controllers.LoginCtrl;
+import Controllers.MovieListingCtrl;
+import Entities.Movie;
+
+public class MovieListingView extends MoblimaViews {
+	public static void main(String[] args) {
+        MoblimaViews menuViews = new MovieListingView();
+        menuViews.enterView();
+    }
+	
+	public void enterView() {
+        MoblimaViews menuViews = null;
+        int choice;
+        boolean loop = true;
+
+        Scanner sc = new Scanner(System.in);
+		 
+		MovieListingCtrl.displayMovieListing();
+		
+		while (loop) {
+			 MovieListingCtrl.displayMovieListing();
+			 System.out.println(">>>>>>>>");
+			 System.out.println("1) View details of a movie");
+			 System.out.println("2) Return to main menu");
+			 System.out.print("Enter your choice: ");
+			 try {
+			     choice = sc.nextInt();
+			     switch (choice) {
+			         case 1:
+			             ///View movie details
+			        	 menuViews = new MovieDetailsView();
+			             break;
+			         case 2:
+			             loop = false;
+			             break;
+			         default:
+			             System.out.println("Please enter a choice between 1 to 2.");
+			     }
+			 } catch (InputMismatchException e) {
+			     System.out.println("Invalid choice! Please select a number between 1 to 2:");
+			         sc.next();
+		     }
+		     if (loop && menuViews!=null)
+		         menuViews.enterView();
+		 }
     }
 }
 //All controllers should have switchview? Switch view will display a menu to see if user would want to change to different views.

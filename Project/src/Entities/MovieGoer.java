@@ -12,6 +12,10 @@ public class MovieGoer implements Serializable{
 	private MovieGoerGroup movieGoerGroup;  //1: student, 2: adult, 3: senior
 	private ArrayList<Booking> bookings;
 	
+	public MovieGoer(String email) {
+		this.email = email;
+	}
+	
 	public MovieGoer(String name, String mobile, String email, MovieGoerGroup movieGoerGroup) {
 		this.name = name;
 		this.mobile = mobile;
