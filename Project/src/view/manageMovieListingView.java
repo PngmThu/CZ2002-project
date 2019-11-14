@@ -4,7 +4,6 @@ import Controllers.CreateMovieCtrl;
 import Controllers.UpdateMovieCtrl;
 import Entities.Movie;
 
-
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -56,7 +55,7 @@ public void enterView() {
                         System.out.println("Please enter a choice between 1 to 4.");
                 }
             } catch (InputMismatchException e) {
-                System.out.println("Invalid choice! Please select a number between 1 to 4:");
+                System.out.println("Invalid choice! Please select a number between 1 to 4.");
                 sc.next();
             }
         }
@@ -67,6 +66,9 @@ public void enterView() {
         int choice, movieTypeChoice, censorshipChoice;
         Scanner sc = new Scanner(System.in);
         //Prompt user to enter new movie details.
+        System.out.println("*************************************");
+        System.out.println("Admin - Create a Movie");
+        System.out.println("*************************************");
         System.out.println("Please enter the following Movie details below.");
         System.out.print("Enter Title: ");//Input to change Movie Title
         title = sc.nextLine();//Scan for input
@@ -111,6 +113,9 @@ public void enterView() {
         displayMovie(movieFound);
         //Menu for multiple updates
         while (loop) {
+            System.out.println("*************************************");
+            System.out.println("Admin - Update Movie");
+            System.out.println("*************************************");
             System.out.println("- Select a detail to update -");
             System.out.println("1) Status");
             System.out.println("2) Movie Type");
@@ -169,7 +174,7 @@ public void enterView() {
                         System.out.println("Please enter a choice between 1 to 6.");
                 }
             } catch (InputMismatchException e) {
-                System.out.println("Invalid choice! Please select a number between 1 to 6:");
+                System.out.println("Invalid choice! Please select a number between 1 to 6.");
                 sc.next();
             }
         }
@@ -180,6 +185,9 @@ public void enterView() {
         Movie movieFound = null;
 
         Scanner sc = new Scanner(System.in);
+        System.out.println("*************************************");
+        System.out.println("Admin - Delete a Movie");
+        System.out.println("*************************************");
         System.out.print("Enter Movie Title: ");
         movieTitle = sc.nextLine();
         movieFound = retrieveMovieDetails(movieTitle);
@@ -196,12 +204,12 @@ public void enterView() {
             sc.nextLine();
         try {
             if (choice == 1){
-                UpdateMovieCtrl.updateStatus(movieFound,"End Of Showing");
+                updateStatus((movieFound.getTitle()),"End Of Showing");
             } else if (choice == 2){
                 return;
             }
         } catch (InputMismatchException e) {
-            System.out.println("Invalid choice! Please select a number 1 or 2:");
+            System.out.println("Invalid choice! Please select a number 1 or 2.");
             sc.next();
         }
     }

@@ -74,15 +74,22 @@ public class Cinema implements Serializable{
 	
 	public ShowTime addShowTime(Movie movie, int d, int m, int y, int hour, int min) {
 		//Pass cinema to ShowTime
-		ShowTime showTime = new ShowTime(this, movie, d, m, y, hour, min); 
+		ShowTime showTime = new ShowTime(this, movie, d, m, y, hour, min);
 		this.showTimes.add(showTime);
-		
+
 		Cinema updatedCinema = this;
 		SerializeDB.updateSerializedObject(".\\data\\cinema.dat", updatedCinema);
-		
+
 		return showTime;
 	}
-	
+
+    public void removeShowTime(ShowTime showtime) {
+        //Pass cinema to ShowTime
+        this.showTimes.remove(showtime);
+        Cinema updatedCinema = this;
+        SerializeDB.updateSerializedObject(".\\data\\cinema.dat", updatedCinema);
+    }
+
 	public static void initializeData() {  //Call by classname: Cinema.initializeData()
 		List list = null;
 		int i;

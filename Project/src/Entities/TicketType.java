@@ -197,6 +197,11 @@ public class TicketType implements Serializable {
 		
 		return (ArrayList<TicketType>) list;
 	}
+
+	public static void storeNewTicketTypesData(List list){
+		String filename = ".\\data\\ticketType.dat";
+		SerializeDB.writeSerializedObject(filename, list);  //Read data
+	}
 	
 	public void showTicketTypeInfo() {  
 		int i;

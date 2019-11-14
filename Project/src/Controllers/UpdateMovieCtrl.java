@@ -22,7 +22,7 @@ public class UpdateMovieCtrl { //Updates Movie - To CHANGE movie details or to D
             if (movie.getTitle().equals(movieTitle)){
                 movie.updateStatus(status);
                 updateMovieInShowTime(movie);
-                System.out.println("Movie status updated successfully.");
+                System.out.println("Movie status updated to " + status + " successfully.");
                 return;
             }
         }
@@ -129,7 +129,7 @@ public class UpdateMovieCtrl { //Updates Movie - To CHANGE movie details or to D
         }
     }
 
-    private static void updateMovieInShowTime(Movie movie){
+    private static void updateMovieInShowTime(Movie movie){//Error in Serialized File.
         ArrayList<Cinema> cinemas = Cinema.getAllCinemasData();
         for (Cinema cinema : cinemas){
             ArrayList<ShowTime> showtimes = cinema.getShowTimes();

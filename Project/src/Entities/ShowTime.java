@@ -43,9 +43,13 @@ public class ShowTime implements Serializable{
 		return this.date;
 	}
 
+	public void setDate(Date date){ this.date = date;}
+
 	public Time getTime() {
 		return this.time;
 	}
+
+	public void setTime(Time time){this.time = time;}
 	
 	
 	public String getFullDateString() {
