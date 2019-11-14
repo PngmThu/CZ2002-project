@@ -12,14 +12,14 @@ public abstract class MoblimaViews{
     public int readInt(Boolean Loop) {
         do {
         	try {
-                int input = sc.nextInt();    
+                int input = sc.nextInt();
+                if (sc.hasNextLine()) sc.nextLine(); // Cleaning Scanner
                 return input;
             } catch (InputMismatchException e) {
             	sc.nextLine(); // Cleaning Scanner
                 System.out.println("Invalid Input! Please enter a Number" + (Loop ? ":" : "."));
             }
         }while(Loop);
-
         return -1;
     }
 }

@@ -26,25 +26,18 @@ public class DeleteMovieView extends ManageMovieListingView {
             return;
         }
         while (loop){
-            try {
-                displayMovie(movieFound);
-                System.out.println("1) Confirm Delete? ");
-                System.out.println("2) Back ");
-                System.out.print("Enter your choice: ");
-                choice = sc.nextInt();
-                if (sc.hasNextLine())
-                    sc.nextLine();
-                if (choice == 1){
-                    updateStatus((movieFound.getTitle()), 4);
-                    loop=false;
-                } else if (choice == 2){
-                    System.out.println("\nCancelling delete...");
-                    return;
-                }
-            } catch (InputMismatchException e) {
-                System.out.println("Invalid entry. Please select a number 1 or 2.");
-                sc.next();
-            }
+            displayMovie(movieFound);
+            System.out.println("1) Confirm Delete? ");
+            System.out.println("2) Back ");
+            System.out.print("Enter your choice: ");
+            choice = readInt(false);
+            if (choice == 1){
+                updateStatus((movieFound.getTitle()), 4);
+                loop=false;
+            } else if (choice == 2){
+                System.out.println("\nCancelling delete...");
+                return;
+            } else System.out.println("Please enter a number 1 or 2");
         }
     }
 }

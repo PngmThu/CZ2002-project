@@ -84,7 +84,6 @@ public class UpdateMovieView extends ManageMovieListingView {
                 default:
                     System.out.println("Please enter a choice between 1 to 7.");
             }
-
         }
     }
 }

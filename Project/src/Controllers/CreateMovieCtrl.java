@@ -69,6 +69,9 @@ public class CreateMovieCtrl {// To Support the creation of a new movie.
             movieStatus = MovieStatus.END;
         }
         return Movie.addMovie(title, movieStatus, synopsis, director, movieType, cast, movieCensorship);
+    }
 
+    public static void deleteMovie(Movie movie){
+        movie.deleteMovie();
     }
 }

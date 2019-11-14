@@ -18,9 +18,9 @@ public class ManageMovieListingView extends MoblimaViews {
         menuViews.enterView();
     }
 
-public void enterView() {
-int choice;
-    boolean loop = true;
+    public void enterView() {
+        int choice;
+        boolean loop = true;
         //Page used by Admin to make changes to Movie Listing
         while (loop) {
             System.out.println("*************************************");
@@ -31,33 +31,29 @@ int choice;
             System.out.println("3) Remove");
             System.out.println("4) Go back");
             System.out.print("Enter your choice: ");
-            try {
-                choice = sc.nextInt();
-                switch (choice) {
-                    case 1:
-                        //Create Movie
-                        menuView = new CreateMovieView();
-                        menuView.enterView();
-                        break;
-                    case 2:
-                        //Update Movie
-                        menuView = new UpdateMovieView();
-                        menuView.enterView();
-                        break;
-                    case 3:
-                        //Delete Movie;
-                        menuView = new DeleteMovieView();
-                        menuView.enterView();
-                        break;
-                    case 4:
-                        loop = false;
-                        break;
-                    default:
-                        System.out.println("Please enter a choice between 1 to 4.");
-                }
-            } catch (InputMismatchException e) {
-                System.out.println("Invalid entry. Please select a number between 1 to 4.");
-                sc.next();
+            choice = readInt(false);
+            if (choice == -1) continue;
+            switch (choice) {
+                case 1:
+                    //Create Movie
+                    menuView = new CreateMovieView();
+                    menuView.enterView();
+                    break;
+                case 2:
+                    //Update Movie
+                    menuView = new UpdateMovieView();
+                    menuView.enterView();
+                    break;
+                case 3:
+                    //Delete Movie;
+                    menuView = new DeleteMovieView();
+                    menuView.enterView();
+                    break;
+                case 4:
+                    loop = false;
+                    break;
+                default:
+                    System.out.println("Please enter a choice between 1 to 4.");
             }
         }
     }
