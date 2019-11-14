@@ -26,11 +26,11 @@ public class MovieGoerView extends MoblimaViews {
                         menuViews = new SearchMovieView();
                         break;
                     case 2:
-                        //bring user to Top 5 By Sales/OverallRatingView
+                        //bring user to BookingHistoryView where they can view their history of bookings
                         menuViews = new BookingHistoryView();
                         break;
                     case 3:
-                        //bring user to Top 5 By Sales/OverallRatingView
+                        //bring user to BookingView where they can begin the booking process
                         menuViews = new BookingView();
                         break;
                     case 4:
