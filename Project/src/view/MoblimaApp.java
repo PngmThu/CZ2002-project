@@ -1,7 +1,11 @@
 package view;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import Entities.Booking;
+import Entities.MovieGoer;
 
 public class MoblimaApp {
     public static void main(String[] args) {
@@ -15,7 +19,7 @@ public class MoblimaApp {
             System.out.println("2) Staff");
             System.out.println("3) Exit");
             System.out.print("Enter your choice: ");
-
+            
             //PRINT MENU FOR HOMEPAGE USED BY BOTH MOVIE-GOERS & STAFF
             try {
                 choice = sc.nextInt();

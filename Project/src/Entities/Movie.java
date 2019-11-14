@@ -7,7 +7,7 @@ import java.util.List;
 public class Movie implements Serializable {
 
 	private String title;
-	private String status;
+	private MovieStatus status;
 	private String synopsis;
 	private String director;
 	private double avgRating;
@@ -16,7 +16,7 @@ public class Movie implements Serializable {
 	private MovieCensorship censorship;
 	private ArrayList<MovieReview> movieReviews;
 	
-	public Movie(String title, String status, String synopsis, String director, MovieType movieType, String cast, MovieCensorship censorship) {
+	public Movie(String title, MovieStatus status, String synopsis, String director, MovieType movieType, String cast, MovieCensorship censorship) {
 		this.title = title;
 		this.status = status;
 		this.synopsis = synopsis;
@@ -32,7 +32,7 @@ public class Movie implements Serializable {
 		return this.title;
 	}
 
-	public String getStatus() {
+	public MovieStatus getStatus() {
 		return this.status;
 	}
 
@@ -80,21 +80,21 @@ public class Movie implements Serializable {
 		cast = "Ryan Potter, Scott Adsit, Jamie Chung";
 		synopsis = "The special bond that develops between plus-sized inflatable robot Baymax, and prodigy Hiro Hamada, who team up with a group of friends to form a band of high-tech heroes.";
 		
-		movie = new Movie("Big Hero 6","Showing",synopsis,"Don Hall, Chris Williams",MovieType._3D,cast,MovieCensorship.PG);
+		movie = new Movie("Big Hero 6", MovieStatus.NOW,synopsis,"Don Hall, Chris Williams",MovieType._3D,cast,MovieCensorship.PG);
 		data.add(movie);
 		
 		//Movie: Avengers: Endgame
 		cast = "Robert Downey Jr., Chris Evans, Chris Hemsworth, Mark Ruffalo";
 		synopsis = "The grave course of events set in motion by Thanos that wiped out half the universe and fractured the Avengers ranks compels the remaining Avengers to take one final stand in Marvel Studios’ grand conclusion to twenty-two films, “Avengers: Endgame.”";
 		
-		movie = new Movie("Avengers: Endgame","Showing",synopsis,"Anthony Russo, Joe Russo",MovieType.BLOCKBUSTER,cast,MovieCensorship.PG13);
+		movie = new Movie("Avengers: Endgame",MovieStatus.NOW,synopsis,"Anthony Russo, Joe Russo",MovieType.BLOCKBUSTER,cast,MovieCensorship.PG13);
 		data.add(movie);
 		
 		//Movie: Frozen 2
 		cast = "Kristen Bell, Josh Gad, Sterling K. Brown";
 		synopsis = "Anna, Elsa, Kristoff, Olaf and Sven leave Arendelle to travel to an ancient, autumn-bound forest of an enchanted land. They set out to find the origin of Elsa's powers in order to save their kingdom.";
 		
-		movie = new Movie("Frozen 2","Upcoming",synopsis,"Chris Buck, Jennifer Lee",MovieType.REG,cast,MovieCensorship.PG);
+		movie = new Movie("Frozen 2",MovieStatus.COMING,synopsis,"Chris Buck, Jennifer Lee",MovieType.REG,cast,MovieCensorship.PG);
 		data.add(movie);
 		
 		SerializeDB.writeSerializedObject(filename, data);  //Write data
@@ -142,8 +142,8 @@ public class Movie implements Serializable {
 		}
 	}
 	
-	public void updateStatus(String stt) {
-		this.status = stt;
+	public void updateStatus(MovieStatus status) {
+		this.status = status;
 		Movie updatedMovie = this;
 		List list = (ArrayList)SerializeDB.updateSerializedObject(".\\data\\movie.dat", updatedMovie);
 	}
@@ -178,7 +178,7 @@ public class Movie implements Serializable {
 		List list = (ArrayList)SerializeDB.updateSerializedObject(".\\data\\movie.dat", updatedMovie);
 	}
 
-	public static void addMovie(String title, String status, String synopsis, String director, MovieType movieType, String cast, MovieCensorship censorship){
+	public static void addMovie(String title, MovieStatus status, String synopsis, String director, MovieType movieType, String cast, MovieCensorship censorship){
 		Movie movie = new Movie(title, status, synopsis, director, movieType, cast,censorship);
 		SerializeDB.insertSerializedObject(".\\data\\movie.dat", movie);
 	}

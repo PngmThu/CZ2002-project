@@ -96,7 +96,6 @@ public class TicketType implements Serializable {
 		MovieGoerGroup[] movieGoerGroupL;
 		String[] dayOfWeekL;
 		String[] isPublicHolidayL;
-		String[] isBefore6pmL;
 		double price;
 		TicketType ticketType, temp;
 		
