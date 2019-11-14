@@ -3,6 +3,7 @@ package View;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import Controllers.BookingCtrl;
 import Entities.Cinema;
 import Entities.CinemaClass;
 import Entities.Movie;
@@ -19,73 +20,79 @@ import Entities.TicketType;
 public class BookingView extends MoblimaViews{
 	
     public void enterView(){
-    	Scanner sc = new Scanner(System.in);
-    	int index, intInput, row, col;
+    	int index, numTicket = 0, scInt, row, col;
     	double price;
-    	String strInput, name, mobile, email;
+    	String scString, name, mobile, email;
     	MovieGoerGroup ageGroup = null;
     	MovieGoer movieGoer = null;
-    	
-    	ArrayList<Cinema> cinemaList = Cinema.getAllCinemasData();
-    	ArrayList<Movie> movieList = Movie.getAllMoviesData();
+    	Movie movie;
+    
     	ArrayList<MovieGoer> moviegoerList = MovieGoer.getAllMovieGoersData();
-    	ArrayList<ShowTime> showtimeList = new ArrayList<ShowTime>();
     	
     	System.out.println("======================== Movie Booking ========================");
-    	for(Movie movie: movieList) {
-    		System.out.println("Movie: " + movie.getTitle());
-    	}
-    	System.out.print("\nEnter Title: ");
-    	strInput = sc.nextLine();
-    	index = 1;
-    	System.out.println("======================== "+ strInput + " Showtimes ========================");
-    	for(Cinema cinema: cinemaList) {
-    		for(ShowTime st: cinema.getShowTimes()) {
-    			if(st.getMovie().getTitle().equalsIgnoreCase(strInput) && 
-    					!st.getMovie().getStatus().equals(MovieStatus.END)) {
-    				System.out.println("(" + index + ")\tCinema Code: " + st.getCinema().getCinemaCode() + 
-    						"\n\tDate: " + st.getFullDateString() + "\tTime: " + st.getTimeString());
-    				System.out.println();
-    				showtimeList.add(st);
-    				index++;
-    			}
-    		}
+    	BookingCtrl.displayMovies();
+    	do {
+    		System.out.print("\nEnter Title: ");
+        	scString = sc.nextLine();
+        	movie = BookingCtrl.movieExist(scString);
+    	}while(movie == null);
+	
+    	System.out.println("======================== "+ movie.getTitle() + " Showtimes ========================");
+    	ArrayList<ShowTime> showTimeList = BookingCtrl.displayShowTimes(movie);
+    	if(showTimeList.size() == 0) {
+    		System.out.println("Sorry, " + movie.getTitle() + " do not have Showtimes available.");
+    		System.out.println("Returning you to the Visitor Menu");
+    		return;
     	}
     	System.out.print("\nChoose a Show Time Number: ");
-    	intInput = sc.nextInt();
-    	ShowTime showTime = showtimeList.get(intInput-1);
-    	showTime.getDayOfWeek();
-    	displaySeat(showTime);
-    	sc.nextLine();
-    	System.out.println("Enter Seat Row:");
-    	strInput = sc.nextLine();
-		row = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".indexOf(strInput.toUpperCase());
-    	System.out.println("Enter Seat Column:");
-		col = sc.nextInt();
-    	col -= 1;
-    	Seat seat = new Seat(row, col);
-    	sc.nextLine();
+    	scInt = readInt(true);
+    	ShowTime showTime = showTimeList.get(scInt-1);
+    	System.out.print("\nNumber of Tickets to Purchase: ");
+    	numTicket = readInt(true);
     	
+    	ArrayList<Seat> seatList = new ArrayList<Seat>();
+    	for(int i = 0; i < numTicket; i++) {
+    		BookingCtrl.displaySeat(showTime);
+    		System.out.print("\nEnter Seat Row: ");
+    		scString = sc.nextLine();
+    		row = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".indexOf(scString.toUpperCase());
+        	System.out.print("\nEnter Seat Column: ");
+    		col = readInt(true);
+        	col -= 1;
+        	if(showTime.getSeatStatusAt(row, col)) {
+        		System.out.println("Seat is occupied. Please try again.");
+        		i--;
+        	}else {
+        		for(Seat seat: seatList) {
+            		if(seat.getRow() == row && seat.getCol() == col) {
+            			System.out.println("You have already selected this seat in your previous selection.");
+            			System.out.println("Please try again.");
+            			i--;
+            			break;
+            		}else {
+            			seatList.add(new Seat(row, col));
+            		}
+            	}
+        	}
+    	} 	
     	
-    	
-		System.out.println("Enter Name:");
+		System.out.print("\nEnter Name: ");
 		name = sc.nextLine();
 		System.out.println("Enter Age Group:");
-		System.out.println("(1) Student");
-		System.out.println("(2) Adult");
-		System.out.println("(3) Senior");
-		intInput = sc.nextInt();
-		switch(intInput) {
-			case 1:		ageGroup = MovieGoerGroup.STUDENT;
-						break;
-			case 2:		ageGroup = MovieGoerGroup.ADULT;
-						break;
-			case 3:		ageGroup = MovieGoerGroup.SENIOR;
-						break;
-			default:	break;
-			
+		
+		index = 1;
+		for(MovieGoerGroup group: MovieGoerGroup.values()) {
+			System.out.println("(" + index + ") " + group.getDescription());
+			index++;
 		}
-		sc.nextLine();
+		do {
+			scInt = readInt(true);
+			if(scInt >= 0 && scInt < MovieGoerGroup.values().length) {
+				ageGroup = MovieGoerGroup.values()[scInt-1];
+			}
+		}while(ageGroup == null);
+		System.out.println(ageGroup.getDescription());
+		// Went to sleep
 		System.out.println("Enter Mobile:");
 		mobile = sc.nextLine();
 		System.out.println("Enter Email:");
@@ -111,11 +118,14 @@ public class BookingView extends MoblimaViews{
 		System.out.println("Movie:\t" + showTime.getMovie().getTitle() + " " 
 		+ showTime.getMovie().getCensorship());
 		System.out.println("Date:\t" + showTime.getDayOfWeek() + ", Time: " + showTime.getTimeString());
-		System.out.println("Seat:\t" + seat.getSeatString());
-		System.out.println("Price:\t$" + price);
+		System.out.print("Seat:\t");
+		for(Seat seat: seatList) {
+			System.out.print(seat.getSeatString() + " ");
+		}
+		System.out.println("\nPrice:\t$" + price);
     	System.out.println("\nConfirm Booking? (Y/N)");
-    	strInput = sc.nextLine();
-    	if(!strInput.equalsIgnoreCase("Y")) {
+    	scString = sc.nextLine();
+    	if(!scString.equalsIgnoreCase("Y")) {
     		return;
     	}
     	
@@ -129,8 +139,10 @@ public class BookingView extends MoblimaViews{
     		movieGoer = new MovieGoer(name, mobile, email, ageGroup);
     		movieGoer = MovieGoer.addMovieGoer(movieGoer);
     	}
+	    for(Seat seat: seatList) {
+	    	showTime.bookSeatAt(seat);
+	    }
     	
-    	showTime.bookSeatAt(seat);
     	String insertBooking = ".\\data\\booking.dat";
 		String updateMovieGoer = ".\\data\\movieGoer.dat";
     	//Booking booking = new Booking(movieGoer, price, showTime, seat);
@@ -145,72 +157,5 @@ public class BookingView extends MoblimaViews{
     	
     }
     
-    public static void displaySeat(ShowTime showtime) {
-		String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-		int row, col, decorate, r, c;
-		boolean[][] seatStatus;
-		
-		seatStatus = showtime.getSeatStatus();
-		row = showtime.getCinema().getRowSize();
-		col = showtime.getCinema().getColSize();
-		
-		System.out.println("======================== Seat Layout ========================");
-		System.out.println();
-		System.out.print("    ");
-		for(decorate = 1; decorate <= (col/2); decorate++) {
-			System.out.print(String.format("%02d", decorate) + "  ");
-		}
-		System.out.print("\t ");
-		for(; decorate <= col; decorate++) {
-			System.out.print(String.format("%02d", decorate) + "  ");
-		}
-		System.out.println("");
-		for(r = 0; r < row; r++) {
-			decorate = 0;
-			System.out.print("  ");
-			while(decorate < (2*col + 1)) {
-				
-				System.out.print("=");
-				decorate++;
-			}
-			System.out.print(" \t");
-			while(decorate < (4*col + 2)) {
-				System.out.print("=");
-				decorate++;
-			}
-			System.out.println();
-			System.out.print(alphabet.charAt(r) + " |");
-			for(c = 0; c < (col/2); c++) {
-				if(seatStatus[r][c]) {
-					System.out.print(" x |");
-				}else {
-					System.out.print("   |");
-				}
-				if(seatStatus[r][c]) {
-					
-				}
-			}
-			System.out.print(" \t|");
-			for(; c < col; c++) {
-				if(seatStatus[r][c]) {
-					System.out.print(" x |");
-				}else {
-					System.out.print("   |");
-				}
-			}
-			System.out.println();
-		}
-		decorate = 0;
-		System.out.print("  ");
-		while(decorate < (2*col + 1)) {
-			System.out.print("=");
-			decorate++;
-		}
-		System.out.print(" \t");
-		while(decorate < (4*col + 2)) {
-			System.out.print("=");
-			decorate++;
-		}
-		System.out.println("\n");
-	}
+    
 }
