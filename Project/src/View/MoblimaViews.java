@@ -17,7 +17,7 @@ public abstract class MoblimaViews{
                 return input;
             } catch (InputMismatchException e) {
             	sc.nextLine(); // Cleaning Scanner
-                System.out.println("Invalid Input! Please enter a Number:");
+                System.out.println("Invalid Input! Please enter a Number" + (Loop ? ":" : "."));
             }
         }while(Loop);
 
