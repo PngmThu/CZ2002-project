@@ -147,7 +147,7 @@ public class SerializeDB
 		TicketType.initializeData();
 	    Booking.initializeData();
 		System.out.println("Done");
-		*********************************************************************/
+		/*********************************************************************/
 		
 		/***************************Test Movie********************************
 		//Movie.initializeData();
