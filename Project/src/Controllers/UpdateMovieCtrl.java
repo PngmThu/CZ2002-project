@@ -20,7 +20,7 @@ public class UpdateMovieCtrl { //Updates Movie - To CHANGE movie details or to D
         ArrayList<Movie> movies = getAllMoviesData();
         for (Movie movie : movies){
             if (movie.getTitle().equals(movieTitle)){
-                movie.updateStatus(status);
+                //movie.updateStatus(status);
                 updateMovieInShowTime(movie);
                 System.out.println("Movie status updated to " + status + " successfully.");
                 return;
@@ -118,7 +118,7 @@ public class UpdateMovieCtrl { //Updates Movie - To CHANGE movie details or to D
         System.out.println("Movie update unsuccessful, please try again.");
     }
 
-    public static void updateStatus(Movie movie, String status){
+    public static void updateStatus(Movie movie, MovieStatus status){
         if (movie.getStatus().equals(status))
             System.out.println("This movie is non-existent.");
         else{

@@ -1,6 +1,7 @@
 package Controllers;
 
 import Entities.MovieCensorship;
+import Entities.MovieStatus;
 import Entities.MovieType;
 import Entities.Movie;
 
@@ -22,8 +23,8 @@ public class CreateMovieCtrl {// To Support the creation of a new movie.
         }
     }
 
-    public static void addMovie(String title, String status, String synopsis,
-                                String director,int movieTypeChoice, String cast,int censorshipChoice){
+    public static void addMovie(String title, MovieStatus status, String synopsis,
+                                String director, int movieTypeChoice, String cast, int censorshipChoice){
         MovieCensorship movieCensorship = null;
         MovieType movieType = null;
         if (movieTypeChoice ==1){

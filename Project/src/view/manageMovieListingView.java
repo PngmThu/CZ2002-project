@@ -3,6 +3,7 @@ package view;
 import Controllers.CreateMovieCtrl;
 import Controllers.UpdateMovieCtrl;
 import Entities.Movie;
+import Entities.MovieStatus;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -20,7 +21,7 @@ public class manageMovieListingView extends MoblimaViews {
     }
 
 public void enterView() {
-    int choice;
+int choice;
     boolean loop = true;
         //Page used by Admin to make changes to Movie Listing
         Scanner sc = new Scanner(System.in);
@@ -38,11 +39,11 @@ public void enterView() {
                 switch (choice) {
                     case 1:
                         //Create Movie
-                        createMovie();
+                        //createMovie();
                         break;
                     case 2:
                         //Update Movie
-                        updateMovie();
+                        //updateMovie();
                         break;
                     case 3:
                         //Delete Movie;
@@ -62,7 +63,7 @@ public void enterView() {
     }
 
     private void createMovie() {
-        String title, status, synopsis, director, cast; // Variables to be passed into Movie.addMovie();
+        String title, synopsis, director, cast; MovieStatus status;// Variables to be passed into Movie.addMovie();
         int choice, movieTypeChoice, censorshipChoice;
         Scanner sc = new Scanner(System.in);
         //Prompt user to enter new movie details.
@@ -73,6 +74,7 @@ public void enterView() {
         System.out.print("Enter Title: ");//Input to change Movie Title
         title = sc.nextLine();//Scan for input
         System.out.print("Enter Status: ");
+
         status = sc.nextLine();
         displayMovieTypes();//Method in controller to retrieve MovieTypes entity
         System.out.print("Enter Movie Type: ");
