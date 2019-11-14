@@ -23,10 +23,14 @@ public class CreateMovieView extends ManageMovieListingView{
             System.out.println("*************************************");
             System.out.println("Admin - Create a Movie");
             System.out.println("*************************************");
-            System.out.println("Please enter the following Movie details below.");
+            System.out.println("---- Enter the following movie details below ----");
             //Get movie title input from user
             System.out.print("Enter Title: ");//Input to change Movie Title
             title = sc.nextLine();
+            if (checkExistingMovie(title)){
+                System.out.println("The movie has already been created.");
+                return;
+            }
             //Get movie status input from user
             displayMovieStatus();//Method in controller to display MovieStatus entity
             System.out.print("Enter Status: ");
@@ -68,12 +72,12 @@ public class CreateMovieView extends ManageMovieListingView{
 
             while (loop) {
                 displayMovie(movie);
-                System.out.println("1)Confirm Create");
-                System.out.println("2)Cancel");
+                System.out.println("1) Create Movie?");
+                System.out.println("2) Cancel");
                 System.out.print("Enter your choice: ");
                 choice = readInt(true);
                 if (choice == 1){
-                    System.out.println("Movie Added Successfully!");
+                    System.out.println("Movie Created Successfully!");
                     return;
                 } else if (choice == 2){
                     //Calling CreateMovieCtrl to delete newly created movie.

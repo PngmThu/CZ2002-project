@@ -5,8 +5,11 @@ import Entities.MovieStatus;
 import Entities.MovieType;
 import Entities.Movie;
 
+import java.util.ArrayList;
+
 public class CreateMovieCtrl {// To Support the creation of a new movie.
     public static void displayCensorShipTypes(){// Gather Censorship types and pass back to manageMovieListingView
+        System.out.println("---- Choose a movie censorship ---- ");
         MovieCensorship[] censorships = MovieCensorship.values();
         for (MovieCensorship censorship : censorships) {
             //.ordinal() is to get the index in the array.
@@ -15,7 +18,7 @@ public class CreateMovieCtrl {// To Support the creation of a new movie.
     }
 
     public static void displayMovieTypes(){
-        System.out.println(" Movie types: ");
+        System.out.println("---- Choose a movie type ---- ");
         MovieType[] movieTypes = MovieType.values();
         for (MovieType movieType : movieTypes) {
             //.ordinal() is to get the index in the array.
@@ -24,7 +27,7 @@ public class CreateMovieCtrl {// To Support the creation of a new movie.
     }
 
     public static void displayMovieStatus(){
-        System.out.println(" Movie Status: ");
+        System.out.println("---- Choose a movie status ----");
         MovieStatus[] moviestatuses = MovieStatus.values();
         for (MovieStatus movieStatus: moviestatuses) {
             //.ordinal() is to get the index in the array.
@@ -73,5 +76,14 @@ public class CreateMovieCtrl {// To Support the creation of a new movie.
 
     public static void deleteMovie(Movie movie){
         movie.deleteMovie();
+    }
+
+    public static boolean checkExistingMovie(String movieTitle){
+        ArrayList<Movie> movies = Movie.getAllMoviesData();
+        for (int i = 0; i<movies.size(); i++){
+            if (movies.get(i).getTitle().equalsIgnoreCase(movieTitle))
+                return true;
+        }
+        return false;
     }
 }

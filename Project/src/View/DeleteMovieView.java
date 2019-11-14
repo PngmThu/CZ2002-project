@@ -2,14 +2,11 @@ package View;
 
 import Entities.Movie;
 
-import java.util.InputMismatchException;
-import java.util.Scanner;
-
 import static Controllers.UpdateMovieCtrl.retrieveMovieDetails;
 import static Controllers.UpdateMovieCtrl.updateStatus;
+import static Controllers.DeleteMovieCtrl.checkMovieDeleted;
 
 public class DeleteMovieView extends ManageMovieListingView {
-
     public void enterView() {
         boolean loop = true;
         int choice;
@@ -24,6 +21,9 @@ public class DeleteMovieView extends ManageMovieListingView {
         if(movieFound == null){
             System.out.println("The movie does not exist, please try again.");
             return;
+        } else if (checkMovieDeleted(movieFound)) {
+            System.out.println("The movie has already been deleted.");
+            return;
         }
         while (loop){
             displayMovie(movieFound);
@@ -37,7 +37,8 @@ public class DeleteMovieView extends ManageMovieListingView {
             } else if (choice == 2){
                 System.out.println("\nCancelling delete...");
                 return;
-            } else System.out.println("Please enter a number 1 or 2");
+            } else if (choice == -1) return;
+            else System.out.println("Please enter a number 1 or 2");
         }
     }
 }

@@ -29,7 +29,7 @@ public class ManageMovieListingView extends MoblimaViews {
             System.out.println("1) Create");
             System.out.println("2) Update");
             System.out.println("3) Remove");
-            System.out.println("4) Go back");
+            System.out.println("4) Go back\n");
             System.out.print("Enter your choice: ");
             choice = readInt(false);
             if (choice == -1) continue;
@@ -37,17 +37,14 @@ public class ManageMovieListingView extends MoblimaViews {
                 case 1:
                     //Create Movie
                     menuView = new CreateMovieView();
-                    menuView.enterView();
                     break;
                 case 2:
                     //Update Movie
                     menuView = new UpdateMovieView();
-                    menuView.enterView();
                     break;
                 case 3:
                     //Delete Movie;
                     menuView = new DeleteMovieView();
-                    menuView.enterView();
                     break;
                 case 4:
                     loop = false;
@@ -55,13 +52,15 @@ public class ManageMovieListingView extends MoblimaViews {
                 default:
                     System.out.println("Please enter a choice between 1 to 4.");
             }
+            if (loop && menuView!=null)
+                menuView.enterView();
         }
     }
 
     protected void displayMovie(Movie movie){
         System.out.println("*************************************");
         System.out.println("Movie title: " + movie.getTitle());
-        System.out.println("Status: " + movie.getStatus());
+        System.out.println("Status: " + movie.getStatus().getDescription());
         System.out.println("Movie type: " + movie.getMovieType().getDescription());
         System.out.println("Synopsis: " + movie.getSynopsis());
         System.out.println("Director(s): " + movie.getDirector());
