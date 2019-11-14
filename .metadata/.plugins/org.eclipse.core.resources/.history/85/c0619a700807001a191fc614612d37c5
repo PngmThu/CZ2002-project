@@ -1,0 +1,28 @@
+package Controllers;
+
+import java.util.ArrayList;
+import View.MovieReviewListView;
+import Entities.Movie;
+
+public class MovieReviewListCtrl {
+	
+//	int i;
+//	//ArrayList<Movie> movies = Movie.getAllMoviesData();
+//	MovieReviewListView v=new MovieReviewListView();
+//	Movie movie=null;
+	
+	public static boolean conditionForView(String movieName) {
+		ArrayList<Movie> movies = Movie.getAllMoviesData();
+		Movie movie;
+		int i;
+		
+		for(i=0;i<movies.size();i++) {
+	        movie = movies.get(i);
+	        if(movie.getTitle().equals(movieName)) {
+	        	return true;
+	        }
+	       }
+		return false;
+	}
+	
+}

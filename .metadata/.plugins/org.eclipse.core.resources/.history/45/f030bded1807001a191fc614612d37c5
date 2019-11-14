@@ -1,0 +1,45 @@
+package View;
+import Controllers.AddReviewCtrl;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+import Controllers.AddReviewCtrl;
+import Entities.Movie;
+public class AddReviewView extends MoblimaViews{
+
+	 String review;
+	 String nameOfUser;
+	 int rating;
+	 String movieName;
+
+	public void enterView() {
+
+		boolean check;
+		System.out.println("Enter Movie: ");
+		Scanner sc=new Scanner(System.in);
+		movieName=sc.nextLine();
+		check=AddReviewCtrl.conditionForView(movieName);
+		
+		if(check==true){			
+			System.out.println("Enter a review: ");
+			review=sc.nextLine();
+			System.out.println("Enter a name: ");
+			nameOfUser=sc.nextLine();
+			System.out.println("Enter a rating: ");
+			rating=sc.nextInt();
+			System.out.println("Added review: \n" + "Movie: " + movieName + "| Name: " + nameOfUser + "\n" +
+        	        "Review: " + review + "| Rating: " + rating);
+			System.out.println("success");
+			AddReviewCtrl.addNewReview(movieName,nameOfUser,review,rating);
+			}
+		else {
+			System.out.println("No such movie! Type the correct movie.");
+			enterView();
+		}
+	}
+	public static void main(String args[]) {//test
+		AddReviewView b= new AddReviewView();
+		b.enterView();
+	}
+
+}

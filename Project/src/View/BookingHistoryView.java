@@ -31,7 +31,7 @@ public class BookingHistoryView extends MoblimaViews{ //Allow Moviegoers to view
 	        	//Show booking history
 	        	BookingHistoryCtrl.showBookingHistory(movieGoer);
 	        } else {
-	        	System.out.println("You have made no transactions!");
+	        	System.out.println("You have made no transactions!");  
 	        }
         } catch (InputMismatchException e) {
             System.out.println("Input Error!");

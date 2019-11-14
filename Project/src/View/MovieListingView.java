@@ -17,8 +17,6 @@ public class MovieListingView extends MoblimaViews {
         boolean loop = true;
 
         Scanner sc = new Scanner(System.in);
-		 
-		MovieListingCtrl.displayMovieListing();
 		
 		while (loop) {
 			 MovieListingCtrl.displayMovieListing();
@@ -38,10 +36,12 @@ public class MovieListingView extends MoblimaViews {
 			             break;
 			         default:
 			             System.out.println("Please enter a choice between 1 to 2.");
+			             sc.nextLine();
+			             break;
 			     }
 			 } catch (InputMismatchException e) {
-			     System.out.println("Invalid choice! Please select a number between 1 to 2:");
-			         sc.next();
+			     System.out.println("Invalid choice! Please select a number between 1 to 2.");
+			     sc.nextLine();
 		     }
 		     if (loop && menuViews!=null)
 		         menuViews.enterView();

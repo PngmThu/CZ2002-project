@@ -1,0 +1,47 @@
+package Controllers;
+
+import java.util.ArrayList;
+import View.MovieReviewListView;
+import Entities.Movie;
+
+public class MovieReviewListCtrl {
+	
+//	int i;
+//	//ArrayList<Movie> movies = Movie.getAllMoviesData();
+//	MovieReviewListView v=new MovieReviewListView();
+//	Movie movie=null;
+	
+	public static void displayMovieReviews(String movieTitle) {
+		ArrayList<Movie> movies = Movie.getAllMoviesData();
+		Movie movie;
+		int i;
+		boolean check = false;
+		
+		for(i=0;i<movies.size();i++) {
+	        movie = movies.get(i);
+	        if(movie.getTitle().equals(movieName)) {
+	        	return true;
+	        }
+	       }
+		return false;
+		
+		if(check==true) {
+			for (Movie movie : movies) {
+				if(m.getTitle().equals(movieName)) {
+					check = true;
+					for (j = 0 ; j < m.getMovieReviews().size() ; j++) {
+						MovieReview mr = m.getMovieReviews().get(j);
+						System.out.println("Movie: " + m.getTitle() + "Name: " + mr.getReviewer() + "Review: " +
+						mr.getContent() + "; Rating: " + mr.getRating());
+					}
+				}
+			}
+		}
+		
+		if (check == false) {
+			System.out.println("No such movie! Type the correct movie.");
+			enterView();
+		}
+	}
+	
+}

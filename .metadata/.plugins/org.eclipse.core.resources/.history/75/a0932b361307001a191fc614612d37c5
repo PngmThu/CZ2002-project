@@ -1,0 +1,31 @@
+package Controllers;
+
+import java.util.ArrayList;
+import View.MovieReviewListView;
+import Entities.Movie;
+import Entities.MovieReview;
+
+public class MovieReviewListCtrl {
+	
+	public static void displayMovieReviews(String movieTitle) {
+		ArrayList<Movie> movies = Movie.getAllMoviesData();
+		int i;
+		
+		System.out.println("*********************************************");
+		System.out.println("^^^----^^^ " + movieTitle + " ^^^----^^^");
+		System.out.println("_".repeat(("^^^----^^^ " + movieTitle + " ^^^----^^^").length()));
+		System.out.println("");
+		for (Movie movie : movies) {
+			if(movie.getTitle().equalsIgnoreCase(movieTitle)) {
+				for (i = 0 ; i < movie.getMovieReviews().size() ; i++) {
+					MovieReview mr = movie.getMovieReviews().get(i);
+					System.out.println("(" + (i+1) + ") Name: " + mr.getReviewer() + "  __  Rating <" + String.valueOf((char)0x2605).repeat(mr.getRating()) + ">");
+					System.out.println("    Review: " + mr.getContent());
+				}
+				//"\u2605"
+			}
+		}
+		
+	}
+	
+}

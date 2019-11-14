@@ -1,0 +1,82 @@
+package View;
+
+import Controllers.MovieDetailsCtrl;
+import Entities.Movie;
+
+import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+import Controllers.MovieDetailsCtrl;
+import Entities.Movie;
+
+public class MovieDetailsView extends MoblimaViews{
+
+    public static void main(String[] args){
+    	
+        MoblimaViews menuViews;
+        menuViews = new MovieDetailsView();
+        menuViews.enterView();
+    }
+
+    
+    public void enterView(){
+		 MoblimaViews menuViews = null;
+		 int choice;
+		 boolean loop;
+		 String movieTitle;
+		
+		 Scanner sc = new Scanner(System.in);
+		 
+		 loop = false;
+		 while (!loop) {
+			 System.out.print("Enter a movie to view details: ");
+			 movieTitle = sc.nextLine();
+			 
+			 loop = MovieDetailsCtrl.displayMovieDetails(movieTitle);
+			 System.out.println("");
+			 
+			 if (!loop) {
+				 System.out.println("~~~ No such movie! Try again! ~~~");
+				 System.out.println("");
+			 }
+		 }
+		 
+		 loop = true;
+		 while (loop) {
+			 System.out.println(">>>>>>>>");
+			 System.out.println("1) Display reviews");
+			 System.out.println("2) Buy tickets");
+			 System.out.println("3) Return to List-Movies page");
+			 System.out.print("Enter your choice: ");
+			 try {
+			     choice = sc.nextInt();
+			     switch (choice) {
+			         case 1:
+			             ///Show movie details
+			        	 
+			        	 //menuViews go to MovieReview
+			             break;
+			         case 2:
+			             ///Buy tickets
+			        	 
+			        	 //menuViews go to MovieReview
+			             break;
+			         case 3:
+			             loop = false;
+			             break;
+			         default:
+			             System.out.println("Please enter a choice between 1 to 3.");
+			             System.out.println("");
+			     }
+			 } catch (InputMismatchException e) {
+			     System.out.println("Invalid choice! Please select a number between 1 to 3:");
+			     System.out.println("");
+			     sc.nextLine();
+		     }
+		     if (loop && menuViews!=null)
+		         menuViews.enterView();
+		 }
+		 
+    }
+}

@@ -24,10 +24,10 @@ public class Top5MovieView extends MoblimaViews {
         while (loop) {
             //Print Menu to list top 5 movies by ticket sales OR by overall reviewers� ratings
         	System.out.println("*********************************************");
-        	System.out.println("List the top 5 movies BY: ");
+        	System.out.println("List top 5 movies BY: ");
             System.out.println("1) Ticket sales");
-            System.out.println("2) Overall reviewers� ratings");
-            System.out.println("Enter 3 to EXIT");
+            System.out.println("2) Overall reviewers' ratings");
+            System.out.println("3) Return to main menu");
             System.out.println("");
             System.out.print("Enter your choice: ");
             try {
@@ -44,10 +44,13 @@ public class Top5MovieView extends MoblimaViews {
                         break;
                     default:
                         System.out.println("Please enter a choice between 1 to 3.");
+                        System.out.println("");
+			            break;
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Invalid choice! Please select a number between 1 to 3!");
-                sc.next();
+                System.out.println("");
+			    sc.nextLine();
             }
         }
     }

@@ -1,0 +1,48 @@
+package View;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+import Controllers.MovieReviewListCtrl;
+import Entities.Movie;
+import Entities.MovieReview;
+import java.util.*;
+
+public class MovieReviewListView extends MoblimaViews{
+	
+
+	
+	/*
+	public void enterView(){
+		ArrayList<Movie> movies = Movie.getAllMoviesData();
+		String movieName;
+		int i, j;
+		System.out.println("Enter Movie to see reviews: ");
+		Scanner sc=new Scanner(System.in);
+		movieName=sc.nextLine();
+		boolean check=MovieReviewListCtrl.conditionForView(movieName);
+		
+		if(check==true) {
+			for(i=0;i<movies.size();i++) {
+				Movie m = movies.get(i);
+				if(m.getTitle().equals(movieName)) {
+					for (j = 0 ; j < m.getMovieReviews().size() ; j++) {
+						MovieReview mr = m.getMovieReviews().get(j);
+						System.out.println("Movie: " + m.getTitle() + "Name: " + mr.getReviewer() + "Review: " +
+						mr.getContent() + "; Rating: " + mr.getRating());
+					}
+				}
+			}
+		}
+		else {
+			System.out.println("No such movie! Type the correct movie.");
+			enterView();
+		}
+	}
+	
+	public static void main(String[] args) {
+		MovieReviewListView x = new MovieReviewListView();
+		x.enterView();
+	}
+	*/
+}

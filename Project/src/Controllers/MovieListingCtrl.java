@@ -18,7 +18,7 @@ public class MovieListingCtrl {
 		System.out.println("");
 		for (i = 0 ; i < movies.size() ; i++) {
 			Movie movie = movies.get(i);
-			if (movie.getStatus().equals(MovieStatus.COMING)) {
+			if (movie.getStatus().equals(MovieStatus.NOW)) {
 				nowShowing.add(movie);
 			}
 			else if (movie.getStatus().equals(MovieStatus.PREVIEW)) {
@@ -63,6 +63,7 @@ public class MovieListingCtrl {
 				System.out.println("");
 			}
 		}
+		System.out.println("");
 	
 //		str = "\u2022 " + "abc" + " (" + "PG" + ")";
 //		System.out.printf("%-50s",str);

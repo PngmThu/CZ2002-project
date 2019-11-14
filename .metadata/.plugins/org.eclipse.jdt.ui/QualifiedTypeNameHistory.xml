@@ -7,4 +7,5 @@
     <fullyQualifiedTypeName name="javax.swing.JTextArea"/>
     <fullyQualifiedTypeName name="java.util.StringTokenizer"/>
     <fullyQualifiedTypeName name="Entities.Staff"/>
+    <fullyQualifiedTypeName name="Entities.MovieReview"/>
 </qualifiedTypeNameHistroy>

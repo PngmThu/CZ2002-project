@@ -1,0 +1,374 @@
+package Entities;
+
+import java.io.IOException;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.*;
+import java.text.*;
+import java.sql.Time;
+import java.time.DayOfWeek;
+
+
+// Note : When structure of the Object type (the class file) in the list changed
+// the Serialized file may fail.
+public class SerializeDB
+{
+	public static List readSerializedObject(String filename) {
+		List pDetails = null;
+		FileInputStream fis = null;
+		ObjectInputStream in = null;
+		try {
+			fis = new FileInputStream(filename);
+			in = new ObjectInputStream(fis);
+			pDetails = (ArrayList) in.readObject();
+			in.close();
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		} catch (ClassNotFoundException ex) {
+			ex.printStackTrace();
+		}
+		// print out the size
+		//System.out.println(" Details Size: " + pDetails.size());
+		//System.out.println();
+		return pDetails;
+	}
+
+	public static void writeSerializedObject(String filename, List list) {
+		FileOutputStream fos = null;
+		ObjectOutputStream out = null;
+		try {
+			fos = new FileOutputStream(filename);
+			out = new ObjectOutputStream(fos);
+			out.writeObject(list);
+			out.close();
+		//	System.out.println("Object Persisted");
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
+	}
+	
+	public static List insertSerializedObject(String filename, Object obj) {
+		List list = null;
+		int i;
+		try	{
+				// read from serialized file the list of professors
+				list = (ArrayList)SerializeDB.readSerializedObject(filename);
+
+				list.add(obj);  // remove the object from the list
+
+				SerializeDB.writeSerializedObject(filename, list);
+				//SerializeDB.deleteSerializedObject(".\\data\\professor.dat", p);
+
+		}  catch ( Exception e ) {
+					System.out.println( "Exception >> " + e.getMessage() );
+		}
+		return list;
+	}
+	
+	public static List updateSerializedObject(String filename, Object obj) {
+		List list = null;
+		int i;
+		try	{
+			// read from serialized file the list of professors
+			list = (ArrayList)SerializeDB.readSerializedObject(filename);
+			for (i = 0 ; i < list.size() ; i++) {
+				//Professor p = (Professor)list.get(i);
+				Object p = list.get(i);
+				
+				if (p.equals(obj)) {
+					list.remove(p);
+					list.add(i, obj);   //Add modified data
+					break;
+				} 
+			}
+			SerializeDB.writeSerializedObject(filename, list);
+		}  catch ( Exception e ) {
+					System.out.println( "Exception >> " + e.getMessage() );
+		}
+		return list;
+	}
+	
+	public static List deleteSerializedObject(String filename, Object obj) {
+		List list = null;
+		int i, j;
+		try	{
+				// read from serialized file the list of professors
+				list = (ArrayList)SerializeDB.readSerializedObject(filename);
+
+				list.remove(obj);  // remove the object from the list
+
+				SerializeDB.writeSerializedObject(filename, list);
+				//SerializeDB.deleteSerializedObject(".\\data\\professor.dat", p);
+
+		}  catch ( Exception e ) {
+					System.out.println( "Exception >> " + e.getMessage() );
+		}
+		return list;
+	}
+
+	public static void main(String[] args) {
+		List list = null;
+		List newList = null;
+		int i, j, k;
+
+		/**********************Seat***********************************
+		j = 1;
+		char x = (char)('A' + j);
+		System.out.printf("%c%d ",x,3);
+		*************************************************************/
+		
+		/************************Time****************************************
+//		Date date = new Date(2019 - 1900, 11 - 1, 10); //input = (year-1900,month-1,date)
+//		Calendar c = Calendar.getInstance();
+//		c.setTime(date);
+//		int day = c.get(Calendar.DAY_OF_WEEK);
+//		System.out.println("Day: " + day);
+		
+//		Date date = new Date();   // this object contains the current date value
+		Date date = new Date(2019 - 1900, 2 - 1, 2); //input = (year-1900,month-1,date)
+		
+		SimpleDateFormat ft = new SimpleDateFormat ("EE");
+		System.out.println("Day: " + ft.format(date));
+		SimpleDateFormat ft2 = new SimpleDateFormat ("dd-MM");
+		System.out.println(ft2.format(date));
+		**********************************************************************/
+		
+		/********************Initialize all databases****************************
+		Movie.initializeData();
+		Vendor.initializeData(); 
+		Cineplex.initializeData();
+		Cinema.initializeData();
+		MovieGoer.initializeData();
+		Staff.initializeData();
+		TicketType.initializeData();
+	    Booking.initializeData();
+		System.out.println("Done");
+		*********************************************************************/
+		
+		/***************************Test Movie********************************
+		//Movie.initializeData();
+		ArrayList<Movie> movies = Movie.getAllMoviesData();
+		for (i = 0 ; i < movies.size() ; i++) {
+			Movie m = movies.get(i);
+			m.showMovieInfo();
+		}
+		
+//		Movie m0 = movies.get(0);
+//		m0.updateStatus("Showing");
+//		m0.updateAvgRating(4.5);
+//		m0.addMovieReview(new MovieReview("Kathy","Go for it", 4));
+//		m0.showMovieInfo();
+
+		**********************************************************************/
+		
+		/***************************Test Vendor********************************
+		Vendor.initializeData();
+		Vendor vendor = Vendor.getVendorData();
+		vendor.showVendorInfo();
+
+		
+//		Movie m0 = movies.get(0);
+//		m0.updateStatus("Upcoming");
+//		m0.updateAvgRating(4.5);
+//		m0.addMovieReview(new MovieReview("Kathy","Go for it", 4));
+//		m0.showMovieInfo();
+
+		**********************************************************************/
+		
+		/***************************Test Cineplex********************************
+		Vendor.initializeData();
+		Cineplex.initializeData();
+		ArrayList<Cineplex> cineplexes = Cineplex.getAllCineplexesData();
+		for (i = 0 ; i < cineplexes.size() ; i++) {
+			Cineplex cineplex = cineplexes.get(i);
+			cineplex.showCineplexInfo();
+		}
+		
+		
+		// Test update location
+//		ArrayList<Cineplex> cineplexes = Cineplex.getAllCineplexesData();
+//		Cineplex cineplex = cineplexes.get(0);
+//		cineplex.updateLocation("0");
+//		cineplex.showCineplexInfo();
+
+		**********************************************************************/
+		
+		/***************************Test Cinema********************************
+		Vendor.initializeData();
+		Cineplex.initializeData();
+		Cinema.initializeData();
+		ArrayList<Cinema> cinemas = Cinema.getAllCinemasData();
+		for (i = 0 ; i < cinemas.size() ; i++) {
+			Cinema cinema = cinemas.get(i);
+			cinema.showCinemaInfo();
+		}
+		
+		**********************************************************************/
+		
+		/***************************Test MovieGoer********************************
+		//MovieGoer.initializeData();
+		ArrayList<MovieGoer> movieGoers = MovieGoer.getAllMovieGoersData();
+		for (i = 0 ; i < movieGoers.size() ; i++) {
+			MovieGoer movieGoer = movieGoers.get(i);
+			movieGoer.showMovieGoerInfo();
+		}
+		
+		**********************************************************************/
+		
+		/***************************Test Staff********************************
+		Staff.initializeData();
+		
+		//Add a staff
+//		Staff staff = new Staff("Yuanchao", "YuanchaoLoh");
+//		Staff.addStaffAccount(staff);
+		
+		ArrayList<Staff> staffs = Staff.getAllStaffsData();
+		for (i = 0 ; i < staffs.size() ; i++) {
+			Staff s = staffs.get(i);
+			s.showStaffInfo();
+		}
+		
+		*********************************************************************/
+		
+		/***************************Test TicketType********************************
+		Entities.TicketType.initializeData();
+		
+		ArrayList<TicketType> ticketTypes = TicketType.getAllTicketTypesData();
+		for (i = 0 ; i < ticketTypes.size() ; i++) {
+			TicketType ticketType = ticketTypes.get(i);
+			ticketType.showTicketTypeInfo();
+		}
+		
+		*********************************************************************/
+		
+		/***************************Test Booking********************************
+		Booking.initializeData();
+		
+		ArrayList<Booking> bookings = Booking.getAllBookingsData();
+		for (i = 0 ; i < bookings.size() ; i++) {
+			Booking b = bookings.get(i);
+			b.showBookingInfo();
+		}
+		
+		********************************************************************/
+		
+		/************************Insert data of Movie*******************************
+		List data = new ArrayList<>();
+		String filename = ".\\data\\movie.dat";
+		ArrayList<String> cast = new ArrayList<>();
+		cast.add("Ryan Potter");      cast.add("Honey Lemon");
+		ArrayList<MovieReview> movieReviews = new ArrayList<>();
+		MovieReview review = new MovieReview("John","Very touching",4);   movieReviews.add(review);
+		review = new MovieReview("Andy","A meaningful movie",5);          movieReviews.add(review);
+		
+		Movie movie = new Movie("Big Hero 6","Showing","A nice movie for family","Don Hall, Chris Williams",4.8,
+				"Blockbuster",cast,movieReviews);
+		data.add(movie);
+		SerializeDB.writeSerializedObject(filename, data);  //Write data
+		list = (ArrayList)SerializeDB.readSerializedObject(filename);  //Read data
+		
+		//Call to update status
+		//movie.updateStatus("Upcoming");
+		
+		for (i = 0 ; i < list.size() ; i++) {
+			Movie m = (Movie)list.get(i);
+			System.out.println("Title: " + m.getTitle() );
+			System.out.println("Status: " + m.getStatus());
+		}
+		**********************************************************************/		
+		
+		/**********Insert data of Vendor, Cineplex, Cinema, Seat, ShowTime*********************
+		Vendor vendor = new Vendor();
+		
+		vendor.addCineplex("50 Jurong Gateway Road - Level 5, Jem - Singapore 608549");
+		
+		Cineplex cineplex = vendor.getCineplexAt(0);
+		
+		cineplex.addCinema(1);
+		
+		Cinema cinema = cineplex.getCinemaAt(0);
+		
+		int rowSize = cinema.getRowSize();
+		int colSize = cinema.getColSize();
+		for (i = 0 ; i < rowSize ; i++) {
+			for (j = 0 ; j < colSize ; j++) {
+				cinema.setSeatAt(i, j, "Standard");
+			}
+		}
+		
+		cinema.addShowTime("Big Hero 6", 10, 2, 2018, 10, 30);
+		cinema.addShowTime("Big Hero 6", 15, 2, 2018, 15, 45);
+		
+		List data = new ArrayList<>();
+		String filename = ".\\data\\vendor.dat";
+		
+		data.add(vendor);
+		SerializeDB.writeSerializedObject(filename, data);  //Write data
+		list = (ArrayList)SerializeDB.readSerializedObject(filename);  //Read data
+		
+		//Call to update status
+		//movie.updateStatus("Upcoming");
+		
+		vendor = (Vendor)list.get(0);
+		System.out.println("VendorName: " + vendor.getVendorName() );
+		ArrayList<Cineplex> cineplexes = vendor.getCineplexes();
+		//System.out.println(cineplexes.size());
+		
+		for (i = 0 ; i < cineplexes.size() ; i++) {
+			cineplex = cineplexes.get(i);
+			System.out.println("********Cineplex " + i + "**********");
+			System.out.println("- Location: " + cineplex.getLocation());
+			ArrayList<Cinema> cinemas = cineplex.getCinemas();
+			for (j = 0 ; j < cinemas.size(); j++) {
+				cinema = cinemas.get(j);
+				System.out.println("********Cinema " + j + "**********");
+				System.out.println("- id: " + cinema.getId());
+				///////////////////Seats/////////////////////
+				
+				ArrayList<ShowTime> showTimes = cinema.getShowTimes();
+				System.out.println("@ Show Time ... @");
+				System.out.println(showTimes.size());
+
+//				for (k = 0 ; k < showTimes.size() ; i++) {
+//					ShowTime showTime = showTimes.get(k);
+//					System.out.println((k+1) + ". " + showTime.getMovieName() + ": " + showTime.getDate() + ", " + showTime.getTime());
+//				}
+
+			}
+		}
+		
+		*********************************************************************/
+		
+		/************************************************************************
+		try	{
+				// read from serialized file the list of professors
+				//list = (ArrayList)SerializeDB.readSerializedObject(".\\data\\professor.dat"); 
+				
+				//Insert data
+				//Professor insertedProf = new Professor("Joseph","jos@ntu.edu.sg",67909999);
+				//list = (ArrayList)SerializeDB.insertSerializedObject(".\\data\\professor.dat", insertedProf);
+				
+				//Delete data
+				//Professor deletedProf = new Professor("Joseph","jos@ntu.edu.sg",67909999);
+				//list = (ArrayList)SerializeDB.deleteSerializedObject(".\\data\\professor.dat", deletedProf);
+				
+				//Update data
+				Professor updatedProf = new Professor("Joseph","jos@ntu.edu.sg",3);
+				list = (ArrayList)SerializeDB.updateSerializedObject(".\\data\\professor.dat", updatedProf);
+				
+				for (i = 0 ; i < list.size() ; i++) {
+					Professor p = (Professor)list.get(i);
+					System.out.println("name is " + p.getName() );
+					System.out.println("contact is " + p.getContact() );
+				}
+
+		}  catch ( Exception e ) {
+					System.out.println( "Exception >> " + e.getMessage() );
+		}
+		***************************************************/
+	}
+}

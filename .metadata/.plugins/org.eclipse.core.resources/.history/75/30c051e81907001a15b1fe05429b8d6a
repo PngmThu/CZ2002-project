@@ -1,0 +1,82 @@
+package View;
+import Controllers.AddReviewCtrl;
+import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+import Controllers.AddReviewCtrl;
+import Entities.Movie;
+public class AddReviewView extends MoblimaViews{
+	private String movieTitle; 
+	 
+	public static void main(String args[]) {//test
+		MoblimaViews menuViews;
+		menuViews = new AddReviewView("Big Hero 6");
+		menuViews.enterView();
+	}
+	
+	public AddReviewView(String movieTitle) {
+		this.movieTitle = movieTitle;
+	}
+
+	public void enterView() {
+		String content;
+		String reviewer;
+		int rating;
+		
+		boolean loop = true;
+		String temp;
+		
+		Scanner sc = new Scanner(System.in);
+		
+		while (loop) {
+			System.out.print("Enter your name: ");
+			reviewer = sc.nextLine();
+			
+			System.out.print("Enter your review: ");
+			content = sc.nextLine();
+			try {
+				System.out.println("Enter rating (0 - 5): ");
+				rating=sc.nextInt();
+				if (rating < 0 || rating > 5) {
+					System.out.println("Invalid rating! Please enter an integer from 0 to 5! Try again.");
+					sc.next();
+					continue;
+				}
+			} catch (InputMismatchException e) {
+			    System.out.println("Invalid rating! Please enter an integer from 0 to 5! Try again.");
+			    sc.next();
+			    continue;
+		    }
+			
+			System.out.print("Submit? (y/n) : ");
+			sc.next();
+			temp = sc.nextLine();
+			
+			if (temp.equalsIgnoreCase("y")) {
+				//Add review
+				
+			} 
+			
+			loop = false;
+		 }
+		/*
+		if(check==true){			
+			System.out.println("Enter a review: ");
+			review=sc.nextLine();
+			System.out.println("Enter a name: ");
+			nameOfUser=sc.nextLine();
+			System.out.println("Enter a rating: ");
+			rating=sc.nextInt();
+			System.out.println("Added review: \n" + "Movie: " + movieName + "| Name: " + nameOfUser + "\n" +
+        	        "Review: " + review + "| Rating: " + rating);
+			System.out.println("success");
+			AddReviewCtrl.addNewReview(movieName,nameOfUser,review,rating);
+			}
+		else {
+			System.out.println("No such movie! Type the correct movie.");
+			enterView();
+		}
+		*/
+	}
+}

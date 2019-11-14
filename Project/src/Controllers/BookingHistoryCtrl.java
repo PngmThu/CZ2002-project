@@ -13,11 +13,10 @@ public class BookingHistoryCtrl {
 	//Find movieGoer in the data
 	public static MovieGoer movieGoerExist(String email) {
 		ArrayList<MovieGoer> movieGoers = MovieGoer.getAllMovieGoersData();
-		MovieGoer mg = new MovieGoer(email);
 		
 		for (int i = 0 ; i < movieGoers.size() ; i++) {
 			MovieGoer movieGoer = movieGoers.get(i);
-			if (mg.equals(movieGoer))
+			if (email.equals(movieGoer.getEmail()))
 				return movieGoer;
 		}
 		return null;  //Not in the record of MovieGoer

@@ -6,6 +6,7 @@ import java.util.Comparator;
 
 import Entities.Booking;
 import Entities.Movie;
+import Entities.MovieStatus;
 
 class MovieCompareBySales implements Comparator<Movie> {
 	@Override
@@ -29,9 +30,17 @@ public class Top5MovieCtrl {
 
 	public static ArrayList<Movie> moviesBySales() {
 		ArrayList<Movie> movies = Movie.getAllMoviesData();
-		Collections.sort(movies, new MovieCompareBySales());
+		ArrayList<Movie> temp = new ArrayList<>();
 		
-		return movies;
+		for (Movie movie: movies) {
+			if (movie.getStatus().equals(MovieStatus.NOW) || movie.getStatus().equals(MovieStatus.PREVIEW)) {
+				temp.add(movie);
+			}
+		}
+		
+		Collections.sort(temp, new MovieCompareBySales());
+		
+		return temp;
 	}
 	
 	public static ArrayList<Movie> moviesByRatings() {
@@ -50,12 +59,13 @@ public class Top5MovieCtrl {
 		else
 			size = movies.size();
 		
-		System.out.println("*********************************************");
-		System.out.println("List the top 5 movies BY ticket sales:");
+		System.out.println("");
+		System.out.println("==== List top 5 movies BY ticket sales ===");
 		for (i = 0 ; i < size ; i++) {
 			Movie movie = movies.get(i);
-			System.out.println("- " + movie.getTitle() );
+			System.out.println("\u2022 " + movie.getTitle() );
 		}
+		System.out.println("");
 	}
 	
 	public static void displayByRatings() {
@@ -67,11 +77,12 @@ public class Top5MovieCtrl {
 		else
 			size = movies.size();
 		
-		System.out.println("*********************************************");
-		System.out.println("List the top 5 movies BY overall reviewers’ ratings:");
+		System.out.println("");
+		System.out.println("=== List top 5 movies BY overall reviewers' ratings ===");
 		for (i = 0 ; i < size ; i++) {
 			Movie movie = movies.get(i);
-			System.out.println("- " + movie.getTitle() );
+			System.out.println("\u2022 " + movie.getTitle() );
 		}
+		System.out.println("");
 	}
 }

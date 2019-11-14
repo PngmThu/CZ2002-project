@@ -27,10 +27,10 @@ public class Booking implements Serializable {
 		this.movieGoer = movieGoer;
 		this.showTime = showTime;
 		this.seats = seats;
-//		System.out.println(this.getPrice());
-//		SerializeDB.insertSerializedObject(insertBooking, this);
-//		movieGoer.getBookings().add(this);
-//		SerializeDB.updateSerializedObject(updateMovieGoer, movieGoer);
+		//System.out.println(this.getPrice());
+		SerializeDB.insertSerializedObject(insertBooking, this);
+		movieGoer.getBookings().add(this);
+		SerializeDB.updateSerializedObject(updateMovieGoer, movieGoer);
 	}
 	
 	public String getTransactionId() {

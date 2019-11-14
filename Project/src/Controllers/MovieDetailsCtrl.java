@@ -9,7 +9,7 @@ import javax.swing.JTextArea;
 
 public class MovieDetailsCtrl{
 
-    public static void displayMovieDetails(String movieTitle) {
+    public static boolean displayMovieDetails(String movieTitle) {
         ArrayList<Movie> movies = Movie.getAllMoviesData();
         
         //JTextArea text = new JTextArea(String text, 5, 100)
@@ -26,10 +26,15 @@ public class MovieDetailsCtrl{
         		text.setWrapStyleWord(true);
         		System.out.println("Synopsis: ");
         		System.out.println("    " + addLinebreaks(movie.getSynopsis(), 100));
-        		System.out.println("Overall Rating: " + String.format("%.1f", movie.getAvgRating()));
-        		break;
+        		System.out.print("Overall Rating: ");
+        		if (movie.getMovieReviews().size() > 1)
+        			System.out.println(String.format("%.1f", movie.getAvgRating()));
+        		else
+        			System.out.println("NA");
+        		return true;
             }
         }
+        return false;
     }
     
     public static String addLinebreaks(String input, int maxLineLength) {

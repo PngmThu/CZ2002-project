@@ -61,7 +61,7 @@ public class MovieGoer implements Serializable{
 		List data = new ArrayList<>();
 		String filename = ".\\data\\movieGoer.dat";
 		
-		movieGoer = new MovieGoer("Minh Thu", "86187124", "phamthu0602@gmai.com", MovieGoerGroup.STUDENT);  //student
+		movieGoer = new MovieGoer("Minh Thu", "86187124", "phamthu0602@gmail.com", MovieGoerGroup.STUDENT);  //student
 		data.add(movieGoer);
 		movieGoer = new MovieGoer("Yuanchao", "93802613", "yuanchao.loh@gmail.com", MovieGoerGroup.SENIOR);  //senior
 		data.add(movieGoer);
@@ -83,6 +83,12 @@ public class MovieGoer implements Serializable{
 		System.out.println("mobile: " + this.mobile);
 		System.out.println("email: " + this.email);
 		System.out.println("movieGoerGroup: " + this.movieGoerGroup);
+		
+		System.out.println("bookings: ");
+		for (Booking booking : bookings) {
+			System.out.println("- transactionId: " + booking.getTransactionId());
+		}
+		
 	}
 	
 	public boolean equals(Object o) {
