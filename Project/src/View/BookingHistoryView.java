@@ -1,10 +1,9 @@
-package view;
+package View;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import Controllers.BookingHistoryCtrl;
-import Controllers.StaffMenuCtrl;
 import Entities.MovieGoer;
 
 public class BookingHistoryView extends MoblimaViews{ //Allow Moviegoers to view booking history

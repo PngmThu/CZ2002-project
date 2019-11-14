@@ -1,12 +1,9 @@
-package view;
+package View;
 
-import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import Controllers.LoginCtrl;
 import Controllers.MovieListingCtrl;
-import Entities.Movie;
 
 public class MovieListingView extends MoblimaViews {
 	public static void main(String[] args) {

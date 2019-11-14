@@ -10,7 +10,7 @@ public class UpdateMovieCtrl { //Updates Movie - To CHANGE movie details or to D
     public static Movie retrieveMovieDetails(String movieTitle){
         ArrayList<Movie> movies = getAllMoviesData();
         for (Movie movie: movies) {
-            if (movie.getTitle().equals(movieTitle))
+            if (movie.getTitle().equalsIgnoreCase(movieTitle))
                 return movie;
         }
         return null;
@@ -118,15 +118,27 @@ public class UpdateMovieCtrl { //Updates Movie - To CHANGE movie details or to D
         System.out.println("Movie update unsuccessful, please try again.");
     }
 
-    public static void updateStatus(Movie movie, MovieStatus status){
-        if (movie.getStatus().equals(status))
-            System.out.println("This movie is non-existent.");
-        else{
-            movie.updateStatus(status);
-            updateMovieInShowTime(movie);
-            System.out.println("Movie successfully deleted.");
-            return;
+    public static void updateStatus(String movieTitle, int movieStatusChoice){
+        MovieStatus movieStatus = null;
+        if (movieStatusChoice == 1){
+            movieStatus = MovieStatus.COMING;
+        } else if(movieStatusChoice == 2){
+            movieStatus = MovieStatus.PREVIEW;
+        } else if(movieStatusChoice == 3){
+            movieStatus = MovieStatus.NOW;
+        } else if(movieStatusChoice == 4){
+            movieStatus = MovieStatus.END;
         }
+        ArrayList<Movie> movies = getAllMoviesData();
+        for (Movie movie : movies){
+            if (movie.getTitle().equals(movieTitle)){
+                movie.updateStatus(movieStatus);
+                updateMovieInShowTime(movie);
+                System.out.println("Movie Status updated successfully.");
+                return;
+            }
+        }
+        System.out.println("Movie update unsuccessful, please try again.");
     }
 
     private static void updateMovieInShowTime(Movie movie){//Error in Serialized File.

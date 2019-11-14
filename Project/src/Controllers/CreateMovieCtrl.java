@@ -23,10 +23,20 @@ public class CreateMovieCtrl {// To Support the creation of a new movie.
         }
     }
 
-    public static void addMovie(String title, MovieStatus status, String synopsis,
+    public static void displayMovieStatus(){
+        System.out.println(" Movie Status: ");
+        MovieStatus[] moviestatuses = MovieStatus.values();
+        for (MovieStatus movieStatus: moviestatuses) {
+            //.ordinal() is to get the index in the array.
+            System.out.println((movieStatus.ordinal() + 1) + ") " + movieStatus.getDescription());
+        }
+    }
+
+    public static Movie addMovie(String title, int movieStatusChoice, String synopsis,
                                 String director, int movieTypeChoice, String cast, int censorshipChoice){
         MovieCensorship movieCensorship = null;
         MovieType movieType = null;
+        MovieStatus movieStatus = null;
         if (movieTypeChoice ==1){
             movieType = MovieType.REG;
         } else if (movieTypeChoice == 2){
@@ -49,7 +59,16 @@ public class CreateMovieCtrl {// To Support the creation of a new movie.
             movieCensorship = MovieCensorship.R21;
         } else {
         }
-        Movie.addMovie(title, status, synopsis, director, movieType, cast, movieCensorship);
-        System.out.println("Movie Added Successfully!");
+        if (movieStatusChoice == 1){
+            movieStatus = MovieStatus.COMING;
+        } else if(movieStatusChoice == 2){
+            movieStatus = MovieStatus.PREVIEW;
+        } else if(movieStatusChoice == 3){
+            movieStatus = MovieStatus.NOW;
+        } else if(movieStatusChoice == 4){
+            movieStatus = MovieStatus.END;
+        }
+        return Movie.addMovie(title, movieStatus, synopsis, director, movieType, cast, movieCensorship);
+
     }
 }

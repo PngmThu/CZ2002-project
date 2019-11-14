@@ -1,6 +1,5 @@
-package view;
+package View;
 
-import Controllers.LoginCtrl;
 import Controllers.MovieDetailsCtrl;
 import Entities.Movie;
 

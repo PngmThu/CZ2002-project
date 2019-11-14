@@ -1,15 +1,15 @@
 package Controllers;
 
-import view.ManageShowTimesView;
-import view.ManageSystemSettingsView;
-import view.MoblimaViews;
-import view.manageMovieListingView;
+import View.ManageShowTimesView;
+import View.ManageSystemSettingsView;
+import View.MoblimaViews;
+import View.ManageMovieListingView;
 
 public class StaffMenuCtrl {
     public static void changeView(int choice) {
         MoblimaViews menuViews = null;
         if (choice==1){
-            menuViews = new manageMovieListingView();
+            menuViews = new ManageMovieListingView();
         }
         else if(choice == 2){
             menuViews = new ManageShowTimesView();
