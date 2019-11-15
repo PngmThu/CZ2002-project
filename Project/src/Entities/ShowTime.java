@@ -89,7 +89,7 @@ public class ShowTime implements Serializable{
 	}
 	
 	public void showShowTimeInfo() {  
-		System.out.println("*********************************************");
+		System.out.println("*************************************");
 		System.out.println("cineplexId: " + this.cinema.getCineplexId());
 		System.out.println("cinema id: " + this.cinema.getId());
 		System.out.println("cinemaClass: " + this.cinema.getCinemaClass());

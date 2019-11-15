@@ -1,15 +1,6 @@
 package View;
 
-import Controllers.CreateMovieCtrl;
 import Entities.Movie;
-import Entities.MovieStatus;
-import Entities.MovieType;
-
-import java.util.InputMismatchException;
-import java.util.Scanner;
-
-import static Controllers.CreateMovieCtrl.*;
-import static Controllers.UpdateMovieCtrl.*;
 
 public class ManageMovieListingView extends MoblimaViews {
 
