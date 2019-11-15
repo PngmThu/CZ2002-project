@@ -12,7 +12,7 @@ public class LoginCtrl {
         password = sc.nextLine();
         Staff user = new Staff(username,password);
         for (Staff staff : Staff.getAllStaffsData()){
-            if (staff.getUsername().equals(user.getUsername())){
+            if (staff.getUsername().equalsIgnoreCase(user.getUsername())){
                 if (staff.getHashedPassword().equals(user.getHashedPassword())) {
                     System.out.println("Login Successfully.");
                     return true;

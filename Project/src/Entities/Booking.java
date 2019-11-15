@@ -101,7 +101,7 @@ public class Booking implements Serializable {
 			Booking booking = (Booking)list.get(i);
 			Movie movie = booking.getShowTime().getMovie();
 			if (m.equals(movie)) {
-				count++;
+				count += booking.getPrice();
 			}
 		}
 		

@@ -63,7 +63,8 @@ public class Top5MovieCtrl {
 		System.out.println("==== List top 5 movies BY ticket sales ===");
 		for (i = 0 ; i < size ; i++) {
 			Movie movie = movies.get(i);
-			System.out.println("\u2022 " + movie.getTitle() );
+			System.out.println("\u2022 " + movie.getTitle() +
+					" with a total ticket sales of $" + Booking.getSales(movie) + "!" );
 		}
 		System.out.println("");
 	}
@@ -81,7 +82,8 @@ public class Top5MovieCtrl {
 		System.out.println("=== List top 5 movies BY overall reviewers' ratings ===");
 		for (i = 0 ; i < size ; i++) {
 			Movie movie = movies.get(i);
-			System.out.println("\u2022 " + movie.getTitle() );
+			System.out.println("\u2022 " + movie.getTitle() +
+					" with an average rating of " + movie.getAvgRating() + "!");
 		}
 		System.out.println("");
 	}

@@ -11,7 +11,7 @@ public class MovieGoerView extends MoblimaViews {
 
         while (loop) {
             //PRINT MENU FOR HOMEPAGE USED BY BOTH MOVIE-GOERS
-        	System.out.println("1) Find a Movie");
+        	System.out.println("1) Movie Listing");
             System.out.println("2) Booking History");
             System.out.println("3) Book Now");
             System.out.println("4) Exit");

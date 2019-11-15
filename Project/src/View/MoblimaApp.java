@@ -29,6 +29,7 @@ public class MoblimaApp {
                         menuViews = new LoginView();
                         break;
                     case 3:
+                        System.out.println("\nThank you for using Moblima! We hope to see you again.");
                         loop = false;
                         break;
                     default:
