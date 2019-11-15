@@ -2,12 +2,19 @@ package Controllers;
 
 import java.util.ArrayList;
 
+import Entities.Booking;
 import Entities.Cinema;
+import Entities.CinemaClass;
 import Entities.Movie;
 import Entities.MovieGoer;
 import Entities.MovieGoerGroup;
 import Entities.MovieStatus;
+import Entities.MovieType;
+import Entities.PublicHoliday;
+import Entities.Seat;
+import Entities.SerializeDB;
 import Entities.ShowTime;
+import Entities.TicketType;
 
 public class BookingCtrl {
 	
@@ -38,6 +45,16 @@ public class BookingCtrl {
 		return showTimeList;
 	}
 	
+	public static MovieGoer movieGoerExist(String email) {
+		ArrayList<MovieGoer> movieGoers = MovieGoer.getAllMovieGoersData();
+		MovieGoer mg = new MovieGoer(email);
+
+		for(MovieGoer movieGoer: movieGoers) {
+			if (email.equals(movieGoer.getEmail()))
+				return movieGoer;
+		}
+		return null;  //Not in the record of MovieGoer
+	}
 	
 	public static Movie movieExist(String title) {
 		for(Movie movie: movieList) {
@@ -45,9 +62,43 @@ public class BookingCtrl {
 				return movie;
 			}
 		}
-		System.out.println("Movie does not exist.");
 		return null;
 	}
+	
+	public static double getPrice(ShowTime showTime, MovieGoerGroup ageGroup) {
+		MovieType movieType = showTime.getMovie().getMovieType();
+		CinemaClass cinemaClass = showTime.getCinema().getCinemaClass();
+		MovieGoerGroup movieGoerGroup = ageGroup;
+		String dayOfWeek = showTime.getDayOfWeek();
+		String isPublicHoliday;
+		if (PublicHoliday.isPublicHoliday(showTime.getDate())) 
+			isPublicHoliday = "true";
+		else
+			isPublicHoliday = "false";	
+		//-1 if not found in TicketType
+		return TicketType.computePrice(movieType, cinemaClass, movieGoerGroup, dayOfWeek, isPublicHoliday);  	
+	}
+	
+	public static MovieGoer addMovieGoer(String name, String mobile, String email, MovieGoerGroup ageGroup) {
+		return MovieGoer.addMovieGoer(new MovieGoer(name, mobile, email, ageGroup));
+	}
+	
+	public static boolean confirmBooking(MovieGoer movieGoer, double price, ShowTime showTime, 
+			ArrayList<Seat> seatList) {
+		String bookingFile = ".\\data\\booking.dat";
+		String movieGoerFile = ".\\data\\movieGoer.dat";
+		
+		for(Seat seat: seatList) {
+	    	showTime.bookSeatAt(seat);
+	    }
+		Booking booking = new Booking(movieGoer, price, showTime, seatList);
+		SerializeDB.insertSerializedObject(bookingFile, booking);
+		movieGoer.addBooking(booking);		
+		SerializeDB.updateSerializedObject(movieGoerFile, movieGoer);
+		return true;
+	}
+	
+	
 	public static void displaySeat(ShowTime showtime) {
 		String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		int row, col, decorate, r, c;
