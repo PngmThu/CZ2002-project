@@ -25,17 +25,11 @@ public class MovieReviewListView extends MoblimaViews{
 
 	@Override
     public void enterView(){
-		 MoblimaViews menuViews = null;
 		 int choice;
 		 boolean loop = true;
-		
-		 Scanner sc = new Scanner(System.in);
-		 
 		 MovieReviewListCtrl.displayMovieReviews(this.movieTitle);
 		 
 		 while (loop) {
-			 menuViews = null;
-			 
 			 System.out.println(">>>>>>>>");
 			 System.out.println("1) Add review for " + this.movieTitle);
 			 System.out.println("2) Return to Movie-Details page");
@@ -48,7 +42,7 @@ public class MovieReviewListView extends MoblimaViews{
 		     switch (choice) {
 		         case 1:
 		             ///Add review
-		        	 menuViews = new AddReviewView(this.movieTitle);
+		        	 menuView = new AddReviewView(this.movieTitle);
 		             break;
 		         case 2:
 		             loop = false;
@@ -58,9 +52,8 @@ public class MovieReviewListView extends MoblimaViews{
 		             System.out.println("");
 		             break;
 		     }
-
-		     if (loop && menuViews!=null)
-		         menuViews.enterView();
+		     if (loop && menuView!=null)
+		         menuView.enterView();
 		 }
 		 
     }

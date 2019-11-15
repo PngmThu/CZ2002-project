@@ -26,28 +26,26 @@ public class LoginView extends MoblimaViews {
             //Print Menu For Login View
         	boolean loginVerification = false;
         	menuViews = null;
-        	
+            System.out.println("*************************************");
+            System.out.println("Admin - Staff Menu");
+            System.out.println("*************************************");
             System.out.println("1) Login");
             System.out.println("2) Go Back");
             System.out.print("Enter your choice: ");
-            try {
-                choice = sc.nextInt();
-                switch (choice) {
-                    case 1:
-                        loginVerification = LoginCtrl.verifyLogin();
-                        if (loginVerification)
-                            menuViews = new StaffMenuView();
-                        break;
-                    case 2:
-                        loop = false;
-                        break;
-                    default:
-                        System.out.println("Please enter a choice between 1 to 2.");
-                        break;
-                }
-            } catch (InputMismatchException e) {
-                System.out.println("Invalid choice! Please select a number between 1 to 2:");
-                sc.next();
+            choice = readInt(1);
+            if (choice==-1) continue;
+            switch (choice) {
+                case 1:
+                    loginVerification = LoginCtrl.verifyLogin();
+                    if (loginVerification)
+                        menuViews = new StaffMenuView();
+                    break;
+                case 2:
+                    loop = false;
+                    break;
+                default:
+                    System.out.println("Please enter a choice between 1 to 2.");
+                    break;
             }
             if (loop && menuViews!=null)
                 menuViews.enterView();

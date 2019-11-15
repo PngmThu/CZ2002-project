@@ -21,12 +21,10 @@ public class MovieDetailsView extends MoblimaViews{
 
     
     public void enterView(){
-		 MoblimaViews menuViews = null;
 		 int choice;
 		 boolean loop;
 		 String movieTitle = null;
-		
-		 Scanner sc = new Scanner(System.in);
+
 		 
 		 loop = false;
 		 while (!loop) {
@@ -43,7 +41,7 @@ public class MovieDetailsView extends MoblimaViews{
 		 
 		 loop = true;
 		 while (loop) {
-			 menuViews = null;
+			 menuView = null;
 			 
 			 System.out.println(">>>>>>>>");
 			 System.out.println("1) Display reviews for " + movieTitle);
@@ -58,11 +56,11 @@ public class MovieDetailsView extends MoblimaViews{
 		     switch (choice) {
 		         case 1:
 		             ///Display reviews: go to MovieReviewListView
-		        	 menuViews = new MovieReviewListView(movieTitle);			  
+		        	 menuView = new MovieReviewListView(movieTitle);
 		             break;
 		         case 2:
 		             ///Buy tickets: go to BookingView
-		        	 menuViews = new BookingView();  
+		        	 menuView = new BookingView();
 		             break;
 		         case 3:
 		             loop = false;
@@ -73,8 +71,8 @@ public class MovieDetailsView extends MoblimaViews{
 		             break;
 		     }
 
-		     if (loop && menuViews!=null)
-		         menuViews.enterView();
+		     if (loop && menuView!=null)
+		         menuView.enterView();
 		 }
 		 
     }

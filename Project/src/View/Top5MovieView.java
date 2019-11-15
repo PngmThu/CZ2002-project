@@ -15,12 +15,10 @@ public class Top5MovieView extends MoblimaViews {
     }
 	
 	public void enterView(){
-        MoblimaViews menuViews = null;
         int choice;
         boolean loop = true;
         ArrayList<Movie> movies;
 
-        Scanner sc = new Scanner(System.in);
         while (loop) {
             //Print Menu to list top 5 movies by ticket sales OR by overall reviewers� ratings
         	System.out.println("*********************************************");

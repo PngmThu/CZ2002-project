@@ -18,7 +18,7 @@ public class UpdatePublicHolidaysView extends ManageSystemSettingsView {
             System.out.println("2) Remove a Public Holiday");
             System.out.println("3) Go back\n");
             System.out.print("Enter your choice: ");
-            choice = readInt(0);
+            choice = readInt(1);
             if (choice == -1) continue;
             else if (choice<=0 || choice >3){
                 System.out.println("Please enter a number between 1 to 3.");

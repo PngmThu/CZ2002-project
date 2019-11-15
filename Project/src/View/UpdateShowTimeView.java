@@ -48,7 +48,7 @@ public class UpdateShowTimeView extends ManageShowTimesView{
                 }
                 System.out.println((index+1) + ") Go back\n");
                 System.out.print("Enter your choice: ");
-                choice = readInt(0);
+                choice = readInt(1);
                 if (choice<=0 || choice>(showtimes.size()+1)){
                     System.out.println("Please enter a number between 1 to " + (showtimes.size() + 1) + ".");
                 } else if (choice==(showtimes.size()+1)) {
@@ -57,7 +57,7 @@ public class UpdateShowTimeView extends ManageShowTimesView{
                     System.out.println("---- Please update the following ShowTime details below ----");
                     while (loop) {
                         System.out.print("Enter new Year: ");//Input to change Movie Title
-                        y = readInt(0);//Scan for input
+                        y = readInt(1);//Scan for input
                         if (y==-1) continue;
                         if (y<2019 || y>2050){
                             System.out.println("Please enter a value between 2019 to 2050.");
@@ -67,7 +67,7 @@ public class UpdateShowTimeView extends ManageShowTimesView{
                     }
                     while (loop) {
                         System.out.print("Enter new Month: ");
-                        m = readInt(0);
+                        m = readInt(1);
                         if (m==-1) continue;
                         if (m<=0 || m>12){
                             System.out.println("Please enter a value between 1 to 12.");
@@ -77,7 +77,7 @@ public class UpdateShowTimeView extends ManageShowTimesView{
                     }
                     while (loop){
                         System.out.print("Enter Day: ");
-                        d = readInt(0);
+                        d = readInt(1);
                         if (d==-1) continue;
                         else if (d<=0 || d>31){
                             System.out.println("Please enter a value between 1 to 31.");
@@ -87,7 +87,7 @@ public class UpdateShowTimeView extends ManageShowTimesView{
                     }
                     while (loop){
                         System.out.print("Enter new Hour: ");
-                        hour = readInt(0);
+                        hour = readInt(1);
                         if (hour == -1) continue;
                         else if (hour<0 || hour>23){
                             System.out.println("Please enter a value between 0 to 23.");
@@ -97,7 +97,7 @@ public class UpdateShowTimeView extends ManageShowTimesView{
                     }
                     while (loop){
                         System.out.print("Enter new Minute: ");
-                        min = readInt(0);
+                        min = readInt(1);
                         if (min == -1) continue;
                         else if (min<0 || min>60){
                             System.out.println("Please enter a value between 0 to 60.");
