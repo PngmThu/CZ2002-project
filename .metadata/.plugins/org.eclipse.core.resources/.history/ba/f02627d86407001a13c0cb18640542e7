@@ -1,0 +1,86 @@
+package View;
+
+
+import Controllers.LoginCtrl;
+
+import java.util.Base64;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class LoginView extends MoblimaViews {
+    //Staff have to login to use all the different admin functions
+    //Use LoginCtrl to verify staff login
+	
+	public static void main(String[] args) {
+        //MoblimaViews menuViews = new MovieListingView();
+        //menuViews.enterView();
+		
+//		String seed = "ipNumber";
+//		String myIpValue = "192.168.0.1";
+//
+//		StandardPBEStringEncryptor encryptor = new StandardPBEStringEncryptor();
+//		encryptor.setPassword(seed);
+//		String encrypted= encryptor.encrypt(myIpValue);
+		
+//		// encode with padding
+//		String encoded = Base64.getEncoder().encodeToString("THU");
+//
+//		// encode without padding
+//		//String encoded = Base64.getEncoder().withoutPadding().encodeToString(someByteArray);
+//
+//		// decode a String
+//		byte [] barr = Base64.getDecoder().decode(encoded); 
+//		
+//		String converted = Base64.encodeToString("a".toString().getBytes(), Base64.DEFAULT);
+//
+//		String stringFromBase = new String(Base64.decode(converted, Base64.DEFAULT));
+		
+		Base64.Encoder enc = Base64.getEncoder();
+        Base64.Decoder dec = Base64.getDecoder();
+        String str = "YuanchaoLoh";
+
+        // encode data using BASE64
+        String encoded = enc.encodeToString(str.getBytes());
+        System.out.println("encoded value is \t" + encoded);
+
+        // Decode data
+        String decoded = new String(dec.decode(encoded));
+        System.out.println("decoded value is \t" + decoded);
+        System.out.println("original value is \t" + str);
+    }
+	
+    public void enterView(){
+        MoblimaViews menuViews = null;
+        int choice;
+        boolean loop = true, loginVerification = false;
+
+        Scanner sc = new Scanner(System.in);
+        while (loop) {
+            //Print Menu For Login View
+            System.out.println("1) Login");
+            System.out.println("2) Go Back");
+            System.out.print("Enter your choice: ");
+            try {
+                choice = sc.nextInt();
+                switch (choice) {
+                    case 1:
+                        loginVerification = LoginCtrl.verifyLogin();
+                        if (loginVerification)
+                            menuViews = new StaffMenuView();
+                        break;
+                    case 2:
+                        loop = false;
+                        break;
+                    default:
+                        System.out.println("Please enter a choice between 1 to 2.");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid choice! Please select a number between 1 to 2:");
+                sc.next();
+            }
+            if (loop && menuViews!=null)
+                menuViews.enterView();
+        }
+    }
+
+}

@@ -3,9 +3,9 @@
     <fullyQualifiedTypeName name="java.io.BufferedInputStream"/>
     <fullyQualifiedTypeName name="java.lang.Object"/>
     <fullyQualifiedTypeName name="MovieType"/>
-    <fullyQualifiedTypeName name="Entities.MovieStatus"/>
     <fullyQualifiedTypeName name="javax.swing.JTextArea"/>
     <fullyQualifiedTypeName name="java.util.StringTokenizer"/>
     <fullyQualifiedTypeName name="Entities.Staff"/>
     <fullyQualifiedTypeName name="Entities.MovieReview"/>
+    <fullyQualifiedTypeName name="Entities.MovieStatus"/>
 </qualifiedTypeNameHistroy>

@@ -1,21 +1,32 @@
 package View;
 
+
 import Controllers.LoginCtrl;
 
+import java.util.Base64;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class LoginView extends MoblimaViews {
     //Staff have to login to use all the different admin functions
     //Use LoginCtrl to verify staff login
+	
+	public static void main(String[] args) {
+        MoblimaViews menuViews = new LoginView();
+        menuViews.enterView();
+    }
+	
     public void enterView(){
         MoblimaViews menuViews = null;
         int choice;
-        boolean loop = true, loginVerification = false;
+        boolean loop = true;
 
         Scanner sc = new Scanner(System.in);
         while (loop) {
             //Print Menu For Login View
+        	boolean loginVerification = false;
+        	menuViews = null;
+        	
             System.out.println("1) Login");
             System.out.println("2) Go Back");
             System.out.print("Enter your choice: ");
@@ -32,6 +43,7 @@ public class LoginView extends MoblimaViews {
                         break;
                     default:
                         System.out.println("Please enter a choice between 1 to 2.");
+                        break;
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Invalid choice! Please select a number between 1 to 2:");

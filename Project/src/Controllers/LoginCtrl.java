@@ -12,8 +12,8 @@ public class LoginCtrl {
         password = sc.nextLine();
         Staff user = new Staff(username,password);
         for (Staff staff : Staff.getAllStaffsData()){
-            if (staff.getUsername().toLowerCase().equals(user.getUsername().toLowerCase())){
-                if (staff.getPassword().equals(user.getPassword())) {
+            if (staff.getUsername().equals(user.getUsername())){
+                if (staff.getHashedPassword().equals(user.getHashedPassword())) {
                     System.out.println("Login Successfully.");
                     return true;
                 }

@@ -2,16 +2,23 @@ package Entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 public class Staff implements Serializable{
 
 	private String username;
-	private String password;
+	private String hashedPassword;
 	
 	public Staff(String username, String password) {
 		this.username = username;
-		this.password = password;
+		
+		Base64.Encoder enc = Base64.getEncoder();
+		
+		// encode data using BASE64
+        String encoded = enc.encodeToString(password.getBytes());
+        
+        this.hashedPassword = encoded;
 	}
 
 	public String getUsername() {
@@ -26,8 +33,8 @@ public class Staff implements Serializable{
 		this.username = username;
 	}
 
-	public String getPassword() {
-		return this.password;
+	public String getHashedPassword() {
+		return this.hashedPassword;
 	}
 
 	/**
@@ -35,7 +42,21 @@ public class Staff implements Serializable{
 	 * @param password
 	 */
 	public void setPassword(String password) {
-		this.password = password;
+		Base64.Encoder enc = Base64.getEncoder();
+		
+		// encode data using BASE64
+        String encoded = enc.encodeToString(password.getBytes());
+        
+        this.hashedPassword = encoded;
+	}
+	
+	public String getPassword() {
+		Base64.Decoder dec = Base64.getDecoder();
+		 
+		// Decode data
+	    String decoded = new String(dec.decode(this.hashedPassword));
+	    
+	    return decoded;
 	}
 	
 	public static void initializeData() {  //Call by classname: Staff.initializeData()
@@ -47,6 +68,7 @@ public class Staff implements Serializable{
 		
 		Staff staff;
 		staff = new Staff("MinhThu", "Thu0602");
+		data.add(staff);
 		staff = new Staff("Yuanchao", "YuanchaoLoh");
 		data.add(staff);
 		
@@ -73,13 +95,28 @@ public class Staff implements Serializable{
 		int i;
 		System.out.println("*********************************************");
 		System.out.println("username: " + this.username );
-		System.out.println("password: " + this.password);
+		System.out.println("password: " + this.getPassword());
+		System.out.println("hashedPassword: " + this.hashedPassword);
 	}
 	
 	public void updatePassword(String password) {
-		this.password = password;
+		Base64.Encoder enc = Base64.getEncoder();
+		
+		// encode data using BASE64
+        String encoded = enc.encodeToString(password.getBytes());
+        
+        this.hashedPassword = encoded;
+		
 		Staff updatedStaff = this;
 		List list = (ArrayList)SerializeDB.updateSerializedObject(".\\data\\staff.dat", updatedStaff);
+	}
+	
+	public boolean equals(Object o) {
+		if (o instanceof Staff) {
+			Staff staff = (Staff)o;
+			return getUsername().equals(staff.getUsername()) && getHashedPassword().equals(staff.getHashedPassword());
+		}
+		return false;
 	}
 
 }

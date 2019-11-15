@@ -9,18 +9,26 @@ public abstract class MoblimaViews{
     public void enterView() {
     }
     
-    public int readInt(Boolean Loop) {
+    public int readInt(int loop) {
         do {
+        	loop--;
         	try {
                 int input = sc.nextInt();
                 sc.nextLine();
                 return input;
             } catch (InputMismatchException e) {
             	sc.nextLine(); // Cleaning Scanner
-                System.out.println("Invalid Input! Please enter a Number" + (Loop ? ":" : "."));
-            }
-        }while(Loop);
+                if(loop == 0) {
+                	System.out.println("Invalid Input! Please enter a Number.");
+                	System.out.println("Returning back to the Menu.\n");
+                }else {
+                	System.out.println("Invalid Input! Please enter a Number.\t" + loop + " tries left.");
+                }
+            }   	
+        }while(loop != 0);
 
         return -1;
     }
 }
+
+
