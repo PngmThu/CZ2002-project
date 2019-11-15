@@ -34,44 +34,35 @@ public class MovieListingCtrl {
 		Movie movie;
 		String str;
 		
-		System.out.println("* ".repeat(76));
+		System.out.printf("%-50s","================ NOW SHOWING ================");
+		System.out.printf("%-50s","================== PREVIEW ==================");
+		System.out.println(       "================ COMING SOON ================\n");
 		
-		System.out.printf("*  %-47s","================ NOW SHOWING ================");
-		System.out.printf("*  %-47s","================== PREVIEW ==================");
-		System.out.printf("*  %-47s","================ COMING SOON ================");
-		System.out.printf("*\n");
-		System.out.printf("*  %-47s*  %-47s*  %-47s*\n","","","");
-		
-		String triangle = String.valueOf((char)0x25B6);
 		for (i = 0 ; i < maxSize ; i++) {
 			if (i < nowShowing.size()) {
 				movie = nowShowing.get(i);
-				str =  "\u2022 " + movie.getTitle() + " (" + movie.getCensorship() + ")";
-				System.out.printf("*  %-47s",str);
+				str = "\u2022 " + movie.getTitle() + " (" + movie.getCensorship() + ")";
+				System.out.printf("%-50s",str);
 			} else {
-				System.out.printf("*  %-47s","");
+				System.out.printf("%-50s","");
 			}
 			
 			if (i < preview.size()) {
 				movie = preview.get(i);
 				str = "\u2022 " + movie.getTitle() + " (" + movie.getCensorship() + ")";
-				System.out.printf("*  %-47s",str);
+				System.out.printf("%-50s",str);
 			} else {
-				System.out.printf("*  %-47s","");
+				System.out.printf("%-50s","");
 			}
 			
 			if (i < comingSoon.size()) {
 				movie = comingSoon.get(i);
 				str = "\u2022 " + movie.getTitle() + " (" + movie.getCensorship() + ")";
-				System.out.printf("*  %-47s",str);
+				System.out.println(str);
 			} else {
-				System.out.printf("*  %-47s","");
+				System.out.println("");
 			}
-			System.out.printf("*\n");
 		}
-		System.out.printf("*  %-47s*  %-47s*  %-47s*\n","","","");
-		System.out.printf("*  %-47s*  %-47s*  %-47s*\n","","","");
-		System.out.println("* ".repeat(76));
 		System.out.println("");
 	
 //		str = "\u2022 " + "abc" + " (" + "PG" + ")";
@@ -81,6 +72,4 @@ public class MovieListingCtrl {
 //		System.out.printf("%-50s","");
 //		System.out.printf("%-50s",str);
 	}
-	
-	//public static void printHorizontalBorder(int length)
 }

@@ -12,34 +12,16 @@ public class MovieListingView extends MoblimaViews {
     }
 	@Override
 	public void enterView() {
-        MoblimaViews menuViews = null;
         int choice;
         boolean loop = true;
-
-        Scanner sc = new Scanner(System.in);
 		
 		while (loop) {
-			 menuViews = null;
-			
 			 MovieListingCtrl.displayMovieListing();
-			 System.out.println(">>>>>>>>>>\n");
-			 
-			 /*********************Display Menu**************************/
-			 int num = 13;
-			 String str = " " + "_".repeat(num) + " MovieGoer - MOVIE LISTING " + "_".repeat(num);
-			 System.out.println(str);
-			 //System.out.println("str.length() - 3: " + (str.length() - 3));
-
-			 System.out.printf("*  %-" + (str.length() - 3) + "s*\n", "");
-			 System.out.printf("*  %-" + (str.length() - 3) + "s*\n", "1) View details of a movie");
-			 System.out.printf("*  %-" + (str.length() - 3) + "s*\n", "2) Return to main menu");
-			 System.out.printf("*  %-" + (str.length() - 3) + "s*\n","");
-			 
-			 System.out.println("* ".repeat(str.length() / 2 + 1));
-			 System.out.println("");
-			 /***********************************************************/
-			 
+			 System.out.println(">>>>>>>>");
+			 System.out.println("1) View details of a movie");
+			 System.out.println("2) Return to main menu");
 			 System.out.print("Enter your choice: ");
+			 
 		     choice = readInt(1);
 		     if (choice == -1) 
 		    	 continue;
@@ -47,7 +29,7 @@ public class MovieListingView extends MoblimaViews {
 		     switch (choice) {
 		         case 1:
 		             ///View movie details
-		        	 menuViews = new MovieDetailsView();
+		        	 menuView = new MovieDetailsView();
 		             break;
 		         case 2:
 		             loop = false;
@@ -57,8 +39,8 @@ public class MovieListingView extends MoblimaViews {
 		             break;
 		     }
 
-		     if (loop && menuViews!=null)
-		         menuViews.enterView();
+		     if (loop && menuView!=null)
+		         menuView.enterView();
 		 }
     }
 }
@@ -118,11 +100,4 @@ public class MovieListingView extends MoblimaViews {
 // ___________________________________________
 //
 //
-
-//* * * * * * * * * * Menu ************************
-//*                                                   *
-//*                                                   *
-//*                                                   *
-//*                                                   *
-//*                                                   *
 

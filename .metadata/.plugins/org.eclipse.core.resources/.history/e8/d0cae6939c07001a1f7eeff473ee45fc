@@ -17,23 +17,6 @@ public class MovieDetailsCtrl{
         for(Movie movie : movies){
             if(movieTitle.equalsIgnoreCase(movie.getTitle())){
             	System.out.println("*********************************************");
-            	
-            	System.out.println(">>>>>>>>>>\n");
-            	System.out.println("* ".repeat(25));
-            	
-            	String movieName = movie.getTitle() + " " + movie.getCensorship() + " (" + movie.getMovieType().getDescription() + ")";
-            	String str = " " + "=".repeat(10) + " " + movieName + " " + "=".repeat(10);
-            	System.out.printf("*  %-47s*\n",str);
-	   			
-	
-	   			System.out.printf("*  %-51s*\n", "");
-	   			System.out.printf("*  %-51s*\n", "1) View details of a movie");
-	   			System.out.printf("*  %-51s*\n", "2) Return to main menu");
-	   			System.out.printf("*  %-51s*\n","");
-	   			 
-	   			System.out.println("* ".repeat(str.length() / 2 + 1));
-	   			System.out.println("");
-            	
         		System.out.println("Movie: " + movie.getTitle() + " " + movie.getCensorship() + " (" + movie.getMovieType().getDescription() + ")");
         		System.out.println("Status: " + movie.getStatus().getDescription());
         		System.out.println("Director: " + movie.getDirector());
