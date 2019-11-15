@@ -36,7 +36,7 @@ public class ManageShowTimesView extends MoblimaViews {
             System.out.println("3) Remove");
             System.out.println("4) Go back\n");
             System.out.print("Enter your choice: ");
-            choice = readInt(false);
+            choice = readInt(1);
             if (choice == -1) continue;
             else if (choice <=0 || choice>4){
                 System.out.println("Please enter a number between 1 to 4.");
@@ -93,7 +93,7 @@ public class ManageShowTimesView extends MoblimaViews {
             }
             System.out.println((index+1) + ") Go back");
             System.out.print("Enter your choice: ");
-            choice = readInt(false);
+            choice = readInt(1);
             if (choice==-1) continue;
             if (choice<=0 || choice>(movies.size()+1)){
                 System.out.println("Please enter a number between 1 to " + (movies.size() + 1) + ".");
@@ -123,7 +123,7 @@ public class ManageShowTimesView extends MoblimaViews {
             }
             System.out.println((index+1) + ") Go back\n");
             System.out.print("Enter your choice: ");
-            choice = readInt(false);
+            choice = readInt(1);
 
             if (choice == -1) continue;
             if (choice<=0 || choice>(cineplexes.size()+1)){
@@ -165,7 +165,7 @@ public class ManageShowTimesView extends MoblimaViews {
                 }
                 System.out.println((index+1) + ") Go back\n");
                 System.out.print("Enter your choice: ");
-                choice = readInt(false);
+                choice = readInt(1);
 
                 if (choice == -1)  continue;
 

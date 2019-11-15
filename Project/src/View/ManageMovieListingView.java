@@ -22,7 +22,7 @@ public class ManageMovieListingView extends MoblimaViews {
             System.out.println("3) Remove");
             System.out.println("4) Go back\n");
             System.out.print("Enter your choice: ");
-            choice = readInt(false);
+            choice = readInt(1);
             if (choice == -1) continue;
             switch (choice) {
                 case 1:

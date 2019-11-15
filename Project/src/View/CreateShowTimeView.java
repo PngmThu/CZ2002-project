@@ -37,7 +37,7 @@ public class CreateShowTimeView extends ManageShowTimesView {
             System.out.println("---- Please enter the following ShowTime details below ----");
             while (loop) {
                 System.out.print("Enter Year: ");//Input to change Movie Title
-                y = readInt(true);//Scan for input
+                y = readInt(3);//Scan for input
                 if (y==-1) continue;
                 if (y<2019 || y>2050){
                     System.out.println("Please enter a value between 2019 to 2050.");
@@ -47,7 +47,7 @@ public class CreateShowTimeView extends ManageShowTimesView {
             }
             while (loop) {
                 System.out.print("Enter Month: ");
-                m = readInt(true);
+                m = readInt(3);
                 if (m==-1) continue;
                 if (m<=0 || m>12){
                     System.out.println("Please enter a value between 1 to 12.");
@@ -57,7 +57,7 @@ public class CreateShowTimeView extends ManageShowTimesView {
             }
            while (loop){
                System.out.print("Enter Day: ");
-               d = readInt(true);
+               d = readInt(3);
                if (d==-1) continue;
                else if (d<=0 || d>31){
                    System.out.println("Please enter a value between 1 to 31.");
@@ -67,7 +67,7 @@ public class CreateShowTimeView extends ManageShowTimesView {
            }
             while (loop){
                 System.out.print("Enter Hour: ");
-                hour = readInt(true);
+                hour = readInt(3);
                 if (hour == -1) continue;
                 else if (hour<0 || hour>23){
                     System.out.println("Please enter a value between 0 to 23.");
@@ -77,7 +77,7 @@ public class CreateShowTimeView extends ManageShowTimesView {
             }
             while (loop){
                 System.out.print("Enter Minute: ");
-                min = readInt(true);
+                min = readInt(3);
                 if (min == -1) continue;
                 else if (min<0 || min>60){
                     System.out.println("Please enter a value between 0 to 60.");

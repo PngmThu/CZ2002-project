@@ -19,10 +19,11 @@ public class UpdateTicketPricesView extends ManageSystemSettingsView{
             System.out.println("*************************************");
             System.out.println("Admin - Update Ticket Prices");
             System.out.println("*************************************");
+            System.out.println("---- Select a movie type ----");
             displayMovieTypesOptions();
             System.out.println(MovieType.values().length+1 + ") Go back\n");
             System.out.print("Enter your choice: ");
-            movieTypeChoice = readInt(false);
+            movieTypeChoice = readInt(1);
             if (movieTypeChoice <= 0 || movieTypeChoice >MovieType.values().length+1) {
                 System.out.println("Please enter a number between 1 to " + ( MovieType.values().length+1) + ".");
                 continue;
@@ -35,21 +36,24 @@ public class UpdateTicketPricesView extends ManageSystemSettingsView{
                     System.out.println("*************************************");
                     System.out.println("Admin - Select a Ticket Type");
                     System.out.println("*************************************");
-                    System.out.println(index + ") Ticket Type " + index);
                     for (TicketType ticketType : filteredTicketTypes) {
+                        System.out.println("*************************************");
+                        System.out.println(index + ") Ticket Type " + index);
                         ticketType.showTicketTypeInfo();
+                        System.out.println("*************************************");
                         index++;
                     }
-                    System.out.println((index + 1) + ") Go back\n");
-                    System.out.println("Enter your choice: ");
-                    ticketTypeChoice = readInt(false);
+                    System.out.println((index) + ") Go back\n");
+                    System.out.println("*************************************");
+                    System.out.print("Enter your choice: ");
+                    ticketTypeChoice = readInt(1);
                     if (ticketTypeChoice == -1) continue;
                     else if (ticketTypeChoice <= 0 || ticketTypeChoice > filteredTicketTypes.size() + 1) {
                         System.out.println("Please enter a number between 1 to " + filteredTicketTypes.size() + 1);
                         continue;
                     } else if (ticketTypeChoice == filteredTicketTypes.size() + 1) break;
                     while (loop) {
-                        System.out.println("Enter new ticket price: ");
+                        System.out.print("Enter new ticket price: ");
                         try {
                             price = sc.nextDouble();
 

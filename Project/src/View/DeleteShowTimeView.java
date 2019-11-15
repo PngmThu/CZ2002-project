@@ -47,7 +47,7 @@ public class DeleteShowTimeView extends ManageShowTimesView {
             if (index==0) System.out.println("There is no showtime available.");
             System.out.println((index+1) + ") Go back\n");
             System.out.print("Enter your choice: ");
-            choice = readInt(false);
+            choice = readInt(0);
             if (choice==-1) continue;
             if (choice==0 || choice>(showtimes.size()+1)){
                 System.out.println("Please enter a number between 1 to " + (showtimes.size() + 1) + ".");

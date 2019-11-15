@@ -42,13 +42,13 @@ public class UpdateMovieView extends ManageMovieListingView {
             System.out.println("7) Go back\n");
 
             System.out.print("Enter your choice: ");
-            choice = readInt(false);
+            choice = readInt(0);
             if (choice==-1) continue;
             switch (choice) {
                 case 1:
                     displayMovieStatus();
                     System.out.print("Enter new status:");
-                    choice = readInt(false);
+                    choice = readInt(0);
                     if (choice == -1) continue;
                     else if (choice <= 0 || choice > MovieStatus.values().length) {
                         System.out.println("Please enter a number between 1 to " + MovieStatus.values().length + ".");
@@ -60,7 +60,7 @@ public class UpdateMovieView extends ManageMovieListingView {
                 case 2:
                     displayMovieTypes();
                     System.out.print("Enter Movie Type: ");
-                    choice = readInt(false);
+                    choice = readInt(0);
                     if (choice == -1) continue;
                     else if (choice <= 0 || choice > MovieType.values().length) {
                         System.out.println("Please enter a number between 1 to " + MovieType.values().length + ".");
@@ -71,7 +71,7 @@ public class UpdateMovieView extends ManageMovieListingView {
                 case 3:
                     displayCensorShipTypes();
                     System.out.print("Enter Censorship: ");
-                    choice = readInt(false);
+                    choice = readInt(0);
                     if (choice == -1) continue;
                     else if (choice <= 0 || choice > MovieType.values().length) {
                         System.out.println("Please enter a number between 1 to " + MovieCensorship.values().length + ".");

@@ -31,7 +31,7 @@ public class DeleteMovieView extends ManageMovieListingView {
             System.out.println("1) Confirm Delete? ");
             System.out.println("2) Back ");
             System.out.print("Enter your choice: ");
-            choice = readInt(false);
+            choice = readInt(1);
             if (choice == 1){
                 updateStatus((movieFound.getTitle()), 4);
                 loop=false;

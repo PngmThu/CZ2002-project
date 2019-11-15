@@ -45,10 +45,10 @@ public class BookingView extends MoblimaViews{
     		return;
     	}
     	System.out.print("\nChoose a Show Time Number: ");
-    	scInt = readInt(true);
+    	scInt = readInt(3);
     	ShowTime showTime = showTimeList.get(scInt-1);
     	System.out.print("\nNumber of Tickets to Purchase: ");
-    	numTicket = readInt(true);
+    	numTicket = readInt(3);
     	
     	ArrayList<Seat> seatList = new ArrayList<Seat>();
     	for(int i = 0; i < numTicket; i++) {
@@ -57,7 +57,7 @@ public class BookingView extends MoblimaViews{
     		scString = sc.nextLine();
     		row = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".indexOf(scString.toUpperCase());
         	System.out.print("\nEnter Seat Column: ");
-    		col = readInt(true);
+    		col = readInt(3);
         	col -= 1;
         	if(showTime.getSeatStatusAt(row, col)) {
         		System.out.println("Seat is occupied. Please try again.");
@@ -86,7 +86,7 @@ public class BookingView extends MoblimaViews{
 			index++;
 		}
 		do {
-			scInt = readInt(true);
+			scInt = readInt(3);
 			if(scInt >= 0 && scInt < MovieGoerGroup.values().length) {
 				ageGroup = MovieGoerGroup.values()[scInt-1];
 			}

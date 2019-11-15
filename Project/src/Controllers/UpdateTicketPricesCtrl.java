@@ -9,11 +9,13 @@ public class UpdateTicketPricesCtrl {
     public static void displayMovieTypesOptions(){
         int index = 1;
         for (MovieType movieType : MovieType.values()){
-            System.out.println(index + ") " + movieType);
+            System.out.println(index + ") " + movieType.getDescription());
+            index++;
         }
     }
 
     public static ArrayList<TicketType> filterTicketTypes(int choice){
+        TicketType ticketType = null;
         ArrayList<TicketType> ticketTypes = TicketType.getAllTicketTypesData();
         MovieType movieType = null;
         if (choice == 1){
@@ -24,8 +26,9 @@ public class UpdateTicketPricesCtrl {
             movieType = MovieType.BLOCKBUSTER;
         }
 
-        for (TicketType ticketType : ticketTypes){
-            if (!(ticketType.getMovieType() == movieType)){
+        for (int i=0; i<ticketTypes.size(); i++){
+            ticketType = ticketTypes.get(i);
+            if (!(ticketType.getMovieType().getDescription().equalsIgnoreCase(movieType.getDescription()))){
                 ticketTypes.remove(ticketType);
             }
         }

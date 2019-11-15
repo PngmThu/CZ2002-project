@@ -29,6 +29,17 @@ public class PublicHoliday implements Serializable {
         return false;
 	}
 
+	public static boolean publicHolidayExist(String date) {
+		System.out.println(date);
+		ArrayList<PublicHoliday> publicHolidays = PublicHoliday.getAllPublicHolidaysData();
+		for (int i = 0 ; i < publicHolidays.size() ; i++) {
+			if (date.compareTo(publicHolidays.get(i).getDate())==0) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	public static void initializeData() {  //Call by classname: PublicHoliday.initializeData()
 		List list = null;
 		int i;
@@ -53,6 +64,23 @@ public class PublicHoliday implements Serializable {
 		list = (ArrayList)SerializeDB.readSerializedObject(filename);  //Read data
 
 		return (ArrayList<PublicHoliday>) list;
+	}
+
+	public static void addPublicHolidaysData(String date){
+		PublicHoliday publicHoliday = new PublicHoliday(date);
+		List data = getAllPublicHolidaysData();
+		String filename = ".\\data\\publicHoliday.dat";
+		data.add(publicHoliday);
+		SerializeDB.writeSerializedObject(filename, data);
+	}
+
+	public static void deletePublicHolidaysData(String date){
+		PublicHoliday publicHoliday = new PublicHoliday(date);
+		publicHoliday.showPublicHolidayInfo();
+		List data = getAllPublicHolidaysData();
+		String filename = ".\\data\\publicHoliday.dat";
+		data.remove(publicHoliday);
+		SerializeDB.writeSerializedObject(filename, data);
 	}
 
 	public void showPublicHolidayInfo() {

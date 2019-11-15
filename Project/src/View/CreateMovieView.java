@@ -35,7 +35,7 @@ public class CreateMovieView extends ManageMovieListingView{
             //Get movie status input from user
             displayMovieStatus();//Method in controller to display MovieStatus entity
             System.out.print("Enter Status: ");
-            movieStatusChoice = readInt(false);
+            movieStatusChoice = readInt(1);
             if (movieStatusChoice == -1) continue;
             else if (movieStatusChoice <= 0 || movieStatusChoice > MovieStatus.values().length) {
                 System.out.println("Please enter a number between 1 to " + MovieStatus.values().length + ".");
@@ -44,7 +44,7 @@ public class CreateMovieView extends ManageMovieListingView{
             //Get movie type input from user
             displayMovieTypes();//Method in controller to display MovieTypes entity
             System.out.print("Enter Movie Type: ");
-            movieTypeChoice = readInt(false);
+            movieTypeChoice = readInt(1);
             if (movieTypeChoice == -1) continue;
             else if (movieTypeChoice <= 0 || movieTypeChoice > MovieType.values().length) {
                 System.out.println("Please enter a number between 1 to " + MovieType.values().length + ".");
@@ -62,7 +62,7 @@ public class CreateMovieView extends ManageMovieListingView{
             //Get movie censorship input from user
             displayCensorShipTypes();//Method in controller to display MovieCensorshipTypes entity
             System.out.print("Enter Censorship: ");
-            censorshipChoice = readInt(false);
+            censorshipChoice = readInt(1);
             if (censorshipChoice == -1) continue;
             else if (movieTypeChoice <= 0 || movieTypeChoice > MovieType.values().length) {
                 System.out.println("Please enter a number between 1 to " + MovieCensorship.values().length + ".");
@@ -76,7 +76,7 @@ public class CreateMovieView extends ManageMovieListingView{
                 System.out.println("1) Create Movie?");
                 System.out.println("2) Cancel");
                 System.out.print("Enter your choice: ");
-                choice = readInt(true);
+                choice = readInt(3);
                 if (choice == 1){
                     System.out.println("Movie Created Successfully!");
                     return;
