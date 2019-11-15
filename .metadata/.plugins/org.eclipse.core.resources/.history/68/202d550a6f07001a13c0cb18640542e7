@@ -50,29 +50,33 @@ public class MovieDetailsView extends MoblimaViews{
 			 System.out.println("2) Buy tickets for " + movieTitle);
 			 System.out.println("3) Return to List-Movies page");
 			 System.out.print("Enter your choice: ");
-
-			 choice = readInt(1);
-		     if (choice == -1) 
-		    	 continue;
-		     
-		     switch (choice) {
-		         case 1:
-		             ///Display reviews: go to MovieReviewListView
-		        	 menuViews = new MovieReviewListView(movieTitle);			  
-		             break;
-		         case 2:
-		             ///Buy tickets: go to BookingView
-		        	 menuViews = new BookingView();  
-		             break;
-		         case 3:
-		             loop = false;
-		             break;
-		         default:
-		             System.out.println("Please enter a choice between 1 to 3.");
-		             System.out.println("");
-		             break;
-		     }
-
+//			 try {
+				 choice = readInt(1);
+			     if (choice == -1) 
+			    	 continue;
+			     
+			     switch (choice) {
+			         case 1:
+			             ///Go to MovieReviewListView
+			        	 menuViews = new MovieReviewListView(movieTitle);			  
+			             break;
+			         case 2:
+			             ///Buy tickets
+			        	 
+			        	 //menuViews go to MovieReview
+			             break;
+			         case 3:
+			             loop = false;
+			             break;
+			         default:
+			             System.out.println("Please enter a choice between 1 to 3.");
+			             System.out.println("");
+			     }
+//			 } catch (InputMismatchException e) {
+//			     System.out.println("Invalid choice! Please select a number between 1 to 3:");
+//			     System.out.println("");
+//			     sc.nextLine();
+//		     }
 		     if (loop && menuViews!=null)
 		         menuViews.enterView();
 		 }

@@ -19,8 +19,6 @@ public class MovieListingView extends MoblimaViews {
         Scanner sc = new Scanner(System.in);
 		
 		while (loop) {
-			 menuViews = null;
-			
 			 MovieListingCtrl.displayMovieListing();
 			 System.out.println(">>>>>>>>");
 			 System.out.println("1) View details of a movie");

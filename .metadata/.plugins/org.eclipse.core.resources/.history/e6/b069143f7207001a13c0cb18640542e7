@@ -30,25 +30,27 @@ public class Top5MovieView extends MoblimaViews {
             System.out.println("3) Return to main menu");
             System.out.println("");
             System.out.print("Enter your choice: ");
-
-            choice = readInt(1);
-		    if (choice == -1) 
-		    	continue;
-		    
-            switch (choice) {
-                case 1:
-                	Top5MovieCtrl.displayBySales();
-                	break;
-                case 2:
-                	Top5MovieCtrl.displayByRatings();
-                	break;
-                case 3:
-                    loop = false;
-                    break;
-                default:
-                    System.out.println("Please enter a choice between 1 to 3.");
-                    System.out.println("");
-		            break;
+            try {
+                choice = sc.nextInt();
+                switch (choice) {
+                    case 1:
+                    	Top5MovieCtrl.displayBySales();
+                    	break;
+                    case 2:
+                    	Top5MovieCtrl.displayByRatings();
+                    	break;
+                    case 3:
+                        loop = false;
+                        break;
+                    default:
+                        System.out.println("Please enter a choice between 1 to 3.");
+                        System.out.println("");
+			            break;
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid choice! Please select a number between 1 to 3!");
+                System.out.println("");
+			    sc.nextLine();
             }
         }
     }

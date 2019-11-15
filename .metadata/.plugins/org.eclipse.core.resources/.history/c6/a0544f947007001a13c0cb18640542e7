@@ -35,31 +35,36 @@ public class AddReviewView extends MoblimaViews{
 			
 			System.out.print("Enter your review: ");
 			content = sc.nextLine();
+//			try {
 			
-			System.out.print("Enter rating (0 - 5): ");
-			rating = readInt(1);
-		    if (rating == -1) 
-		    	continue;
-		     
-			if (rating < 0 || rating > 5) {
-				System.out.println("Invalid rating! Please enter an integer from 0 to 5! Try again.");
-				System.out.println("");
-				continue;
-			}
+				System.out.print("Enter rating (0 - 5): ");
+				rating = readInt(1);
+			    if (rating == -1) 
+			    	continue;
+			     
+				if (rating < 0 || rating > 5) {
+					System.out.println("Invalid rating! Please enter an integer from 0 to 5! Try again.");
+					System.out.println("");
+					continue;
+				}
+//			} catch (InputMismatchException e) {
+//			    System.out.println("Invalid rating! Please enter an integer from 0 to 5! Try again.");
+//			    System.out.println("");
+//			    sc.nextLine();
+//			    continue;
+//		    }
 			
 			System.out.print("Submit? (y/n) : ");
+			sc.nextLine();
 			temp = sc.nextLine();
 			
 			if (temp.equalsIgnoreCase("y")) {
 				//Add review
 				AddReviewCtrl.addNewReview(this.movieTitle, reviewer, content, rating);
 				System.out.println("-->> REVIEW IS ADDED <<--");
-			} else if (temp.equalsIgnoreCase("n"))
-				System.out.println("-->> REVIEW IS CANCELLED <<--");
-			else {
-				System.out.println("Invalid Input!");
-				System.out.println("-->> REVIEW IS CANCELLED <<--");
-			}
+			}  else if (!temp.equalsIgnoreCase("y") && !temp.equalsIgnoreCase("n"))
+				System.out.println("Please enter Y/N.");
+			else System.out.println("-->> REVIEW IS CANCELLED <<--");
 
 			
 			loop = false;

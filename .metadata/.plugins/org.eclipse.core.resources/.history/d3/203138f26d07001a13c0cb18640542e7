@@ -19,31 +19,33 @@ public class MovieListingView extends MoblimaViews {
         Scanner sc = new Scanner(System.in);
 		
 		while (loop) {
-			 menuViews = null;
-			
 			 MovieListingCtrl.displayMovieListing();
 			 System.out.println(">>>>>>>>");
 			 System.out.println("1) View details of a movie");
 			 System.out.println("2) Return to main menu");
 			 System.out.print("Enter your choice: ");
-			 
-		     choice = readInt(1);
-		     if (choice == -1) 
-		    	 continue;
-		     
-		     switch (choice) {
-		         case 1:
-		             ///View movie details
-		        	 menuViews = new MovieDetailsView();
-		             break;
-		         case 2:
-		             loop = false;
-		             break;
-		         default:
-		             System.out.println("Please enter a choice between 1 to 2.");
-		             break;
-		     }
-
+//			 try {
+			     choice = readInt(1);
+			     if (choice == -1) 
+			    	 continue;
+			     
+			     switch (choice) {
+			         case 1:
+			             ///View movie details
+			        	 menuViews = new MovieDetailsView();
+			             break;
+			         case 2:
+			             loop = false;
+			             break;
+			         default:
+			             System.out.println("Please enter a choice between 1 to 2.");
+			             sc.nextLine();
+			             break;
+			     }
+//			 } catch (InputMismatchException e) {
+//			     System.out.println("Invalid choice! Please select a number between 1 to 2.");
+//			     sc.nextLine();
+//		     }
 		     if (loop && menuViews!=null)
 		         menuViews.enterView();
 		 }

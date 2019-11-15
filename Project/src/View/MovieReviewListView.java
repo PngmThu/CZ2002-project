@@ -34,68 +34,34 @@ public class MovieReviewListView extends MoblimaViews{
 		 MovieReviewListCtrl.displayMovieReviews(this.movieTitle);
 		 
 		 while (loop) {
+			 menuViews = null;
+			 
 			 System.out.println(">>>>>>>>");
 			 System.out.println("1) Add review for " + this.movieTitle);
 			 System.out.println("2) Return to Movie-Details page");
 			 System.out.print("Enter your choice: ");
-			 try {
-			     choice = sc.nextInt();
-			     switch (choice) {
-			         case 1:
-			             ///Add review
-			        	 menuViews = new AddReviewView(this.movieTitle);
-			             break;
-			         case 2:
-			             loop = false;
-			             break;
-			         default:
-			             System.out.println("Please enter a choice between 1 to 2.");
-			             System.out.println("");
-			             break;
-			     }
-			 } catch (InputMismatchException e) {
-			     System.out.println("Invalid choice! Please select a number between 1 to 2:");
-			     System.out.println("");
-			     sc.nextLine();
+
+			 choice = readInt(1);
+		     if (choice == -1) 
+		    	 continue;
+		     
+		     switch (choice) {
+		         case 1:
+		             ///Add review
+		        	 menuViews = new AddReviewView(this.movieTitle);
+		             break;
+		         case 2:
+		             loop = false;
+		             break;
+		         default:
+		             System.out.println("Please enter a choice between 1 to 2.");
+		             System.out.println("");
+		             break;
 		     }
+
 		     if (loop && menuViews!=null)
 		         menuViews.enterView();
 		 }
 		 
     }
-
-	
-	/*
-	public void enterView(){
-		ArrayList<Movie> movies = Movie.getAllMoviesData();
-		String movieName;
-		int i, j;
-		System.out.println("Enter Movie to see reviews: ");
-		Scanner sc=new Scanner(System.in);
-		movieName=sc.nextLine();
-		boolean check=MovieReviewListCtrl.conditionForView(movieName);
-		
-		if(check==true) {
-			for(i=0;i<movies.size();i++) {
-				Movie m = movies.get(i);
-				if(m.getTitle().equals(movieName)) {
-					for (j = 0 ; j < m.getMovieReviews().size() ; j++) {
-						MovieReview mr = m.getMovieReviews().get(j);
-						System.out.println("Movie: " + m.getTitle() + "Name: " + mr.getReviewer() + "Review: " +
-						mr.getContent() + "; Rating: " + mr.getRating());
-					}
-				}
-			}
-		}
-		else {
-			System.out.println("No such movie! Type the correct movie.");
-			enterView();
-		}
-	}
-	
-	public static void main(String[] args) {
-		MovieReviewListView x = new MovieReviewListView();
-		x.enterView();
-	}
-	*/
 }
