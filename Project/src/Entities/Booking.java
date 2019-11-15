@@ -17,20 +17,12 @@ public class Booking implements Serializable {
 		Date date = new Date();   // this object contains the current date value
 		SimpleDateFormat ft = new SimpleDateFormat ("yyyyMMddHHmm");
 		String cinemaCode = showTime.getCinema().getCinemaCode();
-		String insertBooking = ".\\data\\booking.dat";
-		String updateMovieGoer = ".\\data\\movieGoer.dat";
-		
-//		showTime.bookSeatAt(seat);
-		
+	
 		this.transactionId = cinemaCode + ft.format(date);
 		this.price = price;
 		this.movieGoer = movieGoer;
 		this.showTime = showTime;
 		this.seats = seats;
-		//System.out.println(this.getPrice());
-		SerializeDB.insertSerializedObject(insertBooking, this);
-		movieGoer.getBookings().add(this);
-		SerializeDB.updateSerializedObject(updateMovieGoer, movieGoer);
 	}
 	
 	public String getTransactionId() {
