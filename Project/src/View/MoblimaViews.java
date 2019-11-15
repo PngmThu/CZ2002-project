@@ -6,8 +6,7 @@ import java.util.Scanner;
 public abstract class MoblimaViews{
 	Scanner sc = new Scanner(System.in);
     MoblimaViews menuView = null;
-    public void enterView() {
-    }
+    public abstract void enterView();
     
     public int readInt(int loop) {
         do {

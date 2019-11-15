@@ -29,17 +29,25 @@ public class UpdateMovieView extends ManageMovieListingView {
         displayMovie(movieFound);
         //Menu for multiple updates
         while (loop) {
-            System.out.println("*************************************");
-            System.out.println("Admin - Update Movie");
-            System.out.println("*************************************");
-            System.out.println("---- Select a movie detail to update ----");
-            System.out.println("1) Status");
-            System.out.println("2) Movie Type");
-            System.out.println("3) Censorship");
-            System.out.println("4) Synopsis");
-            System.out.println("5) Director(s)");
-            System.out.println("6) Cast(s)");
-            System.out.println("7) Go back\n");
+            System.out.println("\n>>>>>>>>>>\n");
+            /*********************Display Menu**************************/
+            int num = 13;
+            String str = " " + "_".repeat(num) + " Staff - UPDATE MOVIE " + "_".repeat(num);
+            System.out.println(str);
+            //System.out.println("str.length() - 3: " + (str.length() - 3));
+            System.out.printf("*  %-" + (str.length() - 3) + "s*\n", "");
+            System.out.printf("*  %-" + (str.length() - 3) + "s*\n", "1) Update status");
+            System.out.printf("*  %-" + (str.length() - 3) + "s*\n", "2) Update movie type");
+            System.out.printf("*  %-" + (str.length() - 3) + "s*\n", "3) Update censorship");
+            System.out.printf("*  %-" + (str.length() - 3) + "s*\n", "4) Update sypnopsis");
+            System.out.printf("*  %-" + (str.length() - 3) + "s*\n", "5) Update directors");
+            System.out.printf("*  %-" + (str.length() - 3) + "s*\n", "6) Update cast(s)");
+            System.out.printf("*  %-" + (str.length() - 3) + "s*\n", "7) Back to Main Menu");
+            System.out.printf("*  %-" + (str.length() - 3) + "s*\n","");
+
+            System.out.println("* ".repeat(str.length() / 2 + 1));
+            System.out.println("");
+            /***********************************************************/
             System.out.print("Enter your choice: ");
             choice = readInt(1);
             if (choice==-1) continue;

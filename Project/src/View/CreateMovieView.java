@@ -22,8 +22,8 @@ public class CreateMovieView extends ManageMovieListingView{
         //Prompt user to enter new movie details.
         while (loop) {
             System.out.println("*************************************");
-            System.out.println("Admin - Create a Movie");
-            System.out.println("*************************************");
+            System.out.println("Staff - CREATE MOVIE");
+            //System.out.printf("*  %-" + (str.length() - 3) + "s*\n","");
             System.out.println("---- Enter the following movie details below ----");
             //Get movie title input from user
             System.out.print("Enter Title: ");//Input to change Movie Title

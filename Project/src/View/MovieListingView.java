@@ -15,8 +15,6 @@ public class MovieListingView extends MoblimaViews {
         MoblimaViews menuViews = null;
         int choice;
         boolean loop = true;
-
-        Scanner sc = new Scanner(System.in);
 		
 		while (loop) {
 			 menuViews = null;

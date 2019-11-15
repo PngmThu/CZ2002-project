@@ -16,12 +16,23 @@ public class ManageSystemSettingsView extends MoblimaViews{
         boolean loop = true;
         //Page used by Admin to make changes to Ticket Prices and Public Holidays
         while (loop) {
-            System.out.println("*************************************");
-            System.out.println("Admin - Configure System Settings");
-            System.out.println("*************************************");
-            System.out.println("1) Update Ticket Prices");
-            System.out.println("2) Update Public Holidays");
-            System.out.println("3) Go back\n");
+            /*********************Display Menu**************************/
+            System.out.println(">>>>>>>>>>\n");
+
+            int num = 13;
+            String str = " " + "_".repeat(num) + " Staff - CONFIGURE SYSTEM SETTINGS " + "_".repeat(num);
+            System.out.println(str);
+            //System.out.println("str.length() - 3: " + (str.length() - 3));
+            System.out.printf("*  %-" + (str.length() - 3) + "s*\n", "");
+            System.out.printf("*  %-" + (str.length() - 3) + "s*\n", "1) Update ticket prices");
+            System.out.printf("*  %-" + (str.length() - 3) + "s*\n", "2) Update public holidays");
+            System.out.printf("*  %-" + (str.length() - 3) + "s*\n", "3) Back to Main Menu");
+            System.out.printf("*  %-" + (str.length() - 3) + "s*\n","");
+
+            System.out.println("* ".repeat(str.length() / 2 + 1));
+            System.out.println("");
+            /***********************************************************/
+
             System.out.print("Enter your choice: ");
             choice = readInt(1);
             if (choice == -1) continue;

@@ -28,13 +28,21 @@ public class ManageShowTimesView extends MoblimaViews {
         Cineplex cineplex = null; Movie movie=null; Cinema cinema = null;
         //Page used by Admin to make changes to Movie Listing
         while (loop) {
-            System.out.println("*************************************");
-            System.out.println("Admin - Manage Movie Showtimes");
-            System.out.println("*************************************");
-            System.out.println("1) Create");
-            System.out.println("2) Update");
-            System.out.println("3) Remove");
-            System.out.println("4) Go back\n");
+            /*********************Display Menu**************************/
+            int num = 13;
+            String str = " " + "_".repeat(num) + " Staff - MANAGE MOVIE SHOWTIMES " + "_".repeat(num);
+            System.out.println(str);
+            //System.out.println("str.length() - 3: " + (str.length() - 3));
+            System.out.printf("*  %-" + (str.length() - 3) + "s*\n", "");
+            System.out.printf("*  %-" + (str.length() - 3) + "s*\n", "1) Create a showtime");
+            System.out.printf("*  %-" + (str.length() - 3) + "s*\n", "2) Update a showtime");
+            System.out.printf("*  %-" + (str.length() - 3) + "s*\n", "3) Delete a showtime");
+            System.out.printf("*  %-" + (str.length() - 3) + "s*\n", "4) Back to Main Menu");
+            System.out.printf("*  %-" + (str.length() - 3) + "s*\n","");
+
+            System.out.println("* ".repeat(str.length() / 2 + 1));
+            System.out.println("");
+            /***********************************************************/
             System.out.print("Enter your choice: ");
             choice = readInt(1);
             if (choice == -1) continue;

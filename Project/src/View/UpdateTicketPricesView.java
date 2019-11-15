@@ -16,12 +16,18 @@ public class UpdateTicketPricesView extends ManageSystemSettingsView{
         double price = 0;
 
         while(loop) {
-            System.out.println("*************************************");
-            System.out.println("Admin - Update Ticket Prices");
-            System.out.println("*************************************");
-            System.out.println("---- Select a movie type ----");
-            displayMovieTypesOptions();
-            System.out.println(MovieType.values().length+1 + ") Go back\n");
+            /*********************Display Menu**************************/
+            System.out.println("\n>>>>>>>>>>\n");
+            int num = 13;
+            String str = " " + "_".repeat(num) + " Staff - SELECT A MOVIE TYPE " + "_".repeat(num);
+            System.out.println(str);
+            System.out.printf("*  %-" + (str.length() - 3) + "s*\n", "");
+            displayMovieTypesOptions(str);
+            System.out.printf("*  %-" + (str.length() - 3) + "s*\n", (MovieType.values().length+1)+") Back to Main Menu");
+            System.out.printf("*  %-" + (str.length() - 3) + "s*\n","");
+            System.out.println("* ".repeat(str.length() / 2 + 1));
+            System.out.println("");
+            /***********************************************************/
             System.out.print("Enter your choice: ");
             movieTypeChoice = readInt(1);
             if (movieTypeChoice <= 0 || movieTypeChoice >MovieType.values().length+1) {
@@ -31,20 +37,8 @@ public class UpdateTicketPricesView extends ManageSystemSettingsView{
                 return;
             } else {
                 while (loop){
-                    index = 1;
                     ArrayList<TicketType> filteredTicketTypes = filterTicketTypes(movieTypeChoice);
-                    System.out.println("*************************************");
-                    System.out.println("Admin - Select a Ticket Type");
-                    System.out.println("*************************************");
-                    for (TicketType ticketType : filteredTicketTypes) {
-                        System.out.println("*************************************");
-                        System.out.println(index + ") Ticket Type " + index);
-                        ticketType.showTicketTypeInfo();
-                        System.out.println("*************************************");
-                        index++;
-                    }
-                    System.out.println((index) + ") Go back\n");
-                    System.out.println("*************************************");
+                    displayTicketTypes(filteredTicketTypes,movieTypeChoice);
                     System.out.print("Enter your choice: ");
                     ticketTypeChoice = readInt(1);
                     if (ticketTypeChoice == -1) continue;
