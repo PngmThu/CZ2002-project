@@ -38,7 +38,7 @@ public class UpdateTicketPricesView extends ManageSystemSettingsView{
             } else {
                 while (loop){
                     ArrayList<TicketType> filteredTicketTypes = filterTicketTypes(movieTypeChoice);
-                    displayTicketTypes(filteredTicketTypes,movieTypeChoice);
+                    displayTicketTypes(filteredTicketTypes);
                     System.out.print("Enter your choice: ");
                     ticketTypeChoice = readInt(1);
                     if (ticketTypeChoice == -1) continue;
@@ -64,9 +64,8 @@ public class UpdateTicketPricesView extends ManageSystemSettingsView{
                     }
                     TicketType ticketType = updateTicketPrice(movieTypeChoice, ticketTypeChoice, price);
                     System.out.println("Ticket Price updated Successfully");
-                    System.out.println("Updated Ticket Type");
                     System.out.println("*************************************");
-                    ticketType.showTicketTypeInfo();
+                    displayUpdatedTicketType(ticketType);
                     return;
                 }
             }

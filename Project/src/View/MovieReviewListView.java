@@ -30,9 +30,20 @@ public class MovieReviewListView extends MoblimaViews{
 		 MovieReviewListCtrl.displayMovieReviews(this.movieTitle);
 		 
 		 while (loop) {
-			 System.out.println(">>>>>>>>");
-			 System.out.println("1) Add review for " + this.movieTitle);
-			 System.out.println("2) Return to Movie-Details page");
+
+			 /*********************Display Menu**************************/
+			 int num = 13;
+			 System.out.println("\n>>>>>>>>>>\n");
+			 String str = " " + "_".repeat(num) + " MovieGoer - MOVIE REVIEWS " + "_".repeat(num);
+			 System.out.println(str);
+			 System.out.printf("*  %-" + (str.length() - 3) + "s*\n", "");
+			 System.out.printf("*  %-" + (str.length() - 3) + "s*\n", "1) Add Review for " + this.movieTitle);
+			 System.out.printf("*  %-" + (str.length() - 3) + "s*\n", "2) Return to movie details page");
+			 System.out.printf("*  %-" + (str.length() - 3) + "s*\n","");
+			 System.out.println("* ".repeat(str.length() / 2 + 1));
+			 System.out.println("");
+			 /***********************************************************/
+
 			 System.out.print("Enter your choice: ");
 
 			 choice = readInt(1);

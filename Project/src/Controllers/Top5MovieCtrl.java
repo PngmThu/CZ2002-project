@@ -60,13 +60,25 @@ public class Top5MovieCtrl {
 			size = movies.size();
 		
 		System.out.println("");
-		System.out.println("==== List top 5 movies BY ticket sales ===");
+
+		/********************************Display Information***********************************/
+		//Chang num to increase the length of the box
+		int num = 20;
+		String str = "=".repeat(num) + " " + "LIST TOP 5 MOVIES BY TICKET SALES"  +" " + "=".repeat(num);
+		//Top horizontal border
+		System.out.println("\n"+("* ".repeat(str.length() / 2 + 4)));
+		//Ticket Type #
+		System.out.printf("*  %-" + (str.length() + 2) + "s*\n", str);
+		//Top Movies By Ticket Sales Information
 		for (i = 0 ; i < size ; i++) {
 			Movie movie = movies.get(i);
-			System.out.println("\u2022 " + movie.getTitle() +
-					" with a total ticket sales of $" + Booking.getSales(movie) + "!" );
+			System.out.printf("*  %-" + (str.length() + 2) + "s*\n", "\u2022 " + movie.getTitle() +
+					" with a total ticket sales of $" + Booking.getSales(movie) + "!");
 		}
-		System.out.println("");
+		//Bottom horizontal border
+		System.out.printf("*  %-" + (str.length() + 2) + "s*\n","");
+		System.out.println("* ".repeat(str.length() / 2 + 4));
+		/*****************************************************************************************/
 	}
 	
 	public static void displayByRatings() {
@@ -77,14 +89,24 @@ public class Top5MovieCtrl {
 			size = 5;
 		else
 			size = movies.size();
-		
-		System.out.println("");
-		System.out.println("=== List top 5 movies BY overall reviewers' ratings ===");
+
+		/********************************Display Information***********************************/
+		//Chang num to increase the length of the box
+		int num = 13;
+		String str = "=".repeat(num) + " " + "LIST TOP 5 MOVIES BY OVERALL REVIEWERS' RATING"  +" " + "=".repeat(num);
+		//Top horizontal border
+		System.out.println("\n"+("* ".repeat(str.length() / 2 + 4)));
+		//Ticket Type #
+		System.out.printf("*  %-" + (str.length() + 2) + "s*\n", str);
+		//Top Movies By Average Ratings Information
 		for (i = 0 ; i < size ; i++) {
 			Movie movie = movies.get(i);
-			System.out.println("\u2022 " + movie.getTitle() +
-					" with an average rating of " + movie.getAvgRating() + "!");
+			System.out.printf("*  %-" + (str.length() + 2) + "s*\n", "\u2022 " + movie.getTitle() +
+					" with a overall rating of " + movie.getAvgRating() + "!");
 		}
-		System.out.println("");
+		//Bottom horizontal border
+		System.out.printf("*  %-" + (str.length() + 2) + "s*\n","");
+		System.out.println("* ".repeat(str.length() / 2 + 4));
+		/*****************************************************************************************/
 	}
 }

@@ -19,4 +19,8 @@ public class UpdateShowTimeCtrl {
         System.out.println("Successfully updated showtime.");
     }
 
+    public static void displayShowTimes(){
+
+    }
+
 }

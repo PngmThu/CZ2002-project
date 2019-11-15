@@ -30,7 +30,6 @@ public class PublicHoliday implements Serializable {
 	}
 
 	public static boolean publicHolidayExist(String date) {
-		System.out.println(date);
 		ArrayList<PublicHoliday> publicHolidays = PublicHoliday.getAllPublicHolidaysData();
 		for (int i = 0 ; i < publicHolidays.size() ; i++) {
 			if (date.compareTo(publicHolidays.get(i).getDate())==0) {

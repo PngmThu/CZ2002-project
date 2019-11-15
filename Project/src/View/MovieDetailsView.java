@@ -42,11 +42,24 @@ public class MovieDetailsView extends MoblimaViews{
 		 loop = true;
 		 while (loop) {
 			 menuView = null;
-			 
-			 System.out.println(">>>>>>>>");
-			 System.out.println("1) Display reviews for " + movieTitle);
-			 System.out.println("2) Buy tickets for " + movieTitle);
-			 System.out.println("3) Return to List-Movies page");
+
+			 /*********************Display Menu**************************/
+			 int num = 13;
+			 String str = " " + "_".repeat(num) + " MovieGoer - MOVIE DETAILS " + "_".repeat(num);
+			 System.out.println("\n>>>>>>>>>>\n");
+			 System.out.println(str);
+			 //System.out.println("str.length() - 3: " + (str.length() - 3));
+
+			 System.out.printf("*  %-" + (str.length() - 3) + "s*\n", "");
+			 System.out.printf("*  %-" + (str.length() - 3) + "s*\n", "1) Display reviews for " + movieTitle);
+			 System.out.printf("*  %-" + (str.length() - 3) + "s*\n", "2) Buy tickets for " + movieTitle);
+			 System.out.printf("*  %-" + (str.length() - 3) + "s*\n", "3) Return to List-Movies page");
+			 System.out.printf("*  %-" + (str.length() - 3) + "s*\n","");
+
+			 System.out.println("* ".repeat(str.length() / 2 + 1));
+			 System.out.println("");
+			 /***********************************************************/
+
 			 System.out.print("Enter your choice: ");
 
 			 choice = readInt(1);

@@ -21,12 +21,21 @@ public class Top5MovieView extends MoblimaViews {
 
         while (loop) {
             //Print Menu to list top 5 movies by ticket sales OR by overall reviewers� ratings
-        	System.out.println("*********************************************");
-        	System.out.println("List top 5 movies BY: ");
-            System.out.println("1) Ticket sales");
-            System.out.println("2) Overall reviewers' ratings");
-            System.out.println("3) Return to main menu");
+            /*********************Display Menu**************************/
+            int num = 13;
+            String str = " " + "_".repeat(num) + " MovieGoer - LIST TOP 5 BY " + "_".repeat(num);
+            System.out.println("\n>>>>>>>>>>\n");
+            System.out.println(str);
+            System.out.printf("*  %-" + (str.length() - 3) + "s*\n", "");
+            System.out.printf("*  %-" + (str.length() - 3) + "s*\n", "1) Ticket sales");
+            System.out.printf("*  %-" + (str.length() - 3) + "s*\n", "2) Overall reviewers' ratings");
+            System.out.printf("*  %-" + (str.length() - 3) + "s*\n", "3) Back to main menu");
+            System.out.printf("*  %-" + (str.length() - 3) + "s*\n","");
+
+            System.out.println("* ".repeat(str.length() / 2 + 1));
             System.out.println("");
+            /***********************************************************/
+
             System.out.print("Enter your choice: ");
 
             choice = readInt(1);

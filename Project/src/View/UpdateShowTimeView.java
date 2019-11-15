@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import static Controllers.UpdateShowTimeCtrl.displayShowTimes;
 import static Controllers.UpdateShowTimeCtrl.updateShowTime;
 
 public class UpdateShowTimeView extends ManageShowTimesView{
@@ -31,6 +32,20 @@ public class UpdateShowTimeView extends ManageShowTimesView{
         ShowTime showtime = null;
 
         while(loop) {
+
+            /*********************Display Menu**************************/
+            System.out.println("\n>>>>>>>>>>\n");
+            int num = 13;
+            String str = " " + "_".repeat(num) + " Staff - SELECT A SHOWTIME " + "_".repeat(num);
+            System.out.println(str);
+            System.out.printf("*  %-" + (str.length() - 3) + "s*\n", "");
+            displayShowTimes();
+            //System.out.printf("*  %-" + (str.length() - 3) + "s*\n", (MovieType.values().length+1)+") Back to Main Menu");
+            System.out.printf("*  %-" + (str.length() - 3) + "s*\n","");
+            System.out.println("* ".repeat(str.length() / 2 + 1));
+            System.out.println("");
+            /***********************************************************/
+
                 System.out.println("*************************************");
                 System.out.println("Admin - Updating Showtime");
                 System.out.println("*************************************");
