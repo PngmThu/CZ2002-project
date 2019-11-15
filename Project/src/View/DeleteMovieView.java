@@ -7,6 +7,7 @@ import static Controllers.UpdateMovieCtrl.updateStatus;
 import static Controllers.DeleteMovieCtrl.checkMovieDeleted;
 
 public class DeleteMovieView extends ManageMovieListingView {
+    @Override
     public void enterView() {
         boolean loop = true;
         int choice;

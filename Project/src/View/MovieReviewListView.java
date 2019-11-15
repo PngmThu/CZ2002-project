@@ -23,7 +23,7 @@ public class MovieReviewListView extends MoblimaViews{
 		this.movieTitle = movieTitle;
 	}
 
-    
+	@Override
     public void enterView(){
 		 MoblimaViews menuViews = null;
 		 int choice;

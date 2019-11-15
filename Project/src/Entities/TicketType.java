@@ -188,7 +188,6 @@ public class TicketType implements Serializable {
 		SerializeDB.writeSerializedObject(filename, data);  //Write data
 	}
 	
-	
 	public static ArrayList<TicketType> getAllTicketTypesData() {   //Call by classname: TicketType.getAllTicketTypesData()
 		List list = null;
 		String filename = ".\\data\\ticketType.dat";
@@ -204,7 +203,7 @@ public class TicketType implements Serializable {
 	
 	public void showTicketTypeInfo() {  
 		int i;
-		System.out.println("*********************************************");
+		System.out.println("*************************************");
 		System.out.println("movieType: " + this.movieType );
 		System.out.println("cinemaClass: " + this.cinemaClass);
 		
