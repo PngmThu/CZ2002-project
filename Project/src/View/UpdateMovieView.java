@@ -12,7 +12,7 @@ import static Controllers.CreateMovieCtrl.*;
 import static Controllers.UpdateMovieCtrl.*;
 
 public class UpdateMovieView extends ManageMovieListingView {
-
+    @Override
     public void enterView() {
         String movieTitle=null, synopsis=null, directors=null, casts=null;
         int choice;

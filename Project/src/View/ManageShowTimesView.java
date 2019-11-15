@@ -21,7 +21,7 @@ public class ManageShowTimesView extends MoblimaViews {
         ManageShowTimesView view = new ManageShowTimesView();
         view.enterView();
     }
-
+    @Override
     public void enterView(){
         int choice;
         boolean loop = true;

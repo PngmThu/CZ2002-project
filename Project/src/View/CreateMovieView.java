@@ -9,6 +9,7 @@ import static Controllers.CreateMovieCtrl.*;
 import static Controllers.CreateMovieCtrl.addMovie;
 
 public class CreateMovieView extends ManageMovieListingView{
+    @Override
     public void enterView() {
         /***Variables to be passed into Movie.addMovie();***/
         int choice, movieTypeChoice, censorshipChoice, movieStatusChoice;

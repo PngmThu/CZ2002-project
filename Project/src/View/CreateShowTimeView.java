@@ -18,7 +18,7 @@ public class CreateShowTimeView extends ManageShowTimesView {
         this.cineplex = cineplex;
         this.cinema = cinema;
     }
-
+    @Override
     public void enterView() {
         int choice, d=0, m=0, y=0, hour=0, min=0;
         boolean loop = true;

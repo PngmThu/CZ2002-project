@@ -8,7 +8,7 @@ public class ManageMovieListingView extends MoblimaViews {
         MoblimaViews menuViews = new ManageMovieListingView();
         menuViews.enterView();
     }
-
+    @Override
     public void enterView() {
         int choice;
         boolean loop = true;

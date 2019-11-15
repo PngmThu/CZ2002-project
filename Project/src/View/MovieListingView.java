@@ -10,7 +10,7 @@ public class MovieListingView extends MoblimaViews {
         MoblimaViews menuViews = new MovieListingView();
         menuViews.enterView();
     }
-	
+	@Override
 	public void enterView() {
         MoblimaViews menuViews = null;
         int choice;

@@ -255,6 +255,17 @@ public class SerializeDB
 		}
 		
 		********************************************************************/
+
+		/***************************Test PublicHoliday********************************
+		 //PublicHoliday.initializeData();
+
+		 ArrayList<PublicHoliday> publicHolidays = PublicHoliday.getAllPublicHolidaysData();
+		 for (i = 0 ; i < publicHolidays.size() ; i++) {
+			 PublicHoliday ph = publicHolidays.get(i);
+			 ph.showPublicHolidayInfo();
+		 }
+
+		 ********************************************************************/
 		
 		/************************Insert data of Movie*******************************
 		List data = new ArrayList<>();
