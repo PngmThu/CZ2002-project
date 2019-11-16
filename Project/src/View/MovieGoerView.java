@@ -54,7 +54,8 @@ public class MovieGoerView extends MoblimaViews {
                 default:
                     System.out.println("Please enter a choice between 1 to 5.");
             }
-            menuView.enterView();
+            if (loop && menuView!=null)
+                menuView.enterView();
         }
     }
 }
