@@ -73,7 +73,7 @@ public class MovieDetailsView extends MoblimaViews{
 		             break;
 		         case 2:
 		             ///Buy tickets: go to BookingView
-		        	 menuView = new BookingView();
+		        	 menuView = new BookingView(movieTitle);
 		             break;
 		         case 3:
 		             loop = false;
