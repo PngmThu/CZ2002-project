@@ -22,6 +22,7 @@ public class BookingCtrl {
 	private static ArrayList<Cinema> cinemaList = Cinema.getAllCinemasData();
 	
 	public static void displayMovies() {
+		System.out.println("======================== Movie Booking ========================");
 		for(Movie movie: movieList) {
     		System.out.println("Movie: " + movie.getTitle());
     	}
@@ -45,17 +46,6 @@ public class BookingCtrl {
 		return showTimeList;
 	}
 	
-	public static MovieGoer movieGoerExist(String email) {
-		ArrayList<MovieGoer> movieGoers = MovieGoer.getAllMovieGoersData();
-		MovieGoer mg = new MovieGoer(email);
-
-		for(MovieGoer movieGoer: movieGoers) {
-			if (email.equals(movieGoer.getEmail()))
-				return movieGoer;
-		}
-		return null;  //Not in the record of MovieGoer
-	}
-	
 	public static Movie movieExist(String title) {
 		for(Movie movie: movieList) {
 			if(movie.getTitle().equalsIgnoreCase(title)) {
@@ -77,14 +67,11 @@ public class BookingCtrl {
 			isPublicHoliday = "false";	
 		//-1 if not found in TicketType
 		return TicketType.computePrice(movieType, cinemaClass, movieGoerGroup, dayOfWeek, isPublicHoliday);  	
-	}
-	
-	public static MovieGoer addMovieGoer(String name, String mobile, String email, MovieGoerGroup ageGroup) {
-		return MovieGoer.addMovieGoer(new MovieGoer(name, mobile, email, ageGroup));
-	}
+	}	
 	
 	public static boolean confirmBooking(MovieGoer movieGoer, double price, ShowTime showTime, 
 			ArrayList<Seat> seatList) {
+		
 		String bookingFile = ".\\data\\booking.dat";
 		String movieGoerFile = ".\\data\\movieGoer.dat";
 		
@@ -96,75 +83,5 @@ public class BookingCtrl {
 		movieGoer.addBooking(booking);		
 		SerializeDB.updateSerializedObject(movieGoerFile, movieGoer);
 		return true;
-	}
-	
-	
-	public static void displaySeat(ShowTime showtime) {
-		String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-		int row, col, decorate, r, c;
-		boolean[][] seatStatus;
-		
-		seatStatus = showtime.getSeatStatus();
-		row = showtime.getCinema().getRowSize();
-		col = showtime.getCinema().getColSize();
-		
-		System.out.println("======================== Seat Layout ========================");
-		System.out.println();
-		System.out.print("    ");
-		for(decorate = 1; decorate <= (col/2); decorate++) {
-			System.out.print(String.format("%02d", decorate) + "  ");
-		}
-		System.out.print("\t ");
-		for(; decorate <= col; decorate++) {
-			System.out.print(String.format("%02d", decorate) + "  ");
-		}
-		System.out.println("");
-		for(r = 0; r < row; r++) {
-			decorate = 0;
-			System.out.print("  ");
-			while(decorate < (2*col + 1)) {
-				
-				System.out.print("=");
-				decorate++;
-			}
-			System.out.print(" \t");
-			while(decorate < (4*col + 2)) {
-				System.out.print("=");
-				decorate++;
-			}
-			System.out.println();
-			System.out.print(alphabet.charAt(r) + " |");
-			for(c = 0; c < (col/2); c++) {
-				if(seatStatus[r][c]) {
-					System.out.print(" x |");
-				}else {
-					System.out.print("   |");
-				}
-				if(seatStatus[r][c]) {
-					
-				}
-			}
-			System.out.print(" \t|");
-			for(; c < col; c++) {
-				if(seatStatus[r][c]) {
-					System.out.print(" x |");
-				}else {
-					System.out.print("   |");
-				}
-			}
-			System.out.println();
-		}
-		decorate = 0;
-		System.out.print("  ");
-		while(decorate < (2*col + 1)) {
-			System.out.print("=");
-			decorate++;
-		}
-		System.out.print(" \t");
-		while(decorate < (4*col + 2)) {
-			System.out.print("=");
-			decorate++;
-		}
-		System.out.println("\n");
 	}
 }
