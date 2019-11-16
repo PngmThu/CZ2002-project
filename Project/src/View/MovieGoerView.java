@@ -19,9 +19,8 @@ public class MovieGoerView extends MoblimaViews {
             System.out.printf("*  %-" + (str.length() - 3) + "s*\n", "");
             System.out.printf("*  %-" + (str.length() - 3) + "s*\n", "1) Movie Listing");
             System.out.printf("*  %-" + (str.length() - 3) + "s*\n", "2) Booking History");
-            System.out.printf("*  %-" + (str.length() - 3) + "s*\n", "3) Booking History");
-            System.out.printf("*  %-" + (str.length() - 3) + "s*\n", "4) List Top 5 Movies");
-            System.out.printf("*  %-" + (str.length() - 3) + "s*\n", "5) Back to main menu");
+            System.out.printf("*  %-" + (str.length() - 3) + "s*\n", "3) List Top 5 Movies");
+            System.out.printf("*  %-" + (str.length() - 3) + "s*\n", "4) Back to main menu");
             System.out.printf("*  %-" + (str.length() - 3) + "s*\n","");
 
             System.out.println("* ".repeat(str.length() / 2 + 1));
@@ -41,18 +40,14 @@ public class MovieGoerView extends MoblimaViews {
                     menuView = new BookingHistoryView();
                     break;
                 case 3:
-                    //bring user to BookingView where they can begin the booking process
-                    menuView = new BookingView();
-                    break;
-                case 4:
                     //bring user to Top5MovieView where they can view by overall sales or ratings.
                     menuView = new Top5MovieView();
                     break;
-                case 5:
+                case 4:
                     loop = false;
                     break;
                 default:
-                    System.out.println("Please enter a choice between 1 to 5.");
+                    System.out.println("Please enter a choice between 1 to 4.");
             }
             if (loop && menuView!=null)
                 menuView.enterView();
