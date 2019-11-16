@@ -34,7 +34,7 @@ public class MovieGoerView extends MoblimaViews {
             switch (choice) {
                 case 1:
                     //bring user to SearchMovieView where they can view MovieListing
-                    menuView = new SearchMovieView();
+                    menuView = new MovieListingView();
                     break;
                 case 2:
                     //bring user to BookingHistoryView where they can view their history of bookings
