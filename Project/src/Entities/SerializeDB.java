@@ -137,7 +137,7 @@ public class SerializeDB
 		System.out.println(ft2.format(date));
 		**********************************************************************/
 		
-		/********************Initialize all databases****************************/
+		/********************Initialize all databases****************************
 		Movie.initializeData();
 		Vendor.initializeData(); 
 		Cineplex.initializeData();
@@ -148,7 +148,7 @@ public class SerializeDB
 	    Booking.initializeData();
 	    PublicHoliday.initializeData();
 		System.out.println("Done");
-		/*********************************************************************/
+		*********************************************************************/
 		
 		/***************************Test Movie********************************
 		//Movie.initializeData();
@@ -208,7 +208,7 @@ public class SerializeDB
 			cinema.showCinemaInfo();
 		}
 		
-		**********************************************************************/
+		*********************************************************************/
 		
 		/***************************Test MovieGoer********************************
 		//MovieGoer.initializeData();

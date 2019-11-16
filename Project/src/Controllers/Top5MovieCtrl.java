@@ -102,7 +102,7 @@ public class Top5MovieCtrl {
 		for (i = 0 ; i < size ; i++) {
 			Movie movie = movies.get(i);
 			System.out.printf("*  %-" + (str.length() + 2) + "s*\n", "\u2022 " + movie.getTitle() +
-					" with a overall rating of " + movie.getAvgRating() + "!");
+					" with a overall rating of " + String.format("%.1f", movie.getAvgRating()) + "!");
 		}
 		//Bottom horizontal border
 		System.out.printf("*  %-" + (str.length() + 2) + "s*\n","");

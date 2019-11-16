@@ -28,7 +28,7 @@ public class BookingCtrl {
     		for(ShowTime showTime: cinema.getShowTimes()) {
     			if(showTime.getMovie().getTitle().equalsIgnoreCase(movie.getTitle()) && 
     					!showTime.getMovie().getStatus().equals(MovieStatus.END)) {
-    				System.out.println("(" + index + ")\tCinema Code: " + cinema.getCinemaCode() + 
+    				System.out.println("(" + index + ")\tCinema Code: " + cinema.getCinemaCode() + " (" + cinema.getCinemaClass().getDescription() + ")" +
     						"\n\tDate: " + showTime.getFullDateString() + "\tTime: " + showTime.getTimeString());
     				System.out.println();
     				showTimeList.add(showTime);

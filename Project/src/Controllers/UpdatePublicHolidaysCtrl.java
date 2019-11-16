@@ -5,7 +5,7 @@ import Entities.PublicHoliday;
 public class UpdatePublicHolidaysCtrl {
     public static boolean addPublicHoliday(int year, int month, int day) {
         String date = Integer.toString(day) + "-" + Integer.toString(month) + "-" + Integer.toString(year);
-        if (!PublicHoliday.publicHolidayExist(date)){
+        if (PublicHoliday.publicHolidayExist(date)){
             return false;
         }
         PublicHoliday.addPublicHolidaysData(date);

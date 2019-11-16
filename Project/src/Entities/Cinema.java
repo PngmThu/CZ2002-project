@@ -145,22 +145,22 @@ public class Cinema implements Serializable{
 		ArrayList<Movie> movies = Movie.getAllMoviesData();
 		
 		//Add ShowTimes for cinemas
-		for (i = 0 ; i < cinemas.size() ; i += 3) {  //For each cineplex
-			//Cinema 0
-			cinema = cinemas.get(i);
-			cinema.addShowTime(movies.get(0), 10, 11, 2019, 10, 30);
-			//Cinema 1
-			cinema = cinemas.get(i+1);
-			cinema.addShowTime(movies.get(1), 11, 11, 2019, 21, 0);
-			//Cinema 2
-			cinema = cinemas.get(i+2);
-			cinema.addShowTime(movies.get(0), 12, 11, 2019, 14, 45);
+
+		for (Movie movie : movies) {
+			if (movie.getStatus().equals(MovieStatus.NOW) || movie.getStatus().equals(MovieStatus.NOW)) {
+				for (i = 0 ; i < cinemas.size() ; i++) {  //For each cineplex
+					//Cinema 0
+					cinema = cinemas.get(i);
+					cinema.addShowTime(movie, 1, 12, 2019, 10, 30);
+					cinema.addShowTime(movie, 2, 12, 2019, 14, 30);
+				}
+			}
 		}
 		
-		//Book a seat in cinema 0 of cineplex 0
-		cinema = cinemas.get(0);
-		ShowTime st = new ShowTime(cinema, movies.get(0), 10, 11, 2019, 10, 30);
-		st.bookSeatAt(new Seat(0, 1));
+//		//Book a seat in cinema 0 of cineplex 0
+//		cinema = cinemas.get(0);
+//		ShowTime st = new ShowTime(cinema, movies.get(0), 10, 11, 2019, 10, 30);
+//		st.bookSeatAt(new Seat(0, 1));
 	}
 	
 	public static ArrayList<Cinema> getAllCinemasData() {   //Call by classname: Cinema.getAllCinemasData()
