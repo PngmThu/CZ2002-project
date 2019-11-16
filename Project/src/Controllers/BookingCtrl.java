@@ -21,13 +21,6 @@ public class BookingCtrl {
 	private static ArrayList<Movie> movieList = Movie.getAllMoviesData();
 	private static ArrayList<Cinema> cinemaList = Cinema.getAllCinemasData();
 	
-	public static void displayMovies() {
-		System.out.println("======================== Movie Booking ========================");
-		for(Movie movie: movieList) {
-    		System.out.println("Movie: " + movie.getTitle());
-    	}
-	}
-	
 	public static ArrayList<ShowTime> displayShowTimes(Movie movie) {
 		int index = 1;
 		ArrayList<ShowTime> showTimeList = new ArrayList<ShowTime>();

@@ -10,6 +10,12 @@ import Entities.ShowTime;
 
 public class BookingView extends MoblimaViews{
 	
+	private String movieTitle;
+	
+	public BookingView(String movieTitle) {
+		this.movieTitle = movieTitle;
+	}
+	
     public void enterView(){
     	int chances = 2, scInt = 0;
     	double price;
@@ -17,22 +23,13 @@ public class BookingView extends MoblimaViews{
     	Movie movie = null;
     	ArrayList<Seat> seatList = new ArrayList<Seat>();
   	
-    	BookingCtrl.displayMovies();
-    	for(int i = chances; i >= 0; i--) {
-    		System.out.print("\nEnter Title: ");
-        	scString = sc.nextLine();
-        	movie = BookingCtrl.movieExist(scString);
-        	if(movie == null) {
-        		if(i == 0) {
-        			System.out.println("Movie does not exist. Returning back to the Menu.\n");
-        			return;
-        		}else {
-        			System.out.println("Movie does not exist.\t" + i + " tries left.");
-        		}
-        	}else {
-        		break;
-        	}	
-    	}   	
+
+    	movie = BookingCtrl.movieExist(movieTitle);
+    	if(movie == null) {
+    			System.out.println("Movie does not exist. Returning back to the Menu.\n");
+    			return;
+    	}
+     	
 	
     	System.out.println("======================== "+ movie.getTitle() + " Showtimes ========================");
     	ArrayList<ShowTime> showTimeList = BookingCtrl.displayShowTimes(movie);
