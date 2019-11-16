@@ -20,8 +20,10 @@ public class SeatView extends MoblimaViews{
 		for(int i = chances; i >= 0; i--) {
     		System.out.print("\nNumber of Tickets to Purchase(Max. 5): ");
     		numTicket = readInt(3);
-    		if(numTicket == -1)
+    		if(numTicket == -1) {
+				System.out.print(" Returning back to the Menu.");
 				return null;
+			}
 			if(numTicket <= 0 || numTicket > 5) {
 				if(i == 0) {
         			System.out.println("Invalid Input. Returning back to the Menu.\n");

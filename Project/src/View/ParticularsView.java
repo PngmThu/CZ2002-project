@@ -29,8 +29,10 @@ public class ParticularsView extends MoblimaViews{
 	
 		for(int i = chances; i >= 0; i--) {
 			scInt = readInt(3);
-			if(scInt == -1)
+			if(scInt == -1) {
+				System.out.print(" Returning back to the Menu.");
 				return;
+			}
 			if(scInt <= 0 || scInt > MovieGoerGroup.values().length) {
 				if(i == 0) {
 	    			System.out.println("Invalid Input. Returning back to the Menu.\n");

@@ -46,8 +46,11 @@ public class BookingView extends MoblimaViews{
 			System.out.print("\nChoose a Show Time Number: ");
 			scInt = readInt(3);
 			
-			if(scInt == -1)
+			if(scInt == -1) {
+				System.out.print(" Returning back to the Menu.");
 				return;
+			}
+				
 			if(scInt <= 0 || scInt > showTimeList.size()) {
 				if(i == 0) {
         			System.out.println("Invalid Input. Returning back to the Menu.\n");
@@ -64,9 +67,10 @@ public class BookingView extends MoblimaViews{
     	menuView = new SeatView();
     	SeatView sv = (SeatView)menuView;
     	seatList = sv.enterView(showTime);
+    	if(seatList == null)
+    		return;
+    	
     	menuView = new ParticularsView();
-    	//ParticularsView pv = (ParticularView)menuView;
-    	//movieGoer = pv.enterView();
     	ParticularsView pv = (ParticularsView)menuView;
     	pv.enterView();
     	MovieGoer movieGoer = pv.getMovieGoer();

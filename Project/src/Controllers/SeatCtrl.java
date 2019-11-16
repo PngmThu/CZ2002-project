@@ -21,9 +21,28 @@ public class SeatCtrl {
 		seatStatus = showTime.getSeatStatus();
 		row = showTime.getCinema().getRowSize();
 		col = showTime.getCinema().getColSize();
-		
-		System.out.println("======================== Seat Layout ========================");
+		// Start Title 'Layout'
+		for(decorate = 1; decorate <= ((col+2)*5); decorate++) {
+			System.out.print("=");
+		}
 		System.out.println();
+		System.out.print("|   ");
+		for(decorate = 1; decorate <= (col/2); decorate++) {
+			
+			System.out.print("    ");
+		}
+		System.out.print(" Layout ");
+		for(; decorate <= col; decorate++) {
+			System.out.print("    ");
+		}
+		System.out.print("   |");
+		System.out.println();
+		for(decorate = 1; decorate <= ((col+2)*5); decorate++) {
+			System.out.print("=");
+		}
+		System.out.println("\n");
+		// End Title 'Layout'
+		// Start 'SCREEN'
 		System.out.print("===");
 		for(decorate = 1; decorate <= (col/2); decorate++) {
 			System.out.print("====");
@@ -33,6 +52,7 @@ public class SeatCtrl {
 			System.out.print("====");
 		}
 		System.out.print("===");
+		// End 'SCREEN'
 		System.out.println();
 		System.out.println();
 		System.out.print("     ");
@@ -102,6 +122,11 @@ public class SeatCtrl {
 			System.out.print("===");
 		}
 		System.out.print("=====");
+		System.out.println("\n");
+		System.out.println("[#] Selected  [x] Taken  [ ] Available");
+		for(decorate = 1; decorate <= ((col+2)*5); decorate++) {
+			System.out.print("=");
+		}
 		System.out.println();
 	}
 }
