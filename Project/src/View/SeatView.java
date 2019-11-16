@@ -1,6 +1,8 @@
 package View;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import Controllers.SeatCtrl;
 import Entities.Seat;
@@ -14,7 +16,7 @@ public class SeatView extends MoblimaViews{
 	public ArrayList<Seat> enterView(ShowTime showTime){
 		int chances = 2, numTicket = 0, row, col;
 		int area[] = new int[2];
-		String scString;
+		String scString, regex = "[a-zA-Z][0-9]?[0-9]";
 		ArrayList<Seat> seatList = new ArrayList<Seat>();
 		
 		for(int i = chances; i >= 0; i--) {
@@ -43,7 +45,10 @@ public class SeatView extends MoblimaViews{
     		for(int x = 2; x >= 0; x--) {
     			System.out.print("\nEnter Seat(Example: A1): ");
     			scString = sc.nextLine();
-    			if(scString.length() == 2 || scString.length() == 3) {
+    			Pattern pattern = Pattern.compile(regex);
+    			Matcher matcher = pattern.matcher(scString);
+    			
+    			if((scString.length() == 2 || scString.length() == 3) && matcher.matches()) {
     				row = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".indexOf(scString.toUpperCase().charAt(0));
     				if(sc.toString().length() == 2) {
     					col = scString.charAt(1) - '0' - 1;
