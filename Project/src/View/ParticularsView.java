@@ -47,22 +47,30 @@ public class ParticularsView extends MoblimaViews{
 		}
 		
 		for(int i = chances; i >= 0; i--) {
-			if(i == 0)
-				return;
 			System.out.println("Enter Mobile (8 digits):");
 			mobile = sc.nextLine();
 	    	try {
 	    		Integer.parseInt(mobile);
 	    		
 	    		if(mobile.length() != 8) {
-	    			throw new Exception("'" + mobile + "' is not 8 digits.\t" + i + " tries left.");
+	    			throw new Exception("'" + mobile + "' is not 8 digits.");
 	    		}else {
 	    			break;
 	    		}
-	        } catch (NumberFormatException e) {
-	        	System.out.println(mobile + " is not a number.\t" + i + " tries left.");
+	        } catch (NumberFormatException e) {	
+	        	if(i == 0) {
+	        		System.out.println(mobile + " is not a number. Returning to the Menu.");
+	        		return;
+	        	}else {
+	        		System.out.println(mobile + " is not a number.\t" + i + " tries left.");
+	        	}
 	        } catch (Exception e) {
-	           System.out.println(e.getMessage());
+	           if(i == 0) {
+	        	   System.out.println(e.getMessage() + " Returning to the Menu.");
+	        	   return;
+	           }else {
+	        	   System.out.println(e.getMessage() + "\t" + i + " tries left.");
+	           }
 	        }
 		}
 		System.out.println("Enter Email:");

@@ -71,6 +71,8 @@ public class BookingView extends MoblimaViews{
     	ParticularsView pv = (ParticularsView)menuView;
     	pv.enterView();
     	MovieGoer movieGoer = pv.getMovieGoer();
+    	if(movieGoer == null)
+    		return;
     	price = seatList.size() * BookingCtrl.getPrice(showTime, movieGoer.getMovieGoerGroup());
 
 		System.out.println("======================== Confirm Booking ========================");
