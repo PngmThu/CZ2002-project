@@ -4,6 +4,9 @@ import Controllers.ParticularsCtrl;
 import Entities.MovieGoer;
 import Entities.MovieGoerGroup;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class ParticularsView extends MoblimaViews{
 	
 	private MovieGoer movieGoer;
@@ -11,11 +14,20 @@ public class ParticularsView extends MoblimaViews{
 	public MovieGoer getMovieGoer() {
 		return this.movieGoer;
 	}
+
+	public static final Pattern VALID_EMAIL_ADDRESS_REGEX =
+			Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+
+	public static boolean validate(String emailStr) {
+		Matcher matcher = VALID_EMAIL_ADDRESS_REGEX .matcher(emailStr);
+		return matcher.find();
+	}
 	
 	public void enterView() {
 		int index, chances = 2, scInt = 0;
     	String name, mobile = null, email;
     	MovieGoerGroup ageGroup = null;
+    	boolean validEmail=false;
 		
 		System.out.print("\nEnter Name: ");
 		name = sc.nextLine();
@@ -73,8 +85,15 @@ public class ParticularsView extends MoblimaViews{
 	           }
 	        }
 		}
-		System.out.println("Enter Email:");
-		email = sc.nextLine();
+		do {
+			System.out.println("Enter Email:");
+			email = sc.nextLine();
+
+			if(validate(email) == true)
+				validEmail=true;
+			else
+				System.out.println("Invalid email address, please enter a valid email address.");
+		}while(validEmail==false);
 		
 		movieGoer = ParticularsCtrl.movieGoerExist(email);
 		if(movieGoer == null) {

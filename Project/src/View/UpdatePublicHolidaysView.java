@@ -60,7 +60,7 @@ public class UpdatePublicHolidaysView extends ManageSystemSettingsView {
                     day = readInt(1);
                     if (day == -1) continue;
                     else if (day < 1 || day > 31) {
-                        System.out.println("Please enter a year between 1 to 31.\n");
+                        System.out.println("Please enter a day between 1 to 31.\n");
                         continue;
                     }
                     break;
