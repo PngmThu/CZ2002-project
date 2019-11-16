@@ -22,40 +22,43 @@ public class SeatCtrl {
 		row = showTime.getCinema().getRowSize();
 		col = showTime.getCinema().getColSize();
 		// Start Title 'Layout'
-		for(decorate = 1; decorate <= ((col+2)*5); decorate++) {
+		System.out.print("=");
+		for(decorate = 1; decorate <= ((col+3)*4); decorate++) {
 			System.out.print("=");
 		}
+		System.out.print("=");
 		System.out.println();
-		System.out.print("|   ");
+		System.out.print("|  ");
 		for(decorate = 1; decorate <= (col/2); decorate++) {
-			
 			System.out.print("    ");
 		}
 		System.out.print(" Layout ");
 		for(; decorate <= col; decorate++) {
 			System.out.print("    ");
 		}
-		System.out.print("   |");
+		System.out.print("  |");
 		System.out.println();
-		for(decorate = 1; decorate <= ((col+2)*5); decorate++) {
+		System.out.print("=");
+		for(decorate = 1; decorate <= ((col+3)*4); decorate++) {
 			System.out.print("=");
 		}
+		System.out.print("=");
 		System.out.println("\n");
 		// End Title 'Layout'
 		// Start 'SCREEN'
-		System.out.print("===");
-		for(decorate = 1; decorate <= (col/2); decorate++) {
-			System.out.print("====");
+		System.out.println();
+		for(decorate = 1; decorate <= ((col+1)*2); decorate++) {
+			System.out.print("=");
 		}
 		System.out.print("| SCREEN |");
-		for(; decorate <= col; decorate++) {
-			System.out.print("====");
+		for(decorate = 1; decorate <= ((col+1)*2); decorate++) {
+			System.out.print("=");
 		}
-		System.out.print("===");
+		System.out.println();
+		
+		System.out.println("\n");	
 		// End 'SCREEN'
-		System.out.println();
-		System.out.println();
-		System.out.print("     ");
+		System.out.print("      ");
 		for(decorate = 1; decorate <= (col/2); decorate++) {
 			System.out.print(String.format("%02d", decorate) + "  ");
 		}
@@ -66,7 +69,7 @@ public class SeatCtrl {
 		System.out.println("");
 		for(r = 0; r < row; r++) {
 			decorate = 0;
-			System.out.print("   ");
+			System.out.print("    ");
 			while(decorate < (2*col + 1)) {
 				
 				System.out.print("=");
@@ -78,7 +81,7 @@ public class SeatCtrl {
 				decorate++;
 			}
 			System.out.println();
-			System.out.print(" " + alphabet.charAt(r) + " |");
+			System.out.print("  " + alphabet.charAt(r) + " |");
 			for(c = 0; c < (col/2); c++) {
 				if(seatStatus[r][c]) {
 					System.out.print(" x |");
@@ -101,7 +104,7 @@ public class SeatCtrl {
 			System.out.println();
 		}
 		decorate = 0;
-		System.out.print("   ");
+		System.out.print("    ");
 		while(decorate < (2*col + 1)) {
 			System.out.print("=");
 			decorate++;
@@ -111,22 +114,22 @@ public class SeatCtrl {
 			System.out.print("=");
 			decorate++;
 		}
-		System.out.println("\n");
+		System.out.println();
 		
-		System.out.print("=====");
-		for(decorate = 1; decorate <= (col/2); decorate++) {
-			System.out.print("===");
-		}
-		System.out.print("| ENTRANCE |");
-		for(; decorate <= col; decorate++) {
-			System.out.print("===");
-		}
-		System.out.print("=====");
-		System.out.println("\n");
-		System.out.println("[#] Selected  [x] Taken  [ ] Available");
-		for(decorate = 1; decorate <= ((col+2)*5); decorate++) {
+		// Start 'ENTRANCE'
+		System.out.println();
+		System.out.print("=");
+		for(decorate = 1; decorate <= ((col)*2); decorate++) {
 			System.out.print("=");
 		}
-		System.out.println();
+		System.out.print("| ENTRANCE |");
+		for(decorate = 1; decorate <= ((col)*2); decorate++) {
+			System.out.print("=");
+		}
+		System.out.print("=");
+		System.out.println("\n");	
+		// End 'ENTRANCE'
+		System.out.println("[#] Selected  [x] Taken  [ ] Available");
+		
 	}
 }
