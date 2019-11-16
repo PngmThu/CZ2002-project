@@ -26,6 +26,9 @@ public class CreateShowTimeView extends ManageShowTimesView {
         Time time = null;
 
         while (loop) {
+            System.out.println("\n>>>>>>>>>>\n");
+            System.out.println("*************************************");
+            System.out.println("Staff - CREATE SHOWTIME");
             System.out.println("*************************************");
             System.out.println("Admin - Creating Showtime");
             System.out.println("*************************************");
@@ -34,7 +37,7 @@ public class CreateShowTimeView extends ManageShowTimesView {
             System.out.println("Cinema: " + cinema.getCinemaCode());
             System.out.println("*************************************");
 
-            System.out.println("---- Please enter the following ShowTime details below ----");
+            System.out.println("===== Please enter the following showtime details below =====");
             while (loop) {
                 System.out.print("Enter Year: ");//Input to change Movie Title
                 y = readInt(3);//Scan for input

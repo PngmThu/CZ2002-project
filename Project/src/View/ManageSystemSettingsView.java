@@ -17,7 +17,7 @@ public class ManageSystemSettingsView extends MoblimaViews{
         //Page used by Admin to make changes to Ticket Prices and Public Holidays
         while (loop) {
             /*********************Display Menu**************************/
-            System.out.println(">>>>>>>>>>\n");
+            System.out.println("\n>>>>>>>>>>\n");
 
             int num = 13;
             String str = " " + "_".repeat(num) + " Staff - CONFIGURE SYSTEM SETTINGS " + "_".repeat(num);

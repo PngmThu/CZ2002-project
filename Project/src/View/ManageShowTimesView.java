@@ -30,6 +30,7 @@ public class ManageShowTimesView extends MoblimaViews {
         while (loop) {
             /*********************Display Menu**************************/
             int num = 13;
+            System.out.println("\n>>>>>>>>>>\n");
             String str = " " + "_".repeat(num) + " Staff - MANAGE MOVIE SHOWTIMES " + "_".repeat(num);
             System.out.println(str);
             //System.out.println("str.length() - 3: " + (str.length() - 3));
